@@ -1,8 +1,8 @@
 const fa = {
   "telephone": "تلفن:",
   "address": "نشانی:",
-  "country_or_region": "کشور\/منطقه:",
-  "province_or_state": "استان\/ایالت",
+  "country_or_region": "کشور/منطقه:",
+  "province_or_state": "استان/ایالت",
   "city": "شهر",
   "follow": "دنبال کن",
   "search": "جستجو",

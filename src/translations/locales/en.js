@@ -1,8 +1,8 @@
 const en = {
   "telephone": "Telephone:",
   "address": "Address:",
-  "country_or_region": "Country\/Region:",
-  "province_or_state": "Province\/State:",
+  "country_or_region": "Country/Region:",
+  "province_or_state": "Province/State:",
   "city": "City",
   "follow": "Follow",
   "search": "Search",

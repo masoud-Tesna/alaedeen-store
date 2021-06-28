@@ -1,8 +1,8 @@
 const ar = {
   "telephone": "رقم هاتف:",
   "address": "عنوان:",
-  "country_or_region": "البلد\/المنطقة:",
-  "province_or_state": "المقاطعة\/الولاية:",
+  "country_or_region": "البلد/المنطقة:",
+  "province_or_state": "المقاطعة/الولاية:",
   "city": "مدينة",
   "follow": "تابِع",
   "search": "بحث",
