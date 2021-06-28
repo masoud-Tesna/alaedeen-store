@@ -1,0 +1,124 @@
+html:lang(fa),
+html:lang(ar) {
+  .site--header .ant-row-rtl,
+  .site--header .ant-space-rtl {
+    direction: ltr;
+  }
+
+  .header__details--contentLeft .ant-space-rtl {
+    .ant-space-item {
+      &:not(:last-child) {
+        margin-right: 24px;
+        margin-left: 0 !important;
+      }
+    }
+  }
+}
+
+.ant-layout-header.site--header {
+
+  .header__bgColor {
+    background-color: rgba(242, 6, 4, 0.7);
+    //height: 226px;
+
+    .header__topSection {
+      .header__bgImage {
+        content: "";
+        background-image: url('../../../assets/images/topPanelBg.png');
+        opacity: 0.61;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+      }
+
+      .header__details {
+        .header__details--container {
+          z-index: 1;
+          .info--bgOpacity {
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-image: repeating-linear-gradient(rgba(255,255,255,0.65) 0%, rgba(255,255,255,1) 65%, white 100%);
+          }
+
+          .info--img__container {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+          }
+
+          .header__details--followBtn {
+            width: 101px;
+          }
+        }
+      }
+    }
+  }
+
+  .header__bottomSection {
+    margin-top: -7px;
+    height: 55px;
+
+    .header__bottomSection--container {
+      .header__tabContainer {
+        .ant-tabs-nav {
+          margin: 0 !important;
+          &:before {
+            border: 0;
+            content: none;
+          }
+
+          .ant-tabs-nav-list {
+            justify-content: space-between;
+          }
+
+          .ant-tabs-tab {
+            .ant-tabs-tab-btn {
+              color: #FFFFFF !important;
+              font-size: 2rem;
+              font-weight: 600;
+              padding: 0 1.5rem;
+            }
+          }
+          .ant-tabs-tab.ant-tabs-tab-active {
+            .ant-tabs-tab-btn {
+              font-weight: bold;
+              text-shadow: none;
+            }
+          }
+
+          .ant-tabs-ink-bar {
+            height: 3px !important;
+            background: #FFFFFF;
+          }
+        }
+      }
+
+      .header__bottomSection--searchShare {
+        margin-top: 7px;
+        height: 32px;
+      }
+      .header__bottomSection--search,
+      .header__bottomSection--share {
+        background-color: #FFFFFF;
+        border-radius: 5px;
+      }
+    }
+  }
+
+}
+
+.ant-layout-header.site--header {
+  /*height: calc(80px + 1.2rem);*/
+  /*height: 226px;*/
+  height: auto !important;
+  line-height: unset;
+  padding: 0;
+}

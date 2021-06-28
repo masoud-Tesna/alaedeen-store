@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StoreRoute from "./StoreRoute";
+import App from './App';
 
-import { RecoilRoot } from "recoil";
+// import i18n:
+import "./translations";
 
-const layoutRender = () => {
+// import language context:
+import { LanguageProvider } from "./contexts/language/LanguageContext";
+
+import * as serviceWorker from './serviceWorker';
+
+
+const Application = () => {
   return (
-    <RecoilRoot>
-      <StoreRoute />
-    </RecoilRoot>
-    );
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  );
 }
 
-ReactDOM.render(
-  layoutRender(),
-  document.getElementById('root')
-);
+ReactDOM.render( <Application />, document.getElementById('HornStoreApp'));
 
+serviceWorker.register();
