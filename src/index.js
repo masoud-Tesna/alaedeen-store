@@ -4,7 +4,9 @@ import StoreRoute from "./StoreRoute";
 
 const layoutRender = () => {
   return (
+    <RecoilRoot>
       <StoreRoute />
+    </RecoilRoot>
     );
 }
 
