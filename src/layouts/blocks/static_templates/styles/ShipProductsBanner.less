@@ -1,0 +1,45 @@
+html:lang(fa),
+html:lang(ar) {
+  .shipProductsBanner--content__caption1,
+  .shipProductsBanner--content__caption2 {
+    direction: rtl;
+  }
+}
+
+.shipProductsBanner--container {
+  min-height: 137px;
+  .shipProductsBanner--content {
+    background-image: url(../../../../assets/images/shipProductsBannerXs.png);
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    .shipProductsBanner--content__topSection {
+      margin-bottom: -7rem !important;
+    }
+    .shipProductsBanner--content__caption2 {
+      width: 80%;
+    }
+    .shipProductsBanner--content__btn {
+      .ant-btn {
+        width: 106px;
+        height: 35px;
+        span {
+          font-size: 1.6rem!important;
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .shipProductsBanner--container {
+    min-height: 345px;
+    .shipProductsBanner--content {
+      background-image: url(../../../../assets/images/shipProductsBanner.png);
+      .shipProductsBanner--content__btn {
+        max-width: 35% !important;
+      }
+    }
+  }
+}

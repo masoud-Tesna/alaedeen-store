@@ -1,0 +1,66 @@
+html:lang(fa),
+html:lang(ar) {
+  .top--section > .ant-row-rtl,
+  .shipProductsBanner--section.product--section .ant-row-rtl {
+    direction: ltr;
+  }
+}
+
+.top--section{
+  overflow-x: hidden;
+  padding-bottom: 2rem;
+
+  .topSection--requestForm,
+  .topSection--requestsList {
+    height: calc(50% - 1rem) !important;
+  }
+  .topSection--requestForm {
+    align-self: flex-start !important;
+  }
+  .topSection--requestsList {
+    align-self: flex-end !important;
+  }
+}
+
+.stats--section {
+  margin-bottom: 2rem;
+}
+
+.shipProductsBanner--section.product--section {
+  padding: 0 8px;
+  margin-bottom: 4rem;
+}
+
+.topRankingProducts--section,
+.PremiumFactories--section,
+.recommended--section {
+  margin-bottom: 2.5rem;
+}
+
+.visitsProducts--section {
+  margin-bottom: 4rem;
+}
+
+.topBrands--section {
+  margin-bottom: 2rem;
+}
+
+.whatHorn--section {
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 992px) {
+  .top--section {
+    padding: 0 18px 2rem;
+    margin-bottom: 0;
+  }
+
+  .shipProductsBanner--section.product--section {
+    padding: 0 80px;
+    margin-bottom: 4rem;
+  }
+
+  .topBrands--section {
+    margin-bottom: 5rem;
+  }
+}
