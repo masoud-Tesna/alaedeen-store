@@ -66,7 +66,7 @@ const CategoriesMultiColumn = () => {
                         <Row className="categoriesMultiColumn--item__row">
                           <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                             <div className="categoriesMultiColumn--img__wrapper">
-                              <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={115} height={115} imageAlt={ category.category }/>
+                              <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={ width < 768 ? 73 : 115 } height={ width < 768 ? 73 : 115 } imageAlt={ category.category }/>
                             </div>
                           </Col>
                           <Col span={24} className="categoriesMultiColumn--title text-center text-47 pb-2 px-3">

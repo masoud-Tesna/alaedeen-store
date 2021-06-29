@@ -42,7 +42,7 @@ function App() {
             <SiteHeader />
           </Header>
           <Content>
-            <div className="site-layout-content">
+            <div className="site-layout-content bg-white">
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/factories" component={Factories} />

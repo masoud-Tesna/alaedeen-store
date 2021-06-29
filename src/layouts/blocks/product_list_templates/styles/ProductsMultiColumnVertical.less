@@ -10,23 +10,72 @@ html:lang(ar) {
 }
 
 .recommendedProducts--container {
+  .productsMultiColumnVertical--item > a > .ant-row {
+    position: relative;
+  }
+
   .productsMultiColumnVertical--item {
+    .productsMultiColumnVertical--item__borderTopRight:before,
+    .productsMultiColumnVertical--item__borderTopLeft:before,
+    .productsMultiColumnVertical--item__borderBottomRight:after,
+    .productsMultiColumnVertical--item__borderBottomLeft:after {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      z-index: 999;
+    }
+
+    .productsMultiColumnVertical--item__borderTopRight:before {
+      top: 0;
+      right: 0;
+      border-top: 1px solid #BCBCBC;
+      border-right: 1px solid #BCBCBC;
+      border-top-right-radius: 7px;
+    }
+
+    .productsMultiColumnVertical--item__borderTopLeft:before {
+      top: 0;
+      left: 0;
+      border-top: 1px solid #BCBCBC;
+      border-left: 1px solid #BCBCBC;
+      border-top-left-radius: 7px;
+    }
+
+    .productsMultiColumnVertical--item__borderBottomRight:after {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid #BCBCBC;
+      border-right: 1px solid #BCBCBC;
+      border-bottom-right-radius: 7px;
+    }
+
+    .productsMultiColumnVertical--item__borderBottomLeft:after {
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid #BCBCBC;
+      border-left: 1px solid #BCBCBC;
+      border-bottom-left-radius: 7px;
+    }
+
     .productsMultiColumnVertical--item__image {
-      height: 170px;
       background-color: #FAFAFA;
       img {
         max-width: 100%;
         max-height: 100%;
       }
     }
+
     .productsMultiColumnVertical--item__title {
       padding: 0 1rem;
       font-weight: bold;
     }
+
     .productsMultiColumnVertical--item__price,
     .productsMultiColumnVertical--item__quantity {
       padding: 0 1rem;
     }
+
     .productsMultiColumnVertical--item__location-detailIcon {
       .productsMultiColumnVertical--item__location {
         i {
@@ -104,12 +153,10 @@ html:lang(ar) {
   margin-top: 10px!important;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .recommendedProducts--container {
     .productsMultiColumnVertical--item {
       .productsMultiColumnVertical--item__image {
-        height: 230px;
-
         img {
           max-width: 100%;
           max-height: 100%;
