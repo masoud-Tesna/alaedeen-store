@@ -37,7 +37,14 @@ const Home = () => {
   return (
     <>
       <div className="top--section bg-white">
-        <HomeCarousel />
+        <Row>
+          <Col span={24}>
+            <HomeCarousel />
+          </Col>
+          <Col span={24}>
+            <CategoriesMultiColumn />
+          </Col>
+        </Row>
       </div>
 
       <div className="stats--section">
