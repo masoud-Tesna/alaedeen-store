@@ -37,12 +37,12 @@ const PopularProducts = () => {
       <Row>
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col span={24} className={ `text-47 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6 text-center' } font-weight-bold` }>
+            <Col span={24} className={ `text-47 text-uppercase ${ width >= 768 ? 'vv-font-size-3 mb-4 px-4' : 'vv-font-size-1-6 text-center' } font-weight-bold` }>
               { t(__('Latest Products')) }
             </Col>
           </Row>
         </Col>
-        <Col span={24}>
+        <Col span={24} className="bg-white py-5 px-3">
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items" justify="space-around" gutter={[16, 20]}>
 

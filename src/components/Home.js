@@ -36,11 +36,11 @@ const Home = () => {
         </Row>
       </div>
 
-      <div className="popular--section">
+      <div className="shadow-bottom popular--section">
         <PopularProducts />
       </div>
 
-      <div className="latest--section">
+      <div className="shadow-bottom latest--section">
         <LatestProductsView />
       </div>
     </>

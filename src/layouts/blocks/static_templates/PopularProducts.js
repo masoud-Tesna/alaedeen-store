@@ -26,23 +26,17 @@ const PopularProducts = () => {
 
   const { load, products } = useGetProductApi(url);
 
-  let productsMultiColumnVertical_items = { span: 8 };
-
-  if (width <= 991) {
-    productsMultiColumnVertical_items = { span: 12 };
-  }
-
   return (
     <div className="recommendedProducts--container">
       <Row>
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col span={24} className={ `text-47 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6 text-center' } font-weight-bold` }>
+            <Col span={24} className={ `text-47 text-uppercase ${ width >= 768 ? 'vv-font-size-3 mb-4 px-4' : 'vv-font-size-1-6 text-center' } font-weight-bold` }>
               { t(__('Popular Products')) }
             </Col>
           </Row>
         </Col>
-        <Col span={24}>
+        <Col span={24} className="bg-white py-5 px-3">
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items" justify="space-around" gutter={[16, 20]}>
 
@@ -50,9 +44,8 @@ const PopularProducts = () => {
                 <SkeletonMultiColumnVertical
                   skeleton = {true}
                   skeltonNumbers ={ 4 }
-                  grid={productsMultiColumnVertical_items}
-                  width = { width }
-                  height = {width >= 768 ? 363.933 : 273.05}
+                  width = { width >= 768 ? 233 : 120 }
+                  height = {width >= 768 ? 233 : 120}
                 /> :
                 <>
                   {products.map((product, i) => {
