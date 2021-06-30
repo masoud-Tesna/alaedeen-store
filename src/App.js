@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ConfigProvider, Layout } from 'antd';
 
 // Pages:
-import { Home, Factories } from "./components";
+import { Home } from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
@@ -45,7 +45,6 @@ function App() {
             <div className="site-layout-content">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/factories" component={Factories} />
               </Switch>
             </div>
           </Content>

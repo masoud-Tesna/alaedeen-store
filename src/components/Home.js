@@ -14,6 +14,7 @@ import HomeCarousel from "../layouts/blocks/static_templates/HomeCarousel";
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
 import PopularProducts from "../layouts/blocks/static_templates/PopularProducts";
 import LatestProductsView from "../layouts/blocks/static_templates/LatestProductsView";
+import ShowVideoEmbed from "../layouts/blocks/static_templates/ShowVideoEmbed";
 
 const Home = () => {
 
@@ -42,6 +43,10 @@ const Home = () => {
 
       <div className="shadow-bottom latest--section">
         <LatestProductsView />
+      </div>
+
+      <div className="showVideoEmbed--section">
+        <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" />
       </div>
     </>
   );
