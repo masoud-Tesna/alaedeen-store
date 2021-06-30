@@ -14,7 +14,7 @@ const AgentInfo = () => {
   return (
     <>
       <Row className="my-4" justify={"center"}>
-        <Col xs={24} md={12} className="shadow px-md-5 py-md-4 bg-white agentInfo--container">
+        <Col xs={24} md={12} className="shadow p-4 px-md-5 bg-white agentInfo--container">
           <Row>
             <Col xs={24} md={9}>
               <Row className="h-100" align={"middle"}>
