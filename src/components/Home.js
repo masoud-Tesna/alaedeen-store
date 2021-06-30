@@ -15,6 +15,7 @@ import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiC
 import PopularProducts from "../layouts/blocks/static_templates/PopularProducts";
 import LatestProductsView from "../layouts/blocks/static_templates/LatestProductsView";
 import ShowVideoEmbed from "../layouts/blocks/static_templates/ShowVideoEmbed";
+import AgentInfo from "../layouts/blocks/static_templates/AgentInfo";
 
 const Home = () => {
 
@@ -47,6 +48,10 @@ const Home = () => {
 
       <div className="showVideoEmbed--section">
         <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" />
+      </div>
+
+      <div className="agentInfo--section">
+        <AgentInfo />
       </div>
     </>
   );
