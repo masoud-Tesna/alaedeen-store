@@ -57,7 +57,7 @@ const DefaultTopPanel = () => {
 
   return (
     <>
-      {width >= 992 &&
+      {width >= 768 &&
       /*if Screen Width >= 992px (Desktop): */
       <Row className="bg-top-panel topPanel--container">
 
