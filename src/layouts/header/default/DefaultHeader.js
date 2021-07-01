@@ -79,12 +79,10 @@ const DefaultHeader = () => {
 
   const [scrolled,setScrolled]=useState(false);
 
-  const [widthPage,setWidthPage]=useState();
-
   const handleScroll = () => {
     const offsetY = window.scrollY;
 
-    if (widthPage <= 576) {
+    if (width <= 576) {
       if(offsetY > 124 ){
         setScrolled(true);
       }
@@ -92,7 +90,7 @@ const DefaultHeader = () => {
         setScrolled(false);
       }
     } // if WidthPage state value <= 576 change condition for scroll and set class name
-    else if (widthPage >= 577) {
+    if (width >= 577) {
       if(offsetY > 128 ){
         setScrolled(true);
       }
@@ -100,28 +98,12 @@ const DefaultHeader = () => {
         setScrolled(false);
       }
     } // if WidthPage state value >= 577 change condition for scroll and set class name
-    else if (widthPage >= 769) {
-      if(offsetY > 132 ){
-        setScrolled(true);
-      }
-      else{
-        setScrolled(false);
-      }
-    } // if WidthPage state value >= 769 change condition for scroll and set class name
-    else if (widthPage >= 933) {
-      if(offsetY > 135 ){
-        setScrolled(true);
-      }
-      else{
-        setScrolled(false);
-      }
-    } // if WidthPage state value >= 993 change condition for scroll and set class name
+    if (width >= 768) {
+      setScrolled(false);
+    } // if WidthPage state value >= 768 change condition for scroll and set class name
   }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
-
-    window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
-    window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
   })
 
   let x=[''];
