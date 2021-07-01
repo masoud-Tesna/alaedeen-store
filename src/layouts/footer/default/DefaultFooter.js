@@ -43,7 +43,7 @@ const DefaultFooter = () => {
   let instagramLink = language === 'en' ? "https://instagram.com/hornb2b" : language === 'fa' ? "https://instagram.com/hornb2b.ir" : language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
   return (
-    <Row className="bg-f6 pt-5 pb-6 footer--container" justify={"center"}>
+    <Row className="bg-f6 pt-md-5 footer--container" justify={"center"}>
       <Col span={24} className="footer--content">
         <Row className="row-cols-2 row-cols-md-3" gutter={[6, 24]}>
           <Col className="text-47">{ t(__('Order registration guide')) }</Col>
