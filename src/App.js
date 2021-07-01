@@ -23,7 +23,7 @@ import { useGetLanguageState } from "./contexts/language/LanguageContext";
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
-import React from "react";
+import BottomDetails from "./layouts/blocks/static_templates/BottomDetails";
 
 function App() {
 
@@ -46,6 +46,9 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
               </Switch>
+            </div>
+            <div className="bottomDetails--section">
+              <BottomDetails />
             </div>
           </Content>
           <Footer>

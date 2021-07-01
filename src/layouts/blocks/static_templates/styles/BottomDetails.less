@@ -1,0 +1,21 @@
+.bottomDetails--container__desktop {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 1000;
+
+  .bottomDetails--content__desktop {
+    width: 85px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+
+    a {
+      &:hover {
+        .bottomDetails--icon,
+        .bottomDetails--text {
+          color: darken(#2D8327, 10%) !important;
+        }
+      }
+    }
+  }
+}

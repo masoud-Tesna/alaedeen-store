@@ -34,6 +34,41 @@ html:lang(ar) {
       }
 
       .header__details {
+        &:not(.scrolled) {
+          padding: 0 15px;
+        }
+
+        .header__topSection--sticky {
+          padding: 0 15px;
+          transition: 0.5s all ease;                /* added unit */
+          -moz-transition: 0.5s all ease;           /* added unit */
+          -webkit-transition: 0.5s all ease;        /* added unit */
+        }
+
+        .header__topSection--sticky.scrolled {
+          position: fixed;
+          top: 0;
+          z-index: 999;
+          width: 100%;
+          background-color: #F20604 !important;
+          transition: 0.5s all ease-in-out;         /* added unit */
+          -moz-transition: 0.5s all ease-in-out;    /* added unit */
+          -webkit-transition: 0.5s all ease-in-out; /* added unit */
+        }
+
+        .search--bgOpacity,
+        .share--bgOpacity {
+          content: "";
+          background-color: #FFFFFF;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          position: absolute;
+          border-radius: 9px;
+          opacity: 0.61;
+        }
+
         .header__details--container {
           z-index: 1;
           .info--bgOpacity {
@@ -49,13 +84,35 @@ html:lang(ar) {
           }
 
           .info--img__container {
-            width: 100px;
-            height: 100px;
-            line-height: 100px;
+            width: 50px;
+            height: 50px;
+            background-color: #FFFFFF;
+            line-height: 50px;
+            border-radius: 8px;
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+
+            img {
+              width: 42px;
+            }
+          }
+
+          .info--storeName,
+          .flag-icon {
+            font-size: 2rem;
+          }
+
+          .info--icon__title {
+            font-size: 1.2rem;
           }
 
           .header__details--followBtn {
-            width: 101px;
+            width: 53px;
+            padding: 0 !important;
+            height: 27px;
+            line-height: 20px;
+            span {
+              font-size: 1.3rem;
+            }
           }
         }
       }
@@ -65,8 +122,13 @@ html:lang(ar) {
   .header__bottomSection {
     margin-top: -7px;
     height: 55px;
+    transition: 0.5s all ease;                /* added unit */
+    -moz-transition: 0.5s all ease;           /* added unit */
+    -webkit-transition: 0.5s all ease;        /* added unit */
 
     .header__bottomSection--container {
+      padding: 0 15px;
+
       .header__tabContainer {
         .ant-tabs-nav {
           margin: 0 !important;
@@ -82,7 +144,7 @@ html:lang(ar) {
           .ant-tabs-tab {
             .ant-tabs-tab-btn {
               color: #FFFFFF !important;
-              font-size: 2rem;
+              font-size: 1.8rem;
               font-weight: 600;
               padding: 0 1.5rem;
             }
@@ -113,6 +175,17 @@ html:lang(ar) {
     }
   }
 
+  .header__bottomSection.scrolled {
+    position: fixed;
+    z-index: 999;
+    animation: header__bottomSectionScrolled--animation 0.5s ease-in-out;
+    transition: 0.5s all ease-in-out;         /* added unit */
+    -moz-transition: 0.5s all ease-in-out;    /* added unit */
+    -webkit-transition: 0.5s all ease-in-out; /* added unit */
+    top: 49.61px;
+    width: 100%;
+  }
+
 }
 
 .ant-layout-header.site--header {
@@ -121,4 +194,91 @@ html:lang(ar) {
   height: auto !important;
   line-height: unset;
   padding: 0;
+}
+
+@media (min-width: 768px) {
+  .ant-layout-header.site--header {
+
+    .header__bgColor {
+      .header__topSection {
+        .header__details {
+          &:not(.scrolled) {
+            padding: 0 3rem;
+          }
+
+          .header__details--container {
+            .info--img__container {
+              width: 100px;
+              height: 100px;
+              line-height: 100px;
+              background-color: transparent;
+              border-radius: 0;
+              box-shadow: none;
+
+              img {
+                width: auto;
+              }
+            }
+
+            .info--storeName,
+            .flag-icon {
+              font-size: 3rem;
+            }
+
+            .info--icon__title {
+              font-size: 2rem;
+            }
+
+            .header__details--followBtn {
+              width: 101px;
+              height: 40px;
+              span {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .header__bottomSection {
+      .header__bottomSection--container {
+        padding: 0 3rem;
+
+        .header__tabContainer {
+          .ant-tabs-nav {
+            .ant-tabs-tab {
+              .ant-tabs-tab-btn {
+                color: #FFFFFF !important;
+                font-size: 2rem;
+                font-weight: 600;
+                padding: 0 1.5rem;
+              }
+            }
+            .ant-tabs-tab.ant-tabs-tab-active {
+              .ant-tabs-tab-btn {
+                font-weight: bold;
+                text-shadow: none;
+              }
+            }
+
+            .ant-tabs-ink-bar {
+              height: 3px !important;
+              background: #FFFFFF;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@keyframes header__bottomSectionScrolled--animation {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 49.61px;
+  }
 }
