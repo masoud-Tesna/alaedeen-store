@@ -87,9 +87,9 @@ const DefaultTopPanel = () => {
               <Space size={"small"}>
                 <i className="fal fa-user display-5 text-white d-block mr-3" />
                 <span>
-                  <Link className="text-white vv-font-size-2" to={"/sign-in"} >
+                  <a className="text-white vv-font-size-2" href={"https://hornb2b.com/sign-in"} >
                     {t(__('Sign in'))}
-                  </Link>
+                  </a>
                 </span>
                 <Divider type="vertical" className="border-70"/>
                 <span>

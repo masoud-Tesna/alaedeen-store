@@ -66,17 +66,17 @@ const ProductsMultiColumnVertical = (props) => {
     <Col className={ `productsMultiColumnVertical--item` }  xs={12} lg={5} xl={4}>
       <a className="d-block h-100" href={ product.link }>
         <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
-          <div className = "productsMultiColumnVertical--item__borderTopRight" />
-          <div className = "productsMultiColumnVertical--item__borderTopLeft" />
-          <div className = "productsMultiColumnVertical--item__borderBottomRight" />
-          <div className = "productsMultiColumnVertical--item__borderBottomLeft" />
           <Col className="align-self-start" span={24}>
             <Row>
               <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
                 <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
+                <div className = "productsMultiColumnVertical--item__borderTopRight" />
+                <div className = "productsMultiColumnVertical--item__borderTopLeft" />
+                <div className = "productsMultiColumnVertical--item__borderBottomRight" />
+                <div className = "productsMultiColumnVertical--item__borderBottomLeft" />
               </Col>
 
-              <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-center text-truncate productsMultiColumnVertical--item__title` }>
+              <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 mt-3 text-center text-truncate productsMultiColumnVertical--item__title` }>
                 { product.product }
               </Col>
             </Row>
