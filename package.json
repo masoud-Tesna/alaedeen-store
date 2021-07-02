@@ -1,6 +1,7 @@
 {
   "name": "horn-store",
-  "homepage": "https://hornb2b.com/",
+  "proxy": "https://hornb2b.com",
+  "homepage": "https://hornb2b.com/for_test",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

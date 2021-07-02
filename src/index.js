@@ -8,9 +8,6 @@ import "./translations";
 // import language context:
 import { LanguageProvider } from "./contexts/language/LanguageContext";
 
-import * as serviceWorker from './serviceWorker';
-
-
 const Application = () => {
   return (
     <LanguageProvider>
@@ -21,4 +18,3 @@ const Application = () => {
 
 ReactDOM.render( <Application />, document.getElementById('HornStoreApp'));
 
-serviceWorker.register();
