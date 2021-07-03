@@ -36,9 +36,9 @@ const PopularProducts = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={24} className="bg-white py-5 px-3">
+        <Col span={24} className="bg-white py-5 px-6">
           <div className="h-100 productsMultiColumnVertical--container">
-            <Row className="h-100 productsMultiColumnVertical--items" justify="space-around" gutter={[16, 20]}>
+            <Row className="h-100 productsMultiColumnVertical--items" justify="space-around" gutter={[ { xs: 16, md: 100 }, 20]}>
 
               {load ?
                 <SkeletonMultiColumnVertical

@@ -63,7 +63,7 @@ const ProductsMultiColumnVertical = (props) => {
   }
 
   return (
-    <Col className={ `productsMultiColumnVertical--item` }  xs={12} lg={5} xl={4}>
+    <Col className={ `productsMultiColumnVertical--item` }  xs={12} lg={5} xl={6}>
       <a className="d-block h-100" href={ product.link }>
         <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
           <Col className="align-self-start" span={24}>
