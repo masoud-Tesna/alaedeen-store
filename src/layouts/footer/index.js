@@ -18,10 +18,10 @@ const SiteFooter = () => {
   }, [location]);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/path') {
+  if (pathName === '/products') {
     return (
       <>
-        Not Default Footer
+        
       </>
     );
   }
