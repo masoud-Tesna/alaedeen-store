@@ -102,10 +102,11 @@ const DefaultHeader = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
+    window.addEventListener('load', handleScroll); //if Load Page in bottom page...
 
     window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
     window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
-  })
+  }, [handleScroll])
 
   let x=[''];
   if(scrolled){
