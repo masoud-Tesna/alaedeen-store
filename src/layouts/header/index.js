@@ -7,25 +7,18 @@ import { useWindowSize } from '../../functions';
 
 // Layouts:
 import DefaultHeader from "./default/DefaultHeader";
+import { useParsPathName } from "../../functions/Helper";
 
 const Header = () => {
 
   // Get Width Window:
   const { width } = useWindowSize();
 
-  // Get Location:
-  let location = useLocation();
-
-  // Set State For Path NAme:
-  const [pathName, setPathName] = useState(location.pathname);
-
-  // if Changed Location.pathname Change state:
-  useEffect(() => {
-    setPathName(location.pathname);
-  }, [location]);
+  // Get Location pathName:
+  const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if (pathName === '/factories' && width <= 991) {
+  if (pathName === 'factories' && width <= 991) {
     return (
       <>
 

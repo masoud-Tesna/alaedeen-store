@@ -13,7 +13,7 @@ import verifiedTop from '../../../assets/images/verifiedTop.png';
 import ISO1799 from '../../../assets/images/ISO1799.png';
 
 // import helper functions:
-import { __ } from "../../../functions/Helper";
+import { __, useParsPathName } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
@@ -42,7 +42,8 @@ const DefaultHeader = () => {
 
   const location = useLocation();
 
-  const [tabActive, setTabActive] = useState(null);
+  // Get Location pathName:
+  const pathName = useParsPathName();
 
   // initial state for show spinner:
   const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
@@ -61,7 +62,7 @@ const DefaultHeader = () => {
   }
 
   const tabCallBackHandle = (page) => {
-    tabActive !== page && history.push(page);
+    pathName !== page && ( page === 'homePage' ? history.push('/') :  history.push(page));
   };
 
   const goToPreviousPath = () => {
@@ -69,13 +70,6 @@ const DefaultHeader = () => {
       window.location.href = "http://hornb2b.com" :
       history.goBack();
   }
-
-  useEffect(() => {
-
-    const path = location.pathname;
-    setTabActive(path);
-
-  }, [location.pathname]);
 
 
   const [scrolled,setScrolled]=useState(false);
@@ -111,7 +105,6 @@ const DefaultHeader = () => {
 
     window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
     window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
-    console.log(widthPage)
   })
 
   let x=[''];
@@ -238,10 +231,10 @@ const DefaultHeader = () => {
       <Col span={24} className={ `bg-f2 header__bottomSection ${x.join(" ")}` }>
         <Row className="h-100 header__bottomSection--container" align={"bottom"} justify={"space-between"}>
           <Col xs={24} lg={10}>
-            <Tabs activeKey={tabActive} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">
-              <TabPane tab={ t(__('home')) } key="/" />
-              <TabPane tab={ t(__('products')) } key="/products" />
-              <TabPane tab={ t(__('about us')) } key="/about"/>
+            <Tabs activeKey={pathName} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">
+              <TabPane tab={ t(__('home')) } key="homePage" />
+              <TabPane tab={ t(__('products')) } key="products" />
+              <TabPane tab={ t(__('about us')) } key="about"/>
             </Tabs>
           </Col>
           <Col span={10} className="d-none d-lg-block align-self-center header__bottomSection--searchShare">
