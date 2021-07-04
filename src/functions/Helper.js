@@ -1,4 +1,5 @@
 import i18n from "../translations";
+import { useLocation } from "react-router-dom";
 
 export function fn_stripHtml (strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -36,8 +37,15 @@ export function __ (world, prefix = "", sign = ".") {
 
 }
 
-export function fn_pars_path_name (pathName) {
+export const useParsPathName = () => {
+  // Get Location pathName:
+  const pathName = useLocation().pathname;
+
   let returnWord = pathName;
+
+  if (returnWord === '/') {
+    return 'homePage';
+  }
 
   returnWord = returnWord.toString().trim().toLowerCase()
     .replaceAll("/", "");
