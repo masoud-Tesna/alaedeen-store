@@ -36,6 +36,15 @@ export function __ (world, prefix = "", sign = ".") {
 
 }
 
+export function fn_pars_path_name (pathName) {
+  let returnWord = pathName;
+
+  returnWord = returnWord.toString().trim().toLowerCase()
+    .replaceAll("/", "");
+
+  return returnWord;
+}
+
 export function fn_handleLinkClick (url, target) {
   return window.open(url, target);
 }
