@@ -54,7 +54,6 @@ const PopularProducts = () => {
                         key = { i }
                         className="bg-white"
                         product={product}
-                        allDetails
                         widthProductImage={width >= 768 ? 233 : 120}
                         heightProductImage={width >= 768 ? 233 : 120}
                       />

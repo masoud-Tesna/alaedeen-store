@@ -12,6 +12,8 @@ import store_1 from '../../../assets/images/store-icon/1.png';
 
 // import get image responsive from server and show:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { fn_stripHtml } from "../../../functions/Helper";
+import TextTruncate from "react-text-truncate";
 
 
 const ProductsMultiColumnVertical = (props) => {
@@ -20,7 +22,7 @@ const ProductsMultiColumnVertical = (props) => {
   const { width } = useWindowSize();
 
   // check show all details:
-  const { allDetails } = props;
+  const { productsPage } = props;
 
   // check product show swiper:
   const { swiper } = props;
@@ -44,6 +46,9 @@ const ProductsMultiColumnVertical = (props) => {
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
+  const desc = product.short_description ? product.short_description : product.full_description;
+  const productDesc = fn_stripHtml(desc);
+
   const manufacturing_country = product.manufacturing_country;
 
   // show skeleton if swiper is true
@@ -64,38 +69,64 @@ const ProductsMultiColumnVertical = (props) => {
 
   return (
     <Col className={ `productsMultiColumnVertical--item` }  xs={12} lg={5} xl={6}>
-      <a className="d-block h-100" href={ product.link }>
-        <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
-          <Col className="align-self-start" span={24}>
-            <Row>
-              <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+      <Row className={ `h-100 pb-3 ${props.className}` } justify="center">
+        <Col className="align-self-start" span={24}>
+          <Row>
+            <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+              <div className = "cursor-pointer itemFavoriteIcon" onClick={() => {console.log('click')}}>
+                <i className={`fal fa-heart text-f2 vv-font-size-2-5 `} />
+              </div>
+              <a href={ product.link }>
                 <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
-                <div className = "productsMultiColumnVertical--item__borderTopRight" />
-                <div className = "productsMultiColumnVertical--item__borderTopLeft" />
-                <div className = "productsMultiColumnVertical--item__borderBottomRight" />
-                <div className = "productsMultiColumnVertical--item__borderBottomLeft" />
-              </Col>
+              </a>
+              <div className = "productsMultiColumnVertical--item__borderTopRight" />
+              <div className = "productsMultiColumnVertical--item__borderTopLeft" />
+              <div className = "productsMultiColumnVertical--item__borderBottomRight" />
+              <div className = "productsMultiColumnVertical--item__borderBottomLeft" />
+            </Col>
 
-              <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 mt-3 text-center text-truncate productsMultiColumnVertical--item__title` }>
+            <a className="ant-row ant-col w-100" href={ product.link }>
+              <Col span={24} className={ `text-47 vv-font-size-1-8 mt-3 ${!productsPage && 'text-center'} text-truncate productsMultiColumnVertical--item__title` }>
                 { product.product }
               </Col>
-            </Row>
-          </Col>
+            </a>
+          </Row>
+        </Col>
 
-          {productPrice != 0.000 &&
-            <Col span={24} className="text-center productsMultiColumnVertical--item__price">
+        <Col span={24} className="align-self-end">
+          <Row>
+            {productsPage &&
+            <Col span={24} className="mt-2 productsMultiColumnVertical--item__desceription">
+              <TextTruncate
+                className = "vv-font-size-1-6 text-47 d-inline-block"
+                line={2}
+                element="div"
+                truncateText="…"
+                text= { productDesc }
+              />
+            </Col>
+            }
+
+            {productPrice != 0.000 &&
+            <Col span={24} className={ `mt-2 ${!productsPage && 'text-center'} productsMultiColumnVertical--item__price` }>
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
               { productListPrice != 0.00 &&
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
               }
               {product.quantity_unit &&
-                <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
+              <span className={ `${ !productsPage && 'd-none' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
               }
             </Col>
-          }
+            }
 
-        </Row>
-      </a>
+            {(productsPage && product.min_qty) &&
+            <Col span={24} className="mt-2 productsMultiColumnVertical--item__qty">
+              <span className="vv-font-size-1-6 text-47">{ product.min_qty } { product.quantity_unit }</span> <span className="vv-font-size-1-5 text-92">(MOQ)</span>
+            </Col>
+            }
+          </Row>
+        </Col>
+      </Row>
     </Col>
   );
 };
