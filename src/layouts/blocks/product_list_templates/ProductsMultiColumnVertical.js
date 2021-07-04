@@ -97,13 +97,15 @@ const ProductsMultiColumnVertical = (props) => {
           <Row>
             {productsPage &&
             <Col span={24} className="mt-2 productsMultiColumnVertical--item__desceription">
-              <TextTruncate
-                className = "vv-font-size-1-6 text-47 d-inline-block"
-                line={2}
-                element="div"
-                truncateText="…"
-                text= { productDesc }
-              />
+              <a href={ product.link }>
+                <TextTruncate
+                  className = "vv-font-size-1-6 text-47 d-inline-block"
+                  line={2}
+                  element="div"
+                  truncateText="…"
+                  text= { productDesc }
+                />
+              </a>
             </Col>
             }
 

@@ -49,7 +49,7 @@ const Products = () => {
   }
 
   return (
-    <Row className="mt-5 products--container mb-6">
+    <Row className="mt-5 products--container">
       <Col className="products-content" span={24}>
         <div className="h-100">
           <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 100 }, 22]}>
