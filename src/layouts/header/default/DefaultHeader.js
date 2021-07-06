@@ -62,7 +62,7 @@ const DefaultHeader = () => {
   }
 
   const tabCallBackHandle = (page) => {
-    pathName !== page && ( page === 'homePage' ? history.push('/') :  history.push(page));
+    pathName !== page && ( page === 'homePage' ? history.push('/') :  history.push(`/${page}`));
   };
 
   const goToPreviousPath = () => {
@@ -106,7 +106,7 @@ const DefaultHeader = () => {
 
     window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
     window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
-  }, [handleScroll])
+  })
 
   let x=[''];
   if(scrolled){
