@@ -1,3 +1,6 @@
+// import Mixin:
+@import '../../../../styles/Mixins';
+
 .showVideoEmbed--content {
 
   embed {
@@ -7,15 +10,19 @@
   &.homePage {
     embed {
       height: 230px;
+
+      @media (min-width: @screen-md) {
+        height: 790px;
+      }
     }
   }
-}
 
-@media (min-width: 768px) {
-  .showVideoEmbed--content {
-    &.homePage {
-      embed {
-        height: 790px;
+  &.aboutPage {
+    embed {
+      height: 150px;
+
+      @media (min-width: @screen-md) {
+        height: 320px;
       }
     }
   }
