@@ -12,10 +12,14 @@ import { Col, Pagination, Row } from "antd";
 import { useGetProductApi, useQuery, useWindowSize } from "../functions";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
+import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import { useSetLoaded } from "../functions/Helper";
 
 const Products = () => {
 
   const { width } = useWindowSize();
+
+  const { isLoaded } = useSetLoaded();
 
   const history = useHistory();
   const query = useQuery();
@@ -45,6 +49,10 @@ const Products = () => {
   const handleChangePage = pageNumber => {
     setPage(pageNumber);
     history.push(`/products/?page=${pageNumber}`);
+  }
+
+  if (isLoaded) {
+    return <LoadSpinner spinner={'default'} spinnerColor={'#2e8339'} />
   }
 
   return (

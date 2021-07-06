@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // import Custom Hooks:
 import { useWindowSize } from '../functions';
@@ -16,14 +16,20 @@ import PopularProducts from "../layouts/blocks/static_templates/PopularProducts"
 import LatestProductsView from "../layouts/blocks/static_templates/LatestProductsView";
 import ShowVideoEmbed from "../layouts/blocks/static_templates/ShowVideoEmbed";
 import AgentInfo from "../layouts/blocks/static_templates/AgentInfo";
+import { useSetLoaded } from "../functions/Helper";
+import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 
 const Home = () => {
 
-  const { width } = useWindowSize();
+  const { isLoaded } = useSetLoaded();
 
   useEffect(() => {
     document.title = "hornb2b.com: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
   }, []);
+
+  if (isLoaded) {
+    return <LoadSpinner spinner={'default'} spinnerColor={'#2e8339'} />
+  }
 
   return (
     <>

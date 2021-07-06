@@ -1,5 +1,6 @@
 import i18n from "../translations";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export function fn_stripHtml (strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -73,4 +74,17 @@ export function fn_set_initial_language (key, lang) {
 
 export function fn_set_local_storage (key, value) {
   window.localStorage.setItem(key, value);
+}
+
+export const useSetLoaded = () => {
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  const setLoaded = () => {
+    return new Promise((resolve) => setTimeout(() => resolve(), 2000));
+  }
+
+  useEffect(() => {
+    setLoaded().then(() => setIsLoaded(false));
+  }, []);
+  return { isLoaded }
 }
