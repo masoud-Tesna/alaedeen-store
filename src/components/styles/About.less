@@ -2,15 +2,16 @@
 @import '../../styles/Mixins';
 
 .about--container {
-  padding: 0 15px;
+  padding: 0 15px 10rem;
   @media (min-width: @screen-md) {
-    padding: 0 3rem;
+    padding: 0 3rem 3rem;
   }
 
 
-  .about--aboutUs__section {
-    .about--aboutUs__videosSection {
-      .about--aboutUs__videos {
+  .about--aboutUs__section,
+  .about--manufacturingCapability__section {
+    .about--videosSection {
+      .about--videos {
         min-height: 150px;
         display: flex;
         -ms-overflow-style: none;
@@ -22,7 +23,7 @@
           min-height: 320px;
         }
 
-        .about--aboutUs__video {
+        .about--video {
           min-width: 230px;
           width: 230px;
 

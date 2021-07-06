@@ -18,27 +18,87 @@ const About = () => {
           <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
             { t(__('about us')) }
           </Col>
-          <Col span={24} className="mt-3 about--aboutUs__videosSection">
-            <div className="about--aboutUs__videos">
-              <div className="about--aboutUs__video">
+          <Col span={24} className="mt-3 about--videosSection">
+            <div className="about--videos">
+              <div className="about--video">
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
               </div>
 
-              <div className="about--aboutUs__video">
+              <div className="about--video">
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
               </div>
 
-              <div className="about--aboutUs__video">
+              <div className="about--video">
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
               </div>
 
-              <div className="about--aboutUs__video">
+              <div className="about--video">
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
               </div>
             </div>
           </Col>
           <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consequatur deleniti, dolore doloremque magni non praesentium quaerat saepe sit tempore? Excepturi recusandae reprehenderit vel? Alias aliquam earum iste maiores mollitia odit optio quas sed, tempore ut! Cumque ex maiores maxime?
+          </Col>
+        </Row>
+      </Col>
+
+      <Col span={24} className="mt-5 about--componentOverview__section">
+        <Row>
+          <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
+            { t(__('Component Overview')) }
+          </Col>
+          <Col span={24} className="mt-3 about--componentOverview__tableSection">
+            <Row className="row-cols-2 row-cols-md-4 " gutter={[16, 30]}>
+              <Col className = "vv-font-size-1-2rem text-92" >Business Type</Col>
+              <Col className = "vv-font-size-1-2rem text-47" >manufacture</Col>
+
+              <Col className = "vv-font-size-1-2rem text-92" >Year Established</Col>
+              <Col className = "vv-font-size-1-2rem text-47" >2015</Col>
+
+              <Col className = "vv-font-size-1-2rem text-92" >Total Employees</Col>
+              <Col className = "vv-font-size-1-2rem text-47" >11 - 50 People</Col>
+
+              <Col className = "vv-font-size-1-2rem text-92" >Main Products</Col>
+              <Col className = "vv-font-size-1-2rem text-47" >Camouflage Uniform, Tactical Clothes, Security Clothes, Workwear</Col>
+
+              <Col className = "vv-font-size-1-2rem text-92" >Country / Region </Col>
+              <Col className = "vv-font-size-1-2rem text-47" >Tehran, Iran</Col>
+
+              <Col className = "vv-font-size-1-2rem text-92" >Main Markets</Col>
+              <Col className = "vv-font-size-1-2rem text-47" >
+                <span className="d-block vv-font-size-1-2rem text-47">Iraq 30.00%</span>
+                <span className="d-block vv-font-size-1-2rem text-47">Syria 20.00%</span>
+                <span className="d-block vv-font-size-1-2rem text-47">Armenia 10.00%</span>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Col>
+
+      <Col span={24} className="mt-5 about--manufacturingCapability__section">
+        <Row>
+          <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
+            { t(__('Manufacturing Capability')) }
+          </Col>
+          <Col span={24} className="mt-3 about--videosSection">
+            <div className="about--videos">
+              <div className="about--video">
+                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
+              </div>
+
+              <div className="about--video">
+                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
+              </div>
+
+              <div className="about--video">
+                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
+              </div>
+
+              <div className="about--video">
+                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
+              </div>
+            </div>
           </Col>
         </Row>
       </Col>
