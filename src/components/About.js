@@ -18,7 +18,7 @@ const About = () => {
           <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
             { t(__('about us')) }
           </Col>
-          <Col span={24} className="about--aboutUs__videosSection">
+          <Col span={24} className="mt-3 about--aboutUs__videosSection">
             <div className="about--aboutUs__videos">
               <div className="about--aboutUs__video">
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
@@ -36,6 +36,9 @@ const About = () => {
                 <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
               </div>
             </div>
+          </Col>
+          <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consequatur deleniti, dolore doloremque magni non praesentium quaerat saepe sit tempore? Excepturi recusandae reprehenderit vel? Alias aliquam earum iste maiores mollitia odit optio quas sed, tempore ut! Cumque ex maiores maxime?
           </Col>
         </Row>
       </Col>
