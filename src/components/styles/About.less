@@ -64,4 +64,47 @@
       }
     }
   }
+
+  .about--another__section {
+    > .ant-row {
+      margin: 0 -15px;
+      @media (min-width: @screen-md) {
+        margin: 0 -3rem;
+      }
+    }
+
+    .about--another__item {
+      height: 80px;
+      background-color: rgba(0, 0, 0, 0.4);
+
+      .about--another__bgImage {
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
+    .about--rAndD__container {
+      .about--another__bgImage {
+        background-image: url('../../assets/images/R-and-D-bg.png');
+      }
+    }
+
+    .about--qualityControl__container {
+      .about--another__bgImage {
+        background-image: url('../../assets/images/QualityControl-bg.png');
+      }
+    }
+
+    .about--exportCapability__container {
+      .about--another__bgImage {
+        background-image: url('../../assets/images/ExportCapability-bg.png');
+      }
+    }
+  }
 }
