@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //import Style File:
 import './styles/Products.less';
 
-// Import Ant Dsign Components:
+// Import Ant Design Components:
 import { Col, Pagination, Row } from "antd";
 
 
-import { useTranslation } from "react-i18next";
+
 import { useGetProductApi, useQuery, useWindowSize } from "../functions";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 
 const Products = () => {
-  const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
