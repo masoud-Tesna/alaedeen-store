@@ -1,0 +1,41 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.about--container {
+  padding: 0 15px;
+  @media (min-width: @screen-md) {
+    padding: 0 3rem;
+  }
+
+
+  .about--aboutUs__section {
+    .about--aboutUs__videosSection {
+      .about--aboutUs__videos {
+        min-height: 150px;
+        display: flex;
+        -ms-overflow-style: none;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding-bottom: 1.3rem;
+
+        @media (min-width: @screen-md) {
+          min-height: 320px;
+        }
+
+        .about--aboutUs__video {
+          min-width: 230px;
+          width: 230px;
+
+          @media (min-width: @screen-md) {
+            min-width: 600px;
+            width: 600px;
+          }
+
+          &:not(:last-child) {
+            margin-right: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
