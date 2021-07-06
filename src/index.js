@@ -8,11 +8,16 @@ import "./translations";
 // import language context:
 import { LanguageProvider } from "./contexts/language/LanguageContext";
 
+// import store id context:
+import { StoreProvider } from "./contexts/store/StoreContext";
+
 const Application = () => {
   return (
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <StoreProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </StoreProvider>
   );
 }
 
