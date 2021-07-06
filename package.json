@@ -25,6 +25,7 @@
     "react-i18next": "^11.10.0",
     "react-indiana-drag-scroll": "^2.0.1",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-jss": "^10.7.1",
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
