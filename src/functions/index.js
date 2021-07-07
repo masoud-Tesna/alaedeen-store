@@ -2,11 +2,26 @@ import { useState, useEffect } from "react";
 
 import { useLocation } from 'react-router-dom';
 
+import { useQuery } from "react-query";
+
 import axios from "axios";
 
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
+export function useGetProduct (params, key) {
+
+  const { language } = useGetLanguageState();
+
+  const getProducts = async () => {
+    const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+    const { data } = await axios.get(url);
+    return data;
+  }
+
+  return useQuery(['products', key], getProducts);
+}
+
 export function useGetProductApi (params) {
   const [load, setLoad] = useState(true);
   const [products, setProducts] = useState([]);
@@ -235,8 +250,18 @@ export function useGetFactories (params) {
   return { factories, parameters, load, error }
 }
 
-export function useResizeImage (image_path, image_folder, image_width, image_height) {
-  const [load, setLoad] = useState(true);
+export function useResizeImage (image_path, image_folder, image_width, image_height, key) {
+
+  // async function for get API:
+  const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+  async function getImageResized() {
+    const { data } = await axios.get(url);
+    return data;
+  }
+
+  return useQuery(['imageResponsive', key], getImageResized);
+
+  /*const [load, setLoad] = useState(true);
   const [image, setImage] = useState([]);
   const [error, setError] = useState(false);
 
@@ -268,7 +293,7 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
 
   }, [image_path, image_folder, image_width, image_height, error]);
 
-  return { image, load, error }
+  return { image, load, error }*/
 }
 
 export function useWindowSize () {
@@ -302,7 +327,7 @@ export function useWindowSize () {
   return windowSize;
 }
 
-export function useQuery () {
+export function useQueryString () {
   return new URLSearchParams(useLocation().search);
 }
 

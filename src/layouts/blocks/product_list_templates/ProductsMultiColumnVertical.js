@@ -77,7 +77,7 @@ const ProductsMultiColumnVertical = (props) => {
                 <i className={`fal fa-heart text-f2 vv-font-size-2-5 `} />
               </div>
               <a href={ product.link }>
-                <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
+                <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product } object_id={product.product_id}  object_type={'prd'}/>
               </a>
               <div className = "productsMultiColumnVertical--item__borderTopRight" />
               <div className = "productsMultiColumnVertical--item__borderTopLeft" />

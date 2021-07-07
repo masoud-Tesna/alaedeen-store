@@ -3,13 +3,14 @@ import { Image } from 'antd';
 
 const ShowResponsiveImage = (props) => {
 
-  const { imagePath, imageFolder, width, height, imageAlt } = props;
+  const { imagePath, imageFolder, width, height, imageAlt, object_id, object_type } = props;
 
-  const { image, load } = useResizeImage( imagePath, imageFolder, width, height );
+  const { isLoading, data } = useResizeImage( imagePath, imageFolder, width, height, `${object_type}_${object_id}` );
+  const { image } = data || "";
 
   return (
     <>
-      { load ?
+      { isLoading ?
         <Image
           width={width}
           height={height}

@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import { QueryClient, QueryClientProvider } from "react-query";
+
+import { ReactQueryDevtools } from "react-query/devtools";
+
 // import i18n:
 import "./translations";
 
@@ -11,13 +15,18 @@ import { LanguageProvider } from "./contexts/language/LanguageContext";
 // import store id context:
 import { StoreProvider } from "./contexts/store/StoreContext";
 
+const queryClient = new QueryClient();
+
 const Application = () => {
   return (
-    <StoreProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </StoreProvider>
+    <QueryClientProvider client={queryClient}>
+      <StoreProvider>
+        <LanguageProvider>
+          <App />
+          <ReactQueryDevtools initialIsOpen />
+        </LanguageProvider>
+      </StoreProvider>
+    </QueryClientProvider>
   );
 }
 

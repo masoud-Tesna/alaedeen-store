@@ -44,13 +44,13 @@ const Home = () => {
         </Row>
       </div>
 
-      <div className="shadow-bottom popular--section">
+      {/*<div className="shadow-bottom popular--section">
         <PopularProducts />
       </div>
 
       <div className="shadow-bottom latest--section">
         <LatestProductsView />
-      </div>
+      </div>*/}
 
       <div className="showVideoEmbed--section">
         <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'homePage'} />

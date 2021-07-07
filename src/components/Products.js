@@ -9,7 +9,7 @@ import { Col, Pagination, Row } from "antd";
 
 
 
-import { useGetProductApi, useQuery, useWindowSize } from "../functions";
+import { useGetProduct, useGetProductApi, useQueryString, useWindowSize } from "../functions";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
@@ -22,15 +22,18 @@ const Products = () => {
   const { isLoaded } = useSetLoaded();
 
   const history = useHistory();
-  const query = useQuery();
+  const query = useQueryString();
 
   const initialPage = query.get("page");
 
   const [page, setPage] = useState(initialPage || 1);
 
-  const url2 = `items_per_page=20&company_id=264&page=${page}`;
+  const url = `items_per_page=20&company_id=264&page=${page}`;
 
-  const { load, products, parameters } = useGetProductApi(url2);
+  // const { load, products, parameters } = useGetProductApi(url2);
+  const { isLoading, data, isFetching, isFetchedAfterMount } = useGetProduct(url, `products_${page}`);
+  console.log(isFetchedAfterMount)
+  const { products, params } = data || [];
 
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
@@ -43,8 +46,10 @@ const Products = () => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [load]);
+    if (isFetching) {
+      window.scrollTo(0, 0);
+    }
+  }, [isFetching]);
 
   const handleChangePage = pageNumber => {
     setPage(pageNumber);
@@ -61,7 +66,7 @@ const Products = () => {
         <div className="h-100">
           <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 100 }, 22]}>
 
-            {load ?
+            {isLoading ?
               <SkeletonMultiColumnVertical
                 skeleton = {true}
                 skeltonNumbers ={ 20 }
@@ -87,10 +92,10 @@ const Products = () => {
         </div>
       </Col>
       <Col span={24} className="text-center products--pagination">
-        { (parameters && parameters.length !== 0) &&
+        { (params && params.length !== 0) &&
           <Pagination
             size="default"
-            total={ parameters.total_items }
+            total={ params.total_items }
             pageSize={20}
             defaultCurrent={initialPage || 1}
             showSizeChanger={false}

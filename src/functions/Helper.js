@@ -80,7 +80,7 @@ export const useSetLoaded = () => {
   const [isLoaded, setIsLoaded] = useState(true);
 
   const setLoaded = () => {
-    return new Promise((resolve) => setTimeout(() => resolve(), 2000));
+    return new Promise((resolve) => setTimeout(() => resolve(), 200));
   }
 
   useEffect(() => {
