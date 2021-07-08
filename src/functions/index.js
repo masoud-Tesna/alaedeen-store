@@ -9,17 +9,16 @@ import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
-export function useGetProduct (params, key) {
+export function useGetProduct (params, useQueryKey) {
 
   const { language } = useGetLanguageState();
 
   const getProducts = async () => {
     const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
-    const { data } = await axios.get(url);
-    return data;
+
   }
 
-  return useQuery(['products', key], getProducts);
+  return useQuery(['products', useQueryKey], getProducts);
 }
 
 export function useGetProductApi (params) {
@@ -119,51 +118,24 @@ export function useGetTopRankingProducts (cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-export function useGetApi (mode, params, item, loading = true, setLanguage = true) {
-  const [load, setLoad] = useState(loading);
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
+export function useGetApi (mode, params, item, useQueryKey, setLanguage = true) {
 
   const { language } = useGetLanguageState();
 
-  useEffect(() => {
-// async function for get API:
-    let url;
-    if (setLanguage) {
-      url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
-    }else {
-      url = `https://hornb2b.com/horn/${mode}/?${params}`;
-    }
+  // async function for get API:
+  let url;
+  if (setLanguage) {
+    url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
+  }else {
+    url = `https://hornb2b.com/horn/${mode}/?${params}`;
+  }
 
-    async function getApi() {
-      return await axios.get(url);
-    }
+  async function getApi() {
+    const { data } = await axios.get(url);
+    return data;
+  }
 
-    let mounted  = true;
-    setLoad(loading);
-
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
-      getApi()
-        .then(res => {
-          setItems(res.data[item]);
-        })
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [mode, params, item, loading, setLanguage, language]);
-
-  return { items, load, error }
+  return useQuery(['getApi', useQueryKey], getApi);
 }
 
 export function useGetPremiumFactories (params) {
