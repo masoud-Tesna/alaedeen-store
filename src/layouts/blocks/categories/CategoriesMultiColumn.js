@@ -32,7 +32,7 @@ const CategoriesMultiColumn = () => {
 
   const { width } = useWindowSize();
 
-  const { isLoading, data } = useGetApi(`store-categories-api`, `store_id=${storeId}`, 'categories', 'test');
+  const { isLoading, data } = useGetApi(`store-categories-api`, `store_id=${storeId}`, 'categories');
   const { categories } = data || [];
   return (
     <div className={ `categoriesMultiColumn--container py-4 h-100` }>

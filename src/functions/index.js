@@ -9,126 +9,42 @@ import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
-export function useGetProductApi (params, key) {
+/*export function useGetProductApi (params, useQueryKey, setLanguage = true) {
 
   const { language } = useGetLanguageState();
 
-  const getProducts = async () => {
-    const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+  // async function for get API:
+  let url,
+    useQueryKeyClone;
+  if (setLanguage) {
+    url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+    useQueryKeyClone = `${useQueryKey}_${language}`;
+  }else {
+    url = `https://hornb2b.com/horn/products-api/?${params}`;
+    useQueryKeyClone = useQueryKey;
+  }
+
+  async function getProducts() {
     const { data } = await axios.get(url);
     return data;
   }
 
-  return useQuery(['products', key], getProducts);
-}
-
-/*export function useGetProductApi (params) {
-  const [load, setLoad] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [parameters, setParameters] = useState([]);
-  const [error, setError] = useState(null);
-
-  const { language } = useGetLanguageState();
-
-  useEffect(() => {
-    // async function for get API:
-    const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
-    async function getProduct() {
-      return await axios.get(url);
-    }
-
-    let mounted  = true;
-    setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
-      getProduct()
-        .then(res => {
-        setProducts(res.data.products);
-        setParameters(res.data.params);
-      })
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [params, language]);
-
-  return { products, parameters, load, error }
+  return useQuery(['products', useQueryKeyClone], getProducts);
 }*/
-
-export function useGetTopRankingProducts (cat1, cat2, cat3) {
-  const [load, setLoad] = useState(true);
-  const [productsCat1, setProductsCat1] = useState([]);
-  const [productsCat2, setProductsCat2] = useState([]);
-  const [productsCat3, setProductsCat3] = useState([]);
-  const [parametersCat1, setParametersCat1] = useState([]);
-  const [parametersCat2, setParametersCat2] = useState([]);
-  const [parametersCat3, setParametersCat3] = useState([]);
-  const [error, setError] = useState(null);
-
-  const { language } = useGetLanguageState();
-
-  useEffect(() => {
-    // async function for get API:
-    async function getProduct() {
-      return await axios.all([
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat1}&lang_code=${language}`),
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat2}&lang_code=${language}`),
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat3}&lang_code=${language}`)
-      ]);
-    }
-
-    let mounted  = true;
-    setLoad(true);
-
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
-      getProduct()
-        .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {
-          setProductsCat1(firstResponse.data.products);
-          setProductsCat2(secondResponse.data.products);
-          setProductsCat3(thirdResponse.data.products);
-
-          setParametersCat1(thirdResponse.data.params);
-          setParametersCat2(thirdResponse.data.params);
-          setParametersCat3(thirdResponse.data.params);
-        }))
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [cat1, cat2, cat3, language]);
-
-  return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
-}
 
 export function useGetApi (mode, params, useQueryKey, setLanguage = true) {
 
   const { language } = useGetLanguageState();
 
   // async function for get API:
-  let url;
+  let url,
+      useQueryKeyClone;
   if (setLanguage) {
     url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
+    useQueryKeyClone = `${useQueryKey}_${language}`;
   }else {
     url = `https://hornb2b.com/horn/${mode}/?${params}`;
+    useQueryKeyClone = useQueryKey;
   }
 
   async function getApi() {
@@ -136,91 +52,7 @@ export function useGetApi (mode, params, useQueryKey, setLanguage = true) {
     return data;
   }
 
-  return useQuery(['getApi', useQueryKey], getApi);
-}
-
-export function useGetPremiumFactories (params) {
-  const [load, setLoad] = useState(true);
-  const [factories, setFactories] = useState([]);
-  const [parameters, setParameters] = useState([]);
-  const [error, setError] = useState(null);
-
-  const { language } = useGetLanguageState();
-
-  useEffect(() => {
-    // async function for get API:
-    const url = `https://hornb2b.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
-    async function getPremiumFactories() {
-      return await axios.get(url);
-    }
-
-    let mounted  = true;
-    setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
-      getPremiumFactories()
-        .then(res => {
-          setFactories(res.data.factories);
-          setParameters(res.data.params);
-        })
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [params, language]);
-
-  return { factories, parameters, load, error }
-}
-
-export function useGetFactories (params) {
-  const [load, setLoad] = useState(true);
-  const [factories, setFactories] = useState([]);
-  const [parameters, setParameters] = useState([]);
-  const [error, setError] = useState(null);
-
-  const { language } = useGetLanguageState();
-
-  useEffect(() => {
-    // async function for get API:
-    const url = `https://hornb2b.com/horn/factories-api/?${params}&lang_code=${language}`;
-    async function getFactories() {
-      return await axios.get(url);
-    }
-
-    let mounted  = true;
-    setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
-      getFactories()
-        .then(res => {
-          setFactories(res.data.factories);
-          setParameters(res.data.params);
-        })
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [params, language]);
-
-  return { factories, parameters, load, error }
+  return useQuery(['getApi', useQueryKeyClone], getApi);
 }
 
 export function useResizeImage (image_path, image_folder, image_width, image_height, key) {
