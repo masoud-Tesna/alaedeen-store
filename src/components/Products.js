@@ -9,7 +9,7 @@ import { Col, Pagination, Row } from "antd";
 
 
 
-import { useGetProduct, useGetProductApi, useQueryString, useWindowSize } from "../functions";
+import { useGetProductApi, useQueryString, useWindowSize } from "../functions";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
@@ -31,7 +31,7 @@ const Products = () => {
   const url = `items_per_page=20&company_id=264&page=${page}`;
 
   // const { load, products, parameters } = useGetProductApi(url2);
-  const { isLoading, data, isFetching } = useGetProduct(url, `products_${page}`);
+  const { isLoading, data, isFetching } = useGetProductApi(url, `products_${page}`);
 
   const { products, params } = data || [];
 

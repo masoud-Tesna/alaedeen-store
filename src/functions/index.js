@@ -9,7 +9,7 @@ import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
-export function useGetProduct (params, useQueryKey) {
+export function useGetProductApi (params, useQueryKey) {
 
   const { language } = useGetLanguageState();
 
@@ -21,7 +21,7 @@ export function useGetProduct (params, useQueryKey) {
   return useQuery(['products', useQueryKey], getProducts);
 }
 
-export function useGetProductApi (params) {
+/*export function useGetProductApi (params) {
   const [load, setLoad] = useState(true);
   const [products, setProducts] = useState([]);
   const [parameters, setParameters] = useState([]);
@@ -61,7 +61,7 @@ export function useGetProductApi (params) {
   }, [params, language]);
 
   return { products, parameters, load, error }
-}
+}*/
 
 export function useGetTopRankingProducts (cat1, cat2, cat3) {
   const [load, setLoad] = useState(true);
@@ -118,7 +118,7 @@ export function useGetTopRankingProducts (cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-export function useGetApi (mode, params, item, useQueryKey, setLanguage = true) {
+export function useGetApi (mode, params, useQueryKey, setLanguage = true) {
 
   const { language } = useGetLanguageState();
 
