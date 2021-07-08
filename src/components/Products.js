@@ -14,8 +14,11 @@ import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_template
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useSetLoaded } from "../functions/Helper";
+import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const Products = () => {
+
+  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
@@ -31,8 +34,8 @@ const Products = () => {
   const url = `items_per_page=20&company_id=264&page=${page}`;
 
   // const { load, products, parameters } = useGetProductApi(url2);
-  const { isLoading, data, isFetching } = useGetProductApi(url, `products_${page}`);
-
+  const { isLoading, data, isFetching } = useGetProductApi(url, `products_${page}_${language}`);
+  console.log(data)
   const { products, params } = data || [];
 
   const paginationItemRender = (current, type, originalElement) => {
@@ -40,7 +43,7 @@ const Products = () => {
       return <i className = "fal fa-chevron-left vv-font-size-2" />;
     }
     if (type === 'next') {
-      return <i className = "fal fa-chevron-right vv-font-size-2"></i>;
+      return <i className = "fal fa-chevron-right vv-font-size-2" />;
     }
     return originalElement;
   }

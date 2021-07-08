@@ -47,7 +47,7 @@ const ProductsMultiColumnVertical = (props) => {
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
   const desc = product.short_description ? product.short_description : product.full_description;
-  const productDesc = fn_stripHtml(desc);
+  const productDesc = desc? fn_stripHtml(desc) : '';
 
   const manufacturing_country = product.manufacturing_country;
 

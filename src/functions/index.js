@@ -9,16 +9,17 @@ import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
-export function useGetProductApi (params, useQueryKey) {
+export function useGetProductApi (params, key) {
 
   const { language } = useGetLanguageState();
 
   const getProducts = async () => {
     const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
-
+    const { data } = await axios.get(url);
+    return data;
   }
 
-  return useQuery(['products', useQueryKey], getProducts);
+  return useQuery(['products', key], getProducts);
 }
 
 /*export function useGetProductApi (params) {
