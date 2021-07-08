@@ -31,8 +31,8 @@ const Products = () => {
   const url = `items_per_page=20&company_id=264&page=${page}`;
 
   // const { load, products, parameters } = useGetProductApi(url2);
-  const { isLoading, data, isFetching, isFetchedAfterMount } = useGetProduct(url, `products_${page}`);
-  console.log(isFetchedAfterMount)
+  const { isLoading, data, isFetching } = useGetProduct(url, `products_${page}`);
+
   const { products, params } = data || [];
 
   const paginationItemRender = (current, type, originalElement) => {
