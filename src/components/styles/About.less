@@ -1,6 +1,13 @@
 // import Mixin:
 @import '../../styles/Mixins';
 
+html:lang(fa),
+html:lang(ar) {
+  .about--videosSection {
+    direction: ltr;
+  }
+}
+
 .about--container {
   padding: 0 15px 10rem;
   @media (min-width: @screen-md) {

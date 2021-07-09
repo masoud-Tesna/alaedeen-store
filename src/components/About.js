@@ -15,11 +15,19 @@ import certificate3 from '../assets/images/certificate3.png';
 import certificate4 from '../assets/images/certificate4.png';
 import { useEffect, useState } from "react";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import { useGetStoreIdState } from "../contexts/store/StoreContext";
+import { useGetApi } from "../functions";
 
 const About = () => {
+  const storeId = useGetStoreIdState();
+
   const { t } = useTranslation();
 
   const { isLoaded } = useSetLoaded();
+
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, 'about_store');
+  const { factories: aboutStores } = data || [];
+
 
   useEffect(() => {
     document.getElementById('HornStoreApp').scrollIntoView()
@@ -38,25 +46,24 @@ const About = () => {
           </Col>
           <Col span={24} className="mt-3 about--videosSection">
             <div className="about--videos">
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
-
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
-
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
-
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.embed_video &&
+                  aboutStores.embed_video.map((embedVideo) => {
+                    return (
+                      <div key={`video_embed_${embedVideo.link_id}`} className="about--video">
+                        <ShowVideoEmbed embedLink={embedVideo.link} extraClassName={'aboutPage'} embedClassName = "rounded-10" />
+                      </div>
+                    );
+                  })
+              }
             </div>
           </Col>
           <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consequatur deleniti, dolore doloremque magni non praesentium quaerat saepe sit tempore? Excepturi recusandae reprehenderit vel? Alias aliquam earum iste maiores mollitia odit optio quas sed, tempore ut! Cumque ex maiores maxime?
+            {isLoading ?
+              <>Loading...</> :
+              aboutStores.company_introduction.fields.detailed_company_introduction && aboutStores.company_introduction.fields.detailed_company_introduction
+            }
           </Col>
         </Row>
       </Col>
@@ -68,27 +75,71 @@ const About = () => {
           </Col>
           <Col span={24} className="mt-3 about--componentOverview__tableSection">
             <Row className="row-cols-2 row-cols-md-4 " gutter={[16, 30]}>
-              <Col className = "vv-font-size-1-2rem text-92" >Business Type</Col>
-              <Col className = "vv-font-size-1-2rem text-47" >manufacture</Col>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.general.business_type &&
+                  <>
+                    <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Business Type')) }</Col>
+                    <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.general.business_type }</Col>
+                  </>
+              }
 
-              <Col className = "vv-font-size-1-2rem text-92" >Year Established</Col>
-              <Col className = "vv-font-size-1-2rem text-47" >2015</Col>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.basic_company_details.fields.year_company_registered &&
+                <>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Year Established')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.year_company_registered }</Col>
+                </>
+              }
 
-              <Col className = "vv-font-size-1-2rem text-92" >Total Employees</Col>
-              <Col className = "vv-font-size-1-2rem text-47" >11 - 50 People</Col>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.basic_company_details.fields.total_no_employees &&
+                <>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Total Employees')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.total_no_employees }</Col>
+                </>
+              }
 
-              <Col className = "vv-font-size-1-2rem text-92" >Main Products</Col>
-              <Col className = "vv-font-size-1-2rem text-47" >Camouflage Uniform, Tactical Clothes, Security Clothes, Workwear</Col>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.basic_company_details.fields.main_category &&
+                <>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main category')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.main_category }</Col>
+                </>
+              }
 
-              <Col className = "vv-font-size-1-2rem text-92" >Country / Region </Col>
-              <Col className = "vv-font-size-1-2rem text-47" >Tehran, Iran</Col>
+              {isLoading ?
+                <>Loading...</> :
+                (aboutStores.general.country || aboutStores.general.state) &&
+                <>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Country / Region')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >
+                    { aboutStores.general.country && `${aboutStores.general.country}, ` } { aboutStores.general.state && aboutStores.general.state }
+                  </Col>
+                </>
+              }
 
-              <Col className = "vv-font-size-1-2rem text-92" >Main Markets</Col>
-              <Col className = "vv-font-size-1-2rem text-47" >
-                <span className="d-block vv-font-size-1-2rem text-47">Iraq 30.00%</span>
-                <span className="d-block vv-font-size-1-2rem text-47">Syria 20.00%</span>
-                <span className="d-block vv-font-size-1-2rem text-47">Armenia 10.00%</span>
-              </Col>
+              {isLoading ?
+                <>Loading...</> :
+                aboutStores.export_capability.fields.main_markets_and_distribution &&
+                <>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main Markets')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >
+                    {aboutStores.export_capability.fields.main_markets_and_distribution.map((market, index) => {
+                      return (
+                        <span key={`main_market_${index}`} className="d-block vv-font-size-1-2rem text-47">
+                          { `${market.country} ${market.percent}%` }
+                        </span>
+                      );
+                    })}
+                  </Col>
+                </>
+              }
+
+
             </Row>
           </Col>
         </Row>
