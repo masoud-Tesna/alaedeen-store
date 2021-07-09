@@ -1,15 +1,22 @@
 //import style:
 import './styles/AgentInfo.less'
 
-import { Col, Row, Space } from "antd";
-import { useWindowSize } from "../../../functions";
+import { Col, Row, Skeleton, Space } from "antd";
+import { useGetApi, useWindowSize } from "../../../functions";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
+import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+import React from "react";
 
 const AgentInfo = () => {
+  const storeId = useGetStoreIdState();
+
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
+
+  const { isLoading, data } = useGetApi(`store-agent-api`, `store_id=${storeId}`, 'agentInfo');
+  const { store_agent } = data || [];
 
   return (
     <>
@@ -22,19 +29,31 @@ const AgentInfo = () => {
                   <Col flex="145px">
                     <Row>
                       <Col span={24} className="agentInfo--image">
-                        <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                        {isLoading ?
+                          <Skeleton.Avatar style={{ width: 145, height: 145 }} active={true} size={"large"} shape={"circle"} /> :
+                          <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                        }
                       </Col>
                       <Col span={24} className="text-47 text-center agentInfo--name">
-                        Ms. Sadeghi
+                        {isLoading ?
+                          <Skeleton.Input style={{ width: 130 }} active={true} size={"small"} /> :
+                          `${store_agent.firstname || ''} ${store_agent.lastname || ''}`
+                        }
                       </Col>
                     </Row>
                   </Col> :
                   <>
                     <Col span={12} className="agentInfo--image">
-                      <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                      {isLoading ?
+                        <Skeleton.Avatar style={{ width: 80, height: 80 }} active={true} size={"large"} shape={"circle"} /> :
+                        <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                      }
                     </Col>
                     <Col span={12} className="my-auto text-47 agentInfo--name">
-                      Ms. Sadeghi
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 100 }} active={true} size={"small"} /> :
+                        `${store_agent.firstname || ''} ${store_agent.lastname || ''}`
+                      }
                     </Col>
                   </>
                 }
@@ -45,35 +64,60 @@ const AgentInfo = () => {
                 <Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('Telephone')) }:</Col>
-                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>+98 - 9125478521</Col>
+                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 160 }} active={true} size={"small"} /> :
+                        store_agent.phone || ''
+                      }
+                    </Col>
                   </Row>
                 </Col>
 
                 <Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('Address')) }:</Col>
-                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>No 15 Street Bagheri</Col>
+                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 170 }} active={true} size={"small"} /> :
+                        store_agent.address || ''
+                      }
+                    </Col>
                   </Row>
                 </Col>
 
                 <Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('Country/region')) }:</Col>
-                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>Iran</Col>
+                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 70 }} active={true} size={"small"} /> :
+                        store_agent.country || ''
+                      }
+                    </Col>
                   </Row>
                 </Col>
 
                 <Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('Province/State')) }:</Col>
-                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>Tehran</Col>
+                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 70 }} active={true} size={"small"} /> :
+                        store_agent.state || ''
+                      }
+                    </Col>
                   </Row>
                 </Col>
 
                 <Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('City')) }:</Col>
-                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>Tehran</Col>
+                    <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
+                      {isLoading ?
+                        <Skeleton.Input style={{ width: 70 }} active={true} size={"small"} /> :
+                        store_agent.city || ''
+                      }
+                    </Col>
                   </Row>
                 </Col>
               </Row>
