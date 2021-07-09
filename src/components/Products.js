@@ -7,18 +7,13 @@ import './styles/Products.less';
 // Import Ant Design Components:
 import { Col, Pagination, Row } from "antd";
 
-
-
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useSetLoaded } from "../functions/Helper";
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const Products = () => {
-
-  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 

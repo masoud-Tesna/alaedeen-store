@@ -2,14 +2,14 @@
 import './styles/PopularProducts.less';
 
 // import ANT Design Components Used:
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 // import Another Components Used:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
 
 // import Custom hooks:
-import { useGetProductApi, useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -22,9 +22,8 @@ const PopularProducts = () => {
 
   const { width } = useWindowSize();
 
-  const url = `items_per_page=4&company_id=264&page=1`;
-
-  const { load, products } = useGetProductApi(url);
+  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=4&company_id=264&page=1`, `popularProducts`);
+  const { products } = data || [];
 
   return (
     <div className="recommendedProducts--container">
@@ -40,7 +39,7 @@ const PopularProducts = () => {
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items" justify="space-around" gutter={[ { xs: 16, md: 100 }, 20]}>
 
-              {load ?
+              {isLoading ?
                 <SkeletonMultiColumnVertical
                   skeleton = {true}
                   skeltonNumbers ={ 4 }
