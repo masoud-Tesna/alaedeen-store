@@ -55,7 +55,7 @@ export function useGetApi (mode, params, useQueryKey, setLanguage = true) {
   return useQuery(['getApi', useQueryKeyClone], getApi);
 }
 
-export function useResizeImage (image_path, image_folder, image_width, image_height, key) {
+export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
 
   // async function for get API:
   const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
@@ -64,7 +64,7 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
     return data;
   }
 
-  return useQuery(['imageResponsive', key], getImageResized);
+  return useQuery(['imageResponsive', useQueryKey], getImageResized);
 
   /*const [load, setLoad] = useState(true);
   const [image, setImage] = useState([]);

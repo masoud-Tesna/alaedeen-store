@@ -5,7 +5,7 @@ const ShowResponsiveImage = (props) => {
 
   const { imagePath, imageFolder, width, height, imageAlt, object_id, object_type } = props;
 
-  const { isLoading, data } = useResizeImage( imagePath, imageFolder, width, height, `${object_type}_${object_id}` );
+  const { isLoading, data } = useResizeImage( imagePath, imageFolder, width, height, `${object_type}_${object_id}_${width}_${height}` );
   const { image } = data || "";
 
   return (
