@@ -5,7 +5,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Button, Space, Tabs, Divider } from 'antd';
+import { Row, Col, Button, Space, Tabs, Divider, Skeleton } from 'antd';
 
 // import logo:
 import nilperLogo from '../../../assets/images/nilperLogo.png';
@@ -17,17 +17,23 @@ import { __, useParsPathName } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
-import { useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 import {
   changeLanguageAction,
   useDispatchLanguageState,
   useGetLanguageState
 } from "../../../contexts/language/LanguageContext";
 import LoaderSpinner from "../../blocks/static_templates/LoadSpinner";
+import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+
+// import responsive image show component:
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const { TabPane } = Tabs;
 
 const DefaultHeader = () => {
+
+  const storeId = useGetStoreIdState();
 
   const { t } = useTranslation();
 
@@ -47,6 +53,9 @@ const DefaultHeader = () => {
 
   // initial state for show spinner:
   const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
+
+  const { isLoading, data } = useGetApi(`header-info-api`, `store_id=${storeId}`, 'header_info');
+  const { header_info } = data || [];
 
   // function for change language:
   function handleChangeLanguage(e) {
@@ -171,12 +180,20 @@ const DefaultHeader = () => {
                   <Col xs={19} className="header__details--contentLeft">
                     <Space size={width >= 768 ? "large" : "small"}>
                       <div className="text-center info--img__container">
-                        <img className="info--img__img" src={nilperLogo} alt="Nilper" />
+                        {isLoading ?
+                          <Skeleton.Input style={{ width: 100, height: 100 }} active={true} size={"large"} /> :
+                          <ShowResponsiveImage imagePath={ header_info.logo } imageFolder='company_logo' width={ width < 768 ? 50 : 100 } height={ width < 768 ? 50 : 100 } imageAlt={ header_info.store } object_id={200}  object_type={'store_logo'}/>
+                        }
                       </div>
                       <div>
                         <Row>
                           <Col span={24}>
-                            <span className="text-33 text-capitalize info--storeName">Nilper</span>
+                            <span className="text-33 text-capitalize info--storeName">
+                              {isLoading ?
+                                <Skeleton.Input style={{ width: 60 }} active={true} size={"small"} /> :
+                                header_info.store
+                              }
+                            </span>
                           </Col>
                           <Col className="mt-5" span={24}>
                             <Space size={"small"}>
