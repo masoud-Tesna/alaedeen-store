@@ -109,7 +109,7 @@ const AgentInfo = () => {
                   </Row>
                 </Col>
 
-                <Col span={24}>
+                {/*<Col span={24}>
                   <Row>
                     <Col className="text-92 text-capitalize agentInfo--details__variable" span={12}>{ t(__('City')) }:</Col>
                     <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
@@ -119,7 +119,7 @@ const AgentInfo = () => {
                       }
                     </Col>
                   </Row>
-                </Col>
+                </Col>*/}
               </Row>
             </Col>
           </Row>
