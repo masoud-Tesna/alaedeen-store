@@ -181,7 +181,7 @@ const DefaultHeader = () => {
                     <Space size={width >= 768 ? "large" : "small"}>
                       <div className="text-center info--img__container">
                         {isLoading ?
-                          <Skeleton.Input style={{ width: 100, height: 100 }} active={true} size={"large"} /> :
+                          <Skeleton.Input style={{ width: width < 768 ? 50 : 100, height: width < 768 ? 50 : 100 }} active={true} size={"large"} /> :
                           <ShowResponsiveImage imagePath={ header_info.logo } imageFolder='company_logo' width={ width < 768 ? 50 : 100 } height={ width < 768 ? 50 : 100 } imageAlt={ header_info.store } object_id={200}  object_type={'store_logo'}/>
                         }
                       </div>
