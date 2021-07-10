@@ -17,8 +17,6 @@ const Header = () => {
   // Get Location pathName:
   const pathName = useParsPathName();
 
-  console.log(pathName)
-
   // Check pathName For Set Default Header Or Not:
   if ((pathName === 'factories' && width <= 991) || pathName === 'manufacturing') {
     return (
