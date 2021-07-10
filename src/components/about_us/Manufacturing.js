@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 
 // import style file:
-import './styles/Manufacturing.less';
+import '../styles/Manufacturing.less';
 
-import { useGetApi, useQueryString, useWindowSize } from "../functions";
+// import custom hooks and helper functions:
+import { useGetApi, useQueryString, useWindowSize } from "../../functions";
+import { __, useSetLoaded } from "../../functions/Helper";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,17 +15,22 @@ import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
 // import Swiper core and required modules
-import SwiperCore, {
-  Pagination,Navigation
-} from 'swiper/core';
+import SwiperCore, { Pagination,Navigation } from 'swiper/core';
+
+// import Ant Design Components:
 import { Col, Row } from "antd";
-import { useGetStoreIdState } from "../contexts/store/StoreContext";
+
+// import store_id context:
+import { useGetStoreIdState } from "../../contexts/store/StoreContext";
+
+// import function for translate:
 import { useTranslation } from "react-i18next";
-import { __, useSetLoaded } from "../functions/Helper";
-import { useEffect } from "react";
-import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
-import { Link } from "react-router-dom";
-import ShowResponsiveImage from "../layouts/common/ShowResponsiveImage";
+
+// import spinner for show if loading:
+import LoadSpinner from "../../layouts/blocks/static_templates/LoadSpinner";
+
+// import show responsive image from API:
+import ShowResponsiveImage from "../../layouts/common/ShowResponsiveImage";
 
 // install Swiper modules
 SwiperCore.use([Pagination,Navigation]);
