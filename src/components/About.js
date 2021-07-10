@@ -160,7 +160,7 @@ const About = () => {
                 Object.entries(aboutStores.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
                     return (
                     <div key={`manufacturing_capability_process_${index}`} className="cursor-pointer about--video">
-                      <Link to={`/manufacturing/${key}`}>
+                      <Link to={`/manufacturing/?slide=${key}`}>
                         <div className="rounded-10 about--imageBg" style={{ backgroundImage: `url(${process.process_pictures[0]})` }} />
                         <div className="text-white ml-4 mb-4 vv-font-size-1-8 font-weight-600 about--imageBg__title">
                           { process.process_name || '' }

@@ -50,7 +50,7 @@ function App() {
 
                 <Route path="/about" component={About} />
 
-                <Route path="/manufacturing/:slide" component={Manufacturing} />
+                <Route path="/manufacturing" component={Manufacturing} />
               </Switch>
             </div>
             <div className="bottomDetails--section">
