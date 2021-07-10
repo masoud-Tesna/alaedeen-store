@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useGetStoreIdState } from "../contexts/store/StoreContext";
 import { useGetApi } from "../functions";
+import { Link } from "react-router-dom";
+
 
 const About = () => {
   const storeId = useGetStoreIdState();
@@ -152,21 +154,23 @@ const About = () => {
           </Col>
           <Col span={24} className="mt-3 about--videosSection">
             <div className="about--videos">
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
 
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
+              {isLoading ?
+                <>Loading...</> :
+                Object.entries(aboutStores.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
+                    return (
+                    <div key={`manufacturing_capability_process_${index}`} className="cursor-pointer about--video">
+                      <Link to={`/manufacturing/${key}`}>
+                        <div className="rounded-10 about--imageBg" style={{ backgroundImage: `url(${process.process_pictures[0]})` }} />
+                        <div className="text-white ml-4 mb-4 vv-font-size-1-8 font-weight-600 about--imageBg__title">
+                          { process.process_name || '' }
+                        </div>
+                      </Link>
+                    </div>
+                    );
+                  })
+              }
 
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
-
-              <div className="about--video">
-                <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'aboutPage'} embedClassName = "rounded-10" />
-              </div>
             </div>
           </Col>
         </Row>
