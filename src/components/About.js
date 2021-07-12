@@ -213,23 +213,25 @@ const About = () => {
 
       <Col span={24} className="mt-5 about--another__section">
         <Row gutter={[0, 32]}>
-          <Col className="cursor-pointer about--another__item about--rAndD__container" span={24}>
-            <div className="about--another__bgImage" />
-            <Row className="about--rAndD__content h-100" justify={"space-between"}>
-              <Col className="pl-4 my-auto">
-                <Row>
-                  <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
-                    { t(__('R&D Capability')) }
-                  </Col>
-                  <Col className="vv-font-size-1-4 text-white about--another__viewMore" span={24}>
-                    { t(__('View More R&D Capability')) }
-                  </Col>
-                </Row>
-              </Col>
-              <Col className="my-auto pr-4 about--another__icon">
-                <i className="fa fa-chevron-right vv-font-size-2 text-white" />
-              </Col>
-            </Row>
+          <Col className="about--another__item about--rAndD__container" span={24}>
+            <Link to={"/r-and-d-capability"}>
+              <div className="about--another__bgImage" />
+              <Row className="about--rAndD__content h-100" justify={"space-between"}>
+                <Col className="pl-4 my-auto">
+                  <Row>
+                    <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
+                      { t(__('R&D Capability')) }
+                    </Col>
+                    <Col className="vv-font-size-1-4 text-white about--another__viewMore" span={24}>
+                      { t(__('View More R&D Capability')) }
+                    </Col>
+                  </Row>
+                </Col>
+                <Col className="my-auto pr-4 about--another__icon">
+                  <i className="fa fa-chevron-right vv-font-size-2 text-white" />
+                </Col>
+              </Row>
+            </Link>
           </Col>
 
           <Col className="cursor-pointer about--another__item about--qualityControl__container" span={24}>
