@@ -66,8 +66,8 @@ const Certificate = () => {
 
         { images.map((image, index) => {
           return (
-            <SwiperSlide key={`process_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`process_img_${processKey}`}/>
+            <SwiperSlide key={`certificates_image_${index}`}>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`certificates_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
