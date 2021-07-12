@@ -18,3 +18,6 @@ export { RandDCapability } from './about_us/RandDCapability';
 
 // export QualityControl Component For show in quality-control Page "/certificate"
 export { QualityControl } from './about_us/QualityControl';
+
+// export ExportCapability Component For show in export-capability Page "/certificate"
+export { ExportCapability } from './about_us/ExportCapability';

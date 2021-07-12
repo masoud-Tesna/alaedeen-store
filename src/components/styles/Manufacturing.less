@@ -25,51 +25,88 @@
         margin: 0;
       }
     }
+  }
 
-    .manufacturing--info__content {
-      padding-bottom: 100px;
+  .manufacturing--info__content {
+    padding-bottom: 100px;
 
-      .manufacturing--images {
-        height: 233px;
-        @media (min-width: @screen-md) {
-          height: 433px;
-        }
-
-        .swiper-pagination.swiper-pagination-fraction {
-          bottom: 0;
-          font-size: 1.8rem;
-          font-weight: bold;
-          color: #FFFFFF;
-          padding-right: 3rem;
-          line-height: 63px;
-          background: #000000;
-          background: linear-gradient(0deg, rgba(0, 0, 0, 0.9359944661458334) 0%, rgba(29, 28, 28, 0.7623249983587185) 52%, rgba(255, 255, 255, 0) 100%);
-          height: 63px;
-          text-align: right;
-        }
+    .manufacturing--images {
+      height: 233px;
+      @media (min-width: @screen-md) {
+        height: 433px;
       }
 
-      .manufacturing--info__desc,
-      .manufacturing--info__title,
-      .manufacturing--info__processName {
+      .swiper-pagination.swiper-pagination-fraction {
+        bottom: 0;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #FFFFFF;
+        padding-right: 3rem;
+        line-height: 63px;
+        background: #000000;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.9359944661458334) 0%, rgba(29, 28, 28, 0.7623249983587185) 52%, rgba(255, 255, 255, 0) 100%);
+        height: 63px;
+        text-align: right;
+      }
+    }
+
+    .manufacturing--info__desc,
+    .manufacturing--info__title,
+    .manufacturing--info__processName {
+      padding: 0 15px;
+      @media (min-width: @screen-md) {
+        padding: 0 3rem;
+      }
+    }
+
+    .manufacturing--info__processName {
+      .manufacturing--info__processNameContent {
         padding: 0 15px;
         @media (min-width: @screen-md) {
           padding: 0 3rem;
         }
-      }
 
-      .manufacturing--info__processName {
-        .manufacturing--info__processNameContent {
-          padding: 0 15px;
-          @media (min-width: @screen-md) {
-            padding: 0 3rem;
-          }
-
-          &:nth-child(odd) {
-            background-color: #F6F6F6;
-          }
+        &:nth-child(odd) {
+          background-color: #F6F6F6;
         }
       }
     }
   }
+
+  .manufacturing--info__content.exportCapability {
+    .exportCapability--title {
+      height: 48px;
+      line-height: 48px;
+      padding: 0 15px;
+      @media (min-width: @screen-md) {
+        padding: 0 3rem;
+      }
+    }
+
+    .swiper-pagination.swiper-pagination-fraction {
+      margin: 0;
+      background-color: #FFFFFF;
+      font-weight: bold;
+      font-size: 1.8rem;
+      padding-bottom: 7px;
+      @media (min-width: @screen-md) {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.manufacturing--container.exportCapability {
+
+  .manufacturing--swiper {
+    height: auto !important;
+    @media (min-width: @screen-md) {
+      height: auto !important;
+    }
+  }
+
+  .manufacturing--info__content {
+    padding-bottom: 60px;
+  }
+
 }
