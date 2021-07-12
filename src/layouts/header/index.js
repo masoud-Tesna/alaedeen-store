@@ -1,7 +1,3 @@
-// Components:
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
 
@@ -18,7 +14,7 @@ const Header = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if ((pathName === 'factories' && width <= 991) || pathName === 'manufacturing') {
+  if ((pathName === 'factories' && width <= 991) || pathName === 'manufacturing' || pathName === 'certificate') {
     return (
       <>
 

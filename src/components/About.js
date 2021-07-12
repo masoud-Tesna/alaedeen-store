@@ -16,12 +16,16 @@ import certificate4 from '../assets/images/certificate4.png';
 import { useEffect, useState } from "react";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useGetStoreIdState } from "../contexts/store/StoreContext";
-import { useGetApi } from "../functions";
+import { useGetApi, useWindowSize } from "../functions";
 import { Link } from "react-router-dom";
+import ShowResponsiveImage from "../layouts/common/ShowResponsiveImage";
 
 
 const About = () => {
   const storeId = useGetStoreIdState();
+
+  // get screen width:
+  const { width } = useWindowSize();
 
   const { t } = useTranslation();
 
@@ -159,7 +163,7 @@ const About = () => {
                 <>Loading...</> :
                 Object.entries(aboutStores.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
                     return (
-                    <div key={`manufacturing_capability_process_${index}`} className="cursor-pointer about--video">
+                    <div key={`manufacturing_capability_process_${index}`} className="about--video">
                       <Link to={`/manufacturing/?slide=${key}`}>
                         <div className="rounded-10 about--imageBg" style={{ backgroundImage: `url(${process.process_pictures[0]})` }} />
                         <div className="text-white ml-4 mb-4 vv-font-size-1-8 font-weight-600 about--imageBg__title">
@@ -183,41 +187,25 @@ const About = () => {
           </Col>
           <Col span={24} className="mt-3 about--imagesSection">
             <div className="about--images">
-              <div className="about--image">
-                <Row>
-                  <Col className = "about--imageBackground" span={24} style={{
-                    backgroundImage: `url(${certificate1})`
-                  }} />
-                  <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>CoC</Col>
-                </Row>
-              </div>
 
-              <div className="about--image">
-                <Row>
-                  <Col className = "about--imageBackground" span={24} style={{
-                    backgroundImage: `url(${certificate2})`
-                  }} />
-                  <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>ISO 9001</Col>
-                </Row>
-              </div>
+              {isLoading ?
+                <>Loading...</> :
+                Object.entries(aboutStores.certificate_center.parents.certification.fields).map(([key, certificate], index) => {
+                  return (
+                    <div key={`manufacturing_capability_process_${index}`} className="about--image">
+                      <Link to={`/certificate/?slide=${key}`}>
+                        <Row>
+                          <Col className = "about--imageBackground" span={24}>
+                            <ShowResponsiveImage imagePath={ certificate.certificate_photos[0] } imageFolder='profiles' width={width < 768 ? 140 : 400} height={width < 768 ? 110 : 240} object_id={index + 1}  object_type={`certificate_img_${key}`}/>
+                          </Col>
+                          <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>{ certificate.certificate_name }</Col>
+                        </Row>
+                      </Link>
+                    </div>
+                  );
+                })
+              }
 
-              <div className="about--image">
-                <Row>
-                  <Col className = "about--imageBackground" span={24} style={{
-                    backgroundImage: `url(${certificate3})`
-                  }} />
-                  <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>ISIRI</Col>
-                </Row>
-              </div>
-
-              <div className="about--image">
-                <Row>
-                  <Col className = "about--imageBackground" span={24} style={{
-                    backgroundImage: `url(${certificate4})`
-                  }} />
-                  <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>CoC</Col>
-                </Row>
-              </div>
             </div>
           </Col>
         </Row>

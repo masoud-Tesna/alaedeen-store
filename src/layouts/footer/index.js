@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 // import Footer:
 import { DefaultFooter } from './default/DefaultFooter';
 import { useParsPathName } from "../../functions/Helper";
@@ -10,7 +7,7 @@ const SiteFooter = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === 'products' || pathName === 'about' || pathName === 'manufacturing') {
+  if (pathName === 'products' || pathName === 'about' || pathName === 'manufacturing' || pathName === 'certificate') {
     return (
       <>
 
