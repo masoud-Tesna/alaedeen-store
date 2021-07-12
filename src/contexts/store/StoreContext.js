@@ -27,7 +27,7 @@ function StoreProvider({ children }) {
       if (clientStoreIdLocalStorage) {
         setStoreId(clientStoreIdLocalStorage);
       } else {
-        //window.location.href = "https://hornb2b.com";
+        window.location.href = "https://hornb2b.com";
       }
 
     }
