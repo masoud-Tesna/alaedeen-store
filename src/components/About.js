@@ -235,22 +235,24 @@ const About = () => {
           </Col>
 
           <Col className="cursor-pointer about--another__item about--qualityControl__container" span={24}>
-            <div className="about--another__bgImage" />
-            <Row className="about--qualityControl__content h-100" justify={"space-between"}>
-              <Col className="pl-4 my-auto">
-                <Row>
-                  <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
-                    { t(__('Quality Control')) }
-                  </Col>
-                  <Col className="vv-font-size-1-4 text-white about--another__viewMore" span={24}>
-                    { t(__('View More Quality Control')) }
-                  </Col>
-                </Row>
-              </Col>
-              <Col className="my-auto pr-4 about--another__icon">
-                <i className="fa fa-chevron-right vv-font-size-2 text-white" />
-              </Col>
-            </Row>
+            <Link to={"/quality-control"}>
+              <div className="about--another__bgImage" />
+              <Row className="about--qualityControl__content h-100" justify={"space-between"}>
+                <Col className="pl-4 my-auto">
+                  <Row>
+                    <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
+                      { t(__('Quality Control')) }
+                    </Col>
+                    <Col className="vv-font-size-1-4 text-white about--another__viewMore" span={24}>
+                      { t(__('View More Quality Control')) }
+                    </Col>
+                  </Row>
+                </Col>
+                <Col className="my-auto pr-4 about--another__icon">
+                  <i className="fa fa-chevron-right vv-font-size-2 text-white" />
+                </Col>
+              </Row>
+            </Link>
           </Col>
 
           <Col className="cursor-pointer about--another__item about--exportCapability__container" span={24}>

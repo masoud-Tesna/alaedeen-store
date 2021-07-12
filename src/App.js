@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ConfigProvider, Layout } from 'antd';
 
 // Pages:
-import { Home, Products, About, Manufacturing, Certificate, RandDCapability } from "./components";
+import { Home, Products, About, Manufacturing, Certificate, RandDCapability, QualityControl } from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
@@ -55,6 +55,8 @@ function App() {
                 <Route path="/Certificate" component={Certificate} />
 
                 <Route path="/r-and-d-capability" component={RandDCapability} />
+
+                <Route path="/quality-control" component={QualityControl} />
               </Switch>
             </div>
             <div className="bottomDetails--section">

@@ -13,5 +13,8 @@ export { Manufacturing } from './about_us/Manufacturing';
 // export Certificate Component For show in certificate Page "/certificate"
 export { Certificate } from './about_us/Certificate';
 
-// export Certificate Component For show in certificate Page "/certificate"
+// export RandDCapability Component For show in r-and-d-capability Page "/certificate"
 export { RandDCapability } from './about_us/RandDCapability';
+
+// export QualityControl Component For show in quality-control Page "/certificate"
+export { QualityControl } from './about_us/QualityControl';
