@@ -81,13 +81,12 @@ const DefaultHeader = () => {
   }
 
 
-  const [scrolled,setScrolled]=useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const [widthPage,setWidthPage]=useState();
+  const [widthPage, setWidthPage] = useState(window.innerWidth);
 
   const handleScroll = () => {
     const offsetY = window.scrollY;
-
     if (widthPage >= 768) {
       setScrolled(false);
     } // if WidthPage state value <= 576 change condition for scroll and set class name
