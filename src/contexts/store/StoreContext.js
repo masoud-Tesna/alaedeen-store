@@ -1,8 +1,43 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fn_set_local_storage } from "../../functions/Helper";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 // Store id Context Create:
 const storeContext = createContext();
+
+// Store check Context Create:
+const storeCheckContext = createContext();
+
+function StoreCheckProvider ({ children }) {
+  // useState For Store check use in app
+  const [storeCheck, setStoreCheck] = useState('load');
+
+  const url = new URL(window.location.href);
+  const store_id_query_string = url.searchParams.get('store_id');
+
+  async function getApiStoreCheck() {
+    const { data } = await axios.get(`https://hornb2b.com/horn/store-check-api/?store_id=${store_id_query_string}`);
+    return data
+  }
+
+  useEffect(() => {
+    getApiStoreCheck()
+      .then(res => {
+        if (res.store_check === 'D') {
+          setStoreCheck('disable');
+        }else if (res.store_check === 'A') {
+          setStoreCheck('active');
+        }
+      })
+  }, [store_id_query_string])
+
+  return (
+    <storeCheckContext.Provider value={ storeCheck }>
+      {children}
+    </storeCheckContext.Provider>
+  );
+}
 
 // create Language Context Provide:
 function StoreProvider({ children }) {
@@ -35,9 +70,11 @@ function StoreProvider({ children }) {
   }, []);
 
   return (
-    <storeContext.Provider value={ storeId }>
-      {children}
-    </storeContext.Provider>
+    <StoreCheckProvider>
+      <storeContext.Provider value={ storeId }>
+        {children}
+      </storeContext.Provider>
+    </StoreCheckProvider>
   );
 }
 
@@ -46,7 +83,13 @@ function useGetStoreIdState() {
   return useContext(storeContext);
 }
 
+// get current store Check
+function useGetStoreCheckState() {
+  return useContext(storeCheckContext);
+}
+
 export {
   StoreProvider,
-  useGetStoreIdState
+  useGetStoreIdState,
+  useGetStoreCheckState
 };

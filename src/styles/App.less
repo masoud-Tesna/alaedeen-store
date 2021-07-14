@@ -1,3 +1,6 @@
+// import Mixin:
+@import './Mixins';
+
 /*  ===========  CHANGE FONT FACE FOR FA - AR  ===========  */
 @font-face {
   font-family:IRANSans;
@@ -107,4 +110,96 @@ html * {
 
 .ant-layout-footer {
   padding: 0!important;
+}
+
+/*  ===========  FOR STORE LOADING  ===========  */
+.storeLoad--imgSlider,
+.storeLoad--homeVideoEmbed {
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(190, 190, 190, 0.3) !important;
+
+  svg {
+    width: 60% !important;
+    height: 60% !important;
+  }
+}
+
+.storeLoad--homeVideoEmbed {
+
+  svg {
+    @media (min-width: @screen-md) {
+      width: 80% !important;
+      height: 80% !important;
+    }
+  }
+}
+
+.storeLoad--LoadingModal {
+  position: fixed;
+  &.load {
+    top: calc(50vh - 120px);
+  }
+
+  &.disable {
+    top: calc(50vh - 190px);
+    @media (min-width: @screen-md) {
+      top: calc(50vh - 255px);
+    }
+  }
+
+  z-index: 99;
+
+  .storeLoad--LoadingModal__loading {
+    width: 90vw;
+    @media (min-width: @screen-md) {
+      width: 780px;
+      height: 300px;
+    }
+
+    .ant-result-title {
+      font-size: 2rem !important;
+      @media (min-width: @screen-md) {
+        font-size: 24px !important;
+      }
+    }
+
+    .ant-result-icon {
+      svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
+  .storeLoad--LoadingModal__disable {
+    width: 90vw;
+    padding: 2rem 1.8rem;
+    @media (min-width: @screen-md) {
+      width: 780px;
+      padding: 48px 32px;
+    }
+
+    .ant-result-title {
+      font-size: 2rem !important;
+      @media (min-width: @screen-md) {
+        font-size: 24px !important;
+      }
+    }
+
+    .ant-result-icon {
+      height: 200px;
+      @media (min-width: @screen-md) {
+        height: auto;
+      }
+      svg {
+        scale: 0.6;
+        margin-top: -5rem;
+        @media (min-width: @screen-md) {
+          scale: 1;
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }

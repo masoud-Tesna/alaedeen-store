@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-
-// import Custom Hooks:
-import { useWindowSize } from '../functions';
+import { useEffect } from 'react';
 
 // import Style LESS File:
 import './styles/Home.less';

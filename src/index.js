@@ -20,12 +20,12 @@ const queryClient = new QueryClient();
 const Application = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <StoreProvider>
-        <LanguageProvider>
-          <App />
-          <ReactQueryDevtools initialIsOpen />
-        </LanguageProvider>
-      </StoreProvider>
+        <StoreProvider>
+          <LanguageProvider>
+            <App />
+            <ReactQueryDevtools initialIsOpen />
+          </LanguageProvider>
+        </StoreProvider>
     </QueryClientProvider>
   );
 }
