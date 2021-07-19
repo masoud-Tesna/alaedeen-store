@@ -13,24 +13,49 @@ function StoreCheckProvider ({ children }) {
   // useState For Store check use in app
   const [storeCheck, setStoreCheck] = useState('load');
 
+  // useState For Store_id use in app
   const url = new URL(window.location.href);
   const store_id_query_string = url.searchParams.get('store_id');
 
-  async function getApiStoreCheck() {
-    const { data } = await axios.get(`https://hornb2b.com/horn/store-check-api/?store_id=${store_id_query_string}`);
+  const [storeId, setStoreId] = useState(store_id_query_string);
+
+  async function getApiStoreCheck(store_id) {
+    const { data } = await axios.get(`https://hornb2b.com/horn/store-check-api/?store_id=${store_id}`);
     return data
   }
 
   useEffect(() => {
-    getApiStoreCheck()
-      .then(res => {
-        if (res.store_check === 'D') {
-          setStoreCheck('disable');
-        }else if (res.store_check === 'A') {
-          setStoreCheck('active');
-        }
-      })
-  }, [store_id_query_string])
+
+    if (storeId !== null) {
+
+      getApiStoreCheck(storeId)
+        .then(res => {
+          if (res.store_check === 'D') {
+            setStoreCheck('disable');
+          }else if (res.store_check === 'A') {
+            setStoreCheck('active');
+          }
+        });
+
+    } else {
+
+      const clientStoreIdLocalStorage = window.localStorage.getItem('store_id');
+      if (clientStoreIdLocalStorage) {
+        getApiStoreCheck(clientStoreIdLocalStorage)
+          .then(res => {
+            if (res.store_check === 'D') {
+              setStoreCheck('disable');
+            }else if (res.store_check === 'A') {
+              setStoreCheck('active');
+            }
+          });
+      } else {
+        window.location.href = "https://hornb2b.com/factories";
+      }
+
+    }
+
+  }, [])
 
   return (
     <storeCheckContext.Provider value={ storeCheck }>
