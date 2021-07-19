@@ -80,6 +80,8 @@ const DefaultHeader = () => {
 
   const [widthPage, setWidthPage] = useState(window.innerWidth);
 
+  let x= [];
+
   const handleScroll = () => {
     const offsetY = window.scrollY;
     if (widthPage >= 768) {
@@ -112,7 +114,6 @@ const DefaultHeader = () => {
     window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
   }, []);
 
-  let x=[''];
   if(scrolled){
     x.push('scrolled');
   }
@@ -128,8 +129,8 @@ const DefaultHeader = () => {
         <Row>
           <Col className="header__topSection default" span={24}>
             <div className="header__bgImage" />
-            <Row className={ `header__details ${x.join(" ")}` }>
-              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${x.join(" ")}` } span={24}>
+            <Row className={ `header__details ${width < 768 && x.join(" ")}` }>
+              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${width < 768 && x.join(" ")}` } span={24}>
                 <Row>
                   <Col span={2}>
                     <i className="fa fa-chevron-left vv-font-size-2 cursor-pointer text-white" onClick={() => { goToPreviousPath() }} />
@@ -241,7 +242,7 @@ const DefaultHeader = () => {
         </Row>
       </Col>
 
-      <Col span={24} className={ `bg-f2 header__bottomSection ${x.join(" ")}` }>
+      <Col span={24} className={ `bg-f2 header__bottomSection ${width < 768 && x.join(" ")}` }>
         <Row className="h-100 header__bottomSection--container" align={"bottom"} justify={"space-between"}>
           <Col xs={24} lg={10}>
             <Tabs activeKey={pathName} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">
