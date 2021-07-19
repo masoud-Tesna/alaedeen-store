@@ -7,8 +7,7 @@ import './styles.less';
 // Ant Design Import:
 import { Row, Col, Button, Space, Tabs, Divider, Skeleton } from 'antd';
 
-// import logo:
-import nilperLogo from '../../../assets/images/nilperLogo.png';
+// import icons:
 import verifiedTop from '../../../assets/images/verifiedTop.png';
 import ISO1799 from '../../../assets/images/ISO1799.png';
 
@@ -18,11 +17,7 @@ import { __, useParsPathName } from "../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 import { useGetApi, useWindowSize } from "../../../functions";
-import {
-  changeLanguageAction,
-  useDispatchLanguageState,
-  useGetLanguageState
-} from "../../../contexts/language/LanguageContext";
+import { changeLanguageAction, useDispatchLanguageState, useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import LoaderSpinner from "../../blocks/static_templates/LoadSpinner";
 import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
 
@@ -108,13 +103,14 @@ const DefaultHeader = () => {
     } // if WidthPage state value <= 576 change condition for scroll and set class name
   }
 
+  //FIX ME:
   useEffect(() => {
     window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
     window.addEventListener('load', handleScroll); //if Load Page in bottom page...
 
     window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
     window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
-  })
+  }, []);
 
   let x=[''];
   if(scrolled){
