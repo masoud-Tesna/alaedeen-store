@@ -1,13 +1,5 @@
-// Components:
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-// import Custom Hooks:
-import { useWindowSize } from '../../functions';
-
 // Layouts:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
-import TopPanelWhitBackIcon from "./defautl/TopPanelWhitBackIcon";
 import { useParsPathName } from "../../functions/Helper";
 
 const TopPanel = () => {

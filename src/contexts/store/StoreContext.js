@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fn_set_local_storage } from "../../functions/Helper";
 import axios from "axios";
-import { useQuery } from "react-query";
 
 // Store id Context Create:
 const storeContext = createContext();

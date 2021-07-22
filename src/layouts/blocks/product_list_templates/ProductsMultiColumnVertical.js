@@ -7,9 +7,6 @@ import './styles/ProductsMultiColumnVertical.less';
 // import Ant Design Components:
 import { Col, Row, Skeleton } from "antd";
 
-// import store icon:
-import store_1 from '../../../assets/images/store-icon/1.png';
-
 // import get image responsive from server and show:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { fn_stripHtml } from "../../../functions/Helper";
@@ -40,16 +37,12 @@ const ProductsMultiColumnVertical = (props) => {
 
   // product data:
   const { product } = props;
-  
-  const detailIcon = props.detailIcon || 'default';
 
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
   const desc = product.short_description ? product.short_description : product.full_description;
   const productDesc = desc? fn_stripHtml(desc) : '';
-
-  const manufacturing_country = product.manufacturing_country;
 
   // show skeleton if swiper is true
   if (swiper && load) {

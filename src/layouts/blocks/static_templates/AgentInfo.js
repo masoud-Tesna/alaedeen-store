@@ -1,7 +1,7 @@
 //import style:
 import './styles/AgentInfo.less'
 
-import { Col, Row, Skeleton, Space } from "antd";
+import { Col, Row, Skeleton } from "antd";
 import { useGetApi, useWindowSize } from "../../../functions";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";

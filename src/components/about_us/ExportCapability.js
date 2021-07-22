@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import '../styles/Manufacturing.less';
 
 // import custom hooks and helper functions:
-import { useGetApi, useQueryString, useWindowSize } from "../../functions";
+import { useGetApi, useWindowSize } from "../../functions";
 import { __, useSetLoaded } from "../../functions/Helper";
 
 // Import Swiper React components

@@ -1,8 +1,6 @@
 // import style:
 import './styles/HomeCarousel.less';
 
-import sofa from "../../../assets/images/sofa.png";
-
 // import ANT Design Components:
 import { Col, Row, Carousel  } from "antd";
 import { useWindowSize } from "../../../functions";
