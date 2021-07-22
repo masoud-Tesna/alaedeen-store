@@ -32,20 +32,13 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
   return useQuery(['products', useQueryKeyClone], getProducts);
 }*/
 
-export function useGetApi (mode, params, useQueryKey, setLanguage = true) {
+export function useGetApi (mode, params, useQueryKey) {
 
   const { language } = useGetLanguageState();
 
   // async function for get API:
-  let url,
-      useQueryKeyClone;
-  if (setLanguage) {
-    url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
-    useQueryKeyClone = `${useQueryKey}_${language}`;
-  }else {
-    url = `https://hornb2b.com/horn/${mode}/?${params}`;
-    useQueryKeyClone = useQueryKey;
-  }
+  const url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
+  const useQueryKeyClone = `${useQueryKey}_${language}`;
 
   async function getApi() {
     const { data } = await axios.get(url);
