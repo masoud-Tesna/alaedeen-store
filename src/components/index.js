@@ -21,3 +21,6 @@ export { QualityControl } from './about_us/QualityControl';
 
 // export ExportCapability Component For show in export-capability Page "/certificate"
 export { ExportCapability } from './about_us/ExportCapability';
+
+// export Chat Component For chat Page "/chat"
+export { Chat } from './Chat';
