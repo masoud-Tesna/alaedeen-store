@@ -1,15 +1,24 @@
 // import Style:
 import './styles/BottomDetails.less';
-import { useWindowSize } from "../../../functions";
+
+// import Ant Design Components:
 import { Col, Row } from "antd";
+
+// import custom hooks:
+import { useWindowSize } from "../../../functions";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../functions/Helper";
+import { __, useParsPathName } from "../../../functions/Helper";
 
 const BottomDetails = () => {
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
+
+  // Get Location pathName:
+  const pathName = useParsPathName();
+
+  if (pathName === 'chat') return <></>;
 
   return (
     <div className={ width >=768 ? 'bottomDetails--container__desktop' : 'bottomDetails--container__mobile w-100' }>
