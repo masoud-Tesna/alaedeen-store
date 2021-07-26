@@ -5,11 +5,11 @@ import { Col, Row, Skeleton } from "antd";
 import { useGetApi, useWindowSize } from "../../../functions";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
-import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+import { useGetStoreState } from "../../../contexts/store/StoreContext";
 import React from "react";
 
 const AgentInfo = () => {
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   const { t } = useTranslation();
 

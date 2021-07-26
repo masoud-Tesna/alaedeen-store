@@ -12,25 +12,25 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Design:
 import { Col, ConfigProvider, Layout, Result, Row, Skeleton, Space } from 'antd';
+import { SmileOutlined } from "@ant-design/icons";
 
 // Pages:
 import { Home, Products, About, Manufacturing, Certificate, RandDCapability, QualityControl, ExportCapability, Chat } from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
+import { useGetStoreState } from "./contexts/store/StoreContext";
 
 // import Custom Hooks:
 import { useWindowSize } from './functions';
+import { useTranslation } from "react-i18next";
+import { __ } from "./functions/Helper";
 
 // Layouts:
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 import BottomDetails from "./layouts/blocks/static_templates/BottomDetails";
-import { useGetStoreCheckState } from "./contexts/store/StoreContext";
-import { useTranslation } from "react-i18next";
-import { __ } from "./functions/Helper";
-import { SmileOutlined } from "@ant-design/icons";
 
 function App() {
 
@@ -44,9 +44,9 @@ function App() {
 
   const { Header, Footer, Content } = Layout;
 
-  const storeCheck = useGetStoreCheckState();
+  const { status: storeStatus } = useGetStoreState();
 
-  if (storeCheck === 'load' || storeCheck === 'disable') {
+  if (storeStatus === 'loading' || storeStatus === 'disable') {
     return (
       <ConfigProvider>
         <Layout className="layout">
@@ -85,7 +85,7 @@ function App() {
                 <Row justify="center">
                   <Col span={24} style={{ height: 35 }} className="d-md-none">
                     <Row justify={"space-between"} className="h-100">
-                      <Col></Col>
+                      <Col />
                       <Col className="pr-5 my-auto">
                         <Space>
                           <Skeleton.Button style={{height: 25, width: 80}} active={true} size={"default"} shape={"round"} />
@@ -393,8 +393,8 @@ function App() {
               </Row>
             </Col>
 
-            <div className={ `bg-white shadow rounded-10 storeLoad--LoadingModal ${storeCheck}` }>
-              {storeCheck === 'load' &&
+            <div className={ `bg-white shadow rounded-10 storeLoad--LoadingModal ${storeStatus}` }>
+              {storeStatus === 'loading' &&
               <Result
                 className="storeLoad--LoadingModal__loading"
                 icon={<SmileOutlined />}
@@ -402,7 +402,7 @@ function App() {
               />
               }
 
-              {storeCheck === 'disable' &&
+              {storeStatus === 'disable' &&
               <Result
                 status="500"
                 className="storeLoad--LoadingModal__disable"

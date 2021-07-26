@@ -21,7 +21,7 @@ import SwiperCore, { Pagination,Navigation } from 'swiper/core';
 import { Col, Row } from "antd";
 
 // import store_id context:
-import { useGetStoreIdState } from "../../contexts/store/StoreContext";
+import { useGetStoreState } from "../../contexts/store/StoreContext";
 
 // import function for translate:
 import { useTranslation } from "react-i18next";
@@ -37,7 +37,7 @@ SwiperCore.use([Pagination,Navigation]);
 
 const QualityControl = () => {
 
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   // get screen width:
   const { width } = useWindowSize();

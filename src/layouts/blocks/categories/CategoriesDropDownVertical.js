@@ -8,10 +8,10 @@ import { useTranslation } from "react-i18next";
 
 // import custom hooks:
 import { useGetApi } from "../../../functions";
-import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+import { useGetStoreState } from "../../../contexts/store/StoreContext";
 
 const CategoriesContent = () => {
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   const { isLoading, data } = useGetApi(`store-categories-api`, `store_id=${storeId}`, 'categories');
   const { categories } = data || [];

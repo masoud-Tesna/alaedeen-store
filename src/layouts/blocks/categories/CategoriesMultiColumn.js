@@ -21,12 +21,12 @@ import TextTruncate from "react-text-truncate";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+import { useGetStoreState } from "../../../contexts/store/StoreContext";
 import { Link } from "react-router-dom";
 
 const CategoriesMultiColumn = () => {
 
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   const { t } = useTranslation();
 

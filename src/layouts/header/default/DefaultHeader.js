@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useGetApi, useWindowSize } from "../../../functions";
 import { changeLanguageAction, useDispatchLanguageState, useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import LoaderSpinner from "../../blocks/static_templates/LoadSpinner";
-import { useGetStoreIdState } from "../../../contexts/store/StoreContext";
+import { useGetStoreState } from "../../../contexts/store/StoreContext";
 
 // import responsive image show component:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
@@ -28,7 +28,7 @@ const { TabPane } = Tabs;
 
 const DefaultHeader = () => {
 
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   const { t } = useTranslation();
 

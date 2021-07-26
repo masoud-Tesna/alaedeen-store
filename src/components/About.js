@@ -10,7 +10,7 @@ import { Col, Row } from "antd";
 // import hooks:
 import { useTranslation } from "react-i18next";
 import { __, useSetLoaded } from "../functions/Helper";
-import { useGetStoreIdState } from "../contexts/store/StoreContext";
+import { useGetStoreState } from "../contexts/store/StoreContext";
 import { useGetApi, useWindowSize } from "../functions";
 
 // import components used:
@@ -21,7 +21,7 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const About = () => {
 
-  const storeId = useGetStoreIdState();
+  const { id: storeId } = useGetStoreState();
 
   // initial state for language:
   const { language } = useGetLanguageState();
