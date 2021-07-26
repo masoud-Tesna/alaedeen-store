@@ -1,5 +1,8 @@
 // Layouts:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
+import TopPanelWhitBackIcon from "./defautl/TopPanelWhitBackIcon";
+
+// import custom hooks:
 import { useParsPathName } from "../../functions/Helper";
 
 const TopPanel = () => {
@@ -13,6 +16,10 @@ const TopPanel = () => {
 
       </>
     )
+  }
+
+  if (pathName === 'chat') {
+    return <TopPanelWhitBackIcon />
   }
 
   // if get default Header:
