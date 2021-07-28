@@ -18,6 +18,7 @@ import { StoreProvider } from "./contexts/store/StoreContext";
 const queryClient = new QueryClient();
 
 const Application = () => {
+  console.log(process.env.REACT_APP_WEATHER_API_KEY)
   return (
     <QueryClientProvider client={queryClient}>
         <StoreProvider>

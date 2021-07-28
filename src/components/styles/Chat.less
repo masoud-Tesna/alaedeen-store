@@ -10,4 +10,109 @@ html:lang(ar) {
   @media (min-width: @screen-md) {
     // styling
   }
+
+  .chat--topSection {
+    height: calc(100vh - 144px);
+    overflow-y: auto;
+    padding-bottom: 20px;
+
+    .chat--topSection__productContainer {
+      padding: 0 2.5rem;
+      @media (min-width: @screen-md) {
+        padding: 0 3.5rem;
+      }
+
+      .chat--productContainer__productImg {
+        width: 80px;
+        height: 80px;
+      }
+
+      .chat--productContainer__btn {
+        .ant-btn {
+          padding: 0;
+          width: 119px;
+          height: 28px;
+
+          span {
+            font-size: 1.6rem;
+          };
+        }
+      }
+    }
+
+    .chat--topSection__messages {
+      padding: 0 5rem;
+
+      .chat--message {
+        &.chat--send {
+          & > .chat--message__body {
+            background-color: #FFFFFF !important;
+            float : right!important;
+            min-width: 14rem;
+          }
+        }
+
+        &.chat-receive {
+          & > .chat--message__body {
+            background-color: #DCF8C6 !important;
+            float : left!important;
+            min-width: 14rem;
+          }
+        }
+      }
+    }
+  }
+
+  .chat--bottomSection {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    background-color: #F6F6F6!important;
+
+    .chat--bottomSection__defaultWords {
+      white-space: nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      display: flex;
+      flex-wrap: nowrap;
+
+      .chat--defaultWords--item {
+        padding: 3px 1.4rem;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+    }
+
+    .chat--sendMessage__container {
+      min-height: 45px;
+
+      .chat--sendMessage__inputText {
+        .chat--inputText__container {
+          .ant-input {
+            &::placeholder {
+              color: #BCBCBC !important;
+              font-size: 1.6rem;
+            }
+          }
+
+          .fal.fa-paperclip {
+            -webkit-transform: scaleX(-1) rotate(40deg);
+            transform: scaleX(-1) rotate(40deg);
+          }
+        }
+      }
+
+      .chat--sendMessage__submit {
+        .ant-btn {
+          width: 45px;
+          height: 45px;
+        }
+        .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
+          background-color: lighten(#2D8327, 10%) !important;
+        }
+      }
+    }
+  }
 }

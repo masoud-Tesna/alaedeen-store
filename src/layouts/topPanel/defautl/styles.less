@@ -103,3 +103,20 @@ html:lang(ar) {
     }
   }
 }
+
+.TopPanelWhitBackIcon {
+  transition: 0.5s all ease-in-out;         /* added unit */
+  -moz-transition: 0.5s all ease-in-out;    /* added unit */
+  -webkit-transition: 0.5s all ease-in-out; /* added unit */
+
+  &.scrolled {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    z-index: 1000;
+    transition: 0.5s all ease-in-out;         /* added unit */
+    -moz-transition: 0.5s all ease-in-out;    /* added unit */
+    -webkit-transition: 0.5s all ease-in-out; /* added unit */
+  }
+}
