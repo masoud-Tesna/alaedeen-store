@@ -35,6 +35,7 @@ import { useState } from "react";
 
 let createGuest = require('cross-domain-storage/guest');
 
+
 let bazStorage = createGuest('http://localhost:3001/accessStorage');
 
 function App() {
