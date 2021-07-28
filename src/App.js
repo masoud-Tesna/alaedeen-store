@@ -31,8 +31,21 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 import BottomDetails from "./layouts/blocks/static_templates/BottomDetails";
+import { useState } from "react";
+
+let createGuest = require('cross-domain-storage/guest');
+
+let bazStorage = createGuest('http://localhost:3001/accessStorage');
 
 function App() {
+
+  const [forTest, setForTest] = useState("");
+
+  bazStorage.get('user_login', function(error, value) {
+    setForTest(value);
+  });
+
+  console.log(forTest);
 
   const { t } = useTranslation();
 
