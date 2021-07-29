@@ -12,12 +12,7 @@ import axios from "axios";
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
 import { fn_get_local_storage_with_expiry, fn_set_local_storage } from "../../functions/Helper";
 import { useGetLanguageState } from "../language/LanguageContext";
-
-// import guest from cross-domain-storage/guest
-import createGuest from "cross-domain-storage/guest";
-
-// create getUserLoginFromHornDomain variable for get LocalStorage from https://hornb2b.com/accessStorage
-const getUserLoginFromHornDomain = createGuest('http://localhost:3001/accessStorage');
+import { getUserLoginFromHornDomain } from "../../functions/accessExternalLocalStorage";
 
 // User Context Create:
 const userContext = createContext();
@@ -37,8 +32,6 @@ export function UserProvider ({ children }) {
   const [getUserLoginStatusHorn, setGetUserLoginStatusHorn] = useState("loading");
 
   useEffect(() => {
-
-    console.log('start');
 
     let mounted  = true;
 
@@ -75,12 +68,14 @@ export function UserProvider ({ children }) {
           if (userLogin) {
 
             fn_set_local_storage("user_login", userLogin); // set user_login in to local storage
+            console.log('set user_login');
             //setGetUserLoginStatusHorn('get user_login'); // set userLogin status
 
             getUserLoginFromHornDomain.get('user_password', function (userPasswordError, userPassword) { // get user_password from hornb2b domain local storage
               if (userPassword) {
 
                 fn_set_local_storage("user_password", userPassword); // set user_password in to local storage
+                console.log('set user_password');
                 setGetUserLoginStatusHorn('get user_password'); // set userLogin status
 
               }
@@ -93,7 +88,10 @@ export function UserProvider ({ children }) {
 
     }
 
-    return () => mounted = false;
+    return () => {
+      mounted = false;
+      dispatch(signInLoadingFalseAction());
+    }
 
   }, [language, getUserLoginStatusHorn]);
 
