@@ -15,7 +15,18 @@ import { Col, ConfigProvider, Layout, Result, Row, Skeleton, Space } from 'antd'
 import { SmileOutlined } from "@ant-design/icons";
 
 // Pages:
-import { Home, Products, About, Manufacturing, Certificate, RandDCapability, QualityControl, ExportCapability, Chat } from "./components";
+import {
+  Home,
+  Products,
+  About,
+  Manufacturing,
+  Certificate,
+  RandDCapability,
+  QualityControl,
+  ExportCapability,
+  Chat,
+  accessStoragePage
+} from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
@@ -31,22 +42,8 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 import BottomDetails from "./layouts/blocks/static_templates/BottomDetails";
-import { useState } from "react";
-
-let createGuest = require('cross-domain-storage/guest');
-
-
-let bazStorage = createGuest('http://localhost:3001/accessStorage');
 
 function App() {
-
-  const [forTest, setForTest] = useState("");
-
-  bazStorage.get('user_login', function(error, value) {
-    setForTest(value);
-  });
-
-  console.log(forTest);
 
   const { t } = useTranslation();
 
@@ -464,6 +461,8 @@ function App() {
 
 
                 <Route path="/chat" component={Chat} />
+
+                <Route path="/accessStorage" component={accessStoragePage} />
               </Switch>
             </div>
             <div className="bottomDetails--section">

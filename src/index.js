@@ -12,8 +12,11 @@ import "./translations";
 // import language context:
 import { LanguageProvider } from "./contexts/language/LanguageContext";
 
-// import store id context:
+// import store context:
 import { StoreProvider } from "./contexts/store/StoreContext";
+
+// import user  context:
+import { UserProvider } from "./contexts/user/UserContext";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +26,10 @@ const Application = () => {
     <QueryClientProvider client={queryClient}>
         <StoreProvider>
           <LanguageProvider>
-            <App />
-            <ReactQueryDevtools initialIsOpen />
+            <UserProvider>
+              <App />
+              <ReactQueryDevtools initialIsOpen />
+            </UserProvider>
           </LanguageProvider>
         </StoreProvider>
     </QueryClientProvider>
