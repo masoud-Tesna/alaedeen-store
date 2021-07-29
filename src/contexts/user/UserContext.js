@@ -128,8 +128,12 @@ export async function logout(dispatch) {
       window.localStorage.removeItem('remember_me');
     })
     .then(() => {
-      getUserLoginFromHornDomain.remove('foo', function(error, data) {
-        // foo is now removed
+      getUserLoginFromHornDomain.remove('user_login', function(userLoginErrorRemove, userLoginRemove) {
+        getUserLoginFromHornDomain.remove('user_password', function(userPasswordErrorRemove, userPasswordRemove) {
+          getUserLoginFromHornDomain.remove('remember_me', function(rememberMeErrorRemove, rememberMeRemove) {
+            // foo is now removed
+          });
+        });
       });
     });
 
