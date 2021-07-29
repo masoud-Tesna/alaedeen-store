@@ -40,51 +40,51 @@ export function UserProvider ({ children }) {
     let clientUserLoginLocalStorage,
       clientPasswordLocalStorage;
 
-    if (checkRememberMe) {
-      clientUserLoginLocalStorage = localStorage.getItem('user_login');
-      clientPasswordLocalStorage = localStorage.getItem('user_password');
-    }else {
-      clientUserLoginLocalStorage = fn_get_local_storage_with_expiry('user_login');
-      clientPasswordLocalStorage = fn_get_local_storage_with_expiry('user_password');
-    }
+    if (mounted) {
 
-    if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
-      dispatch(checkSignInLoadingAction());
-      console.log('start with local storage');
-      signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage, language)
-        .then(res => {
-          dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
-        });
+      if (checkRememberMe) {
+        clientUserLoginLocalStorage = localStorage.getItem('user_login');
+        clientPasswordLocalStorage = localStorage.getItem('user_password');
+      } else {
+        clientUserLoginLocalStorage = fn_get_local_storage_with_expiry('user_login');
+        clientPasswordLocalStorage = fn_get_local_storage_with_expiry('user_password');
+      }
 
-    }else {
+      if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
+        dispatch(checkSignInLoadingAction());
+        //console.log('start with local storage');
+        signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage, language)
+          .then(res => {
+            dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
+          });
 
-      getUserLoginFromHornDomain.get('remember_me', function (rememberMeError, rememberMe) { // get remember_me from hornb2b domain local storage
-        if (rememberMe) { // if remember_me is true:
-          fn_set_local_storage("remember_me", 'true'); // set remember_me in to local storage
-          //setGetUserLoginStatusHorn('get remember_me'); // set userLogin status
-        }
+      } else {
 
-        getUserLoginFromHornDomain.get('user_login', function (userLoginError, userLogin) { // get user_login from hornb2b domain local storage
-          if (userLogin) {
-
-            fn_set_local_storage("user_login", userLogin); // set user_login in to local storage
-            console.log('set user_login');
-            //setGetUserLoginStatusHorn('get user_login'); // set userLogin status
-
-            getUserLoginFromHornDomain.get('user_password', function (userPasswordError, userPassword) { // get user_password from hornb2b domain local storage
-              if (userPassword) {
-
-                fn_set_local_storage("user_password", userPassword); // set user_password in to local storage
-                console.log('set user_password');
-                setGetUserLoginStatusHorn('get user_password'); // set userLogin status
-
-              }
-            });
-
+        getUserLoginFromHornDomain.get('remember_me', function (rememberMeError, rememberMe) { // get remember_me from hornb2b domain local storage
+          if (rememberMe) { // if remember_me is true:
+            fn_set_local_storage("remember_me", 'true'); // set remember_me in to local storage
           }
+
+          getUserLoginFromHornDomain.get('user_login', function (userLoginError, userLogin) { // get user_login from hornb2b domain local storage
+            if (userLogin) {
+              if (!clientUserLoginLocalStorage) {
+                fn_set_local_storage("user_login", userLogin); // set user_login in to local storage
+              }
+              getUserLoginFromHornDomain.get('user_password', function (userPasswordError, userPassword) { // get user_password from hornb2b domain local storage
+                if (userPassword) {
+                  if (!clientPasswordLocalStorage) {
+                    fn_set_local_storage("user_password", userPassword); // set user_password in to local storage
+                    setGetUserLoginStatusHorn('done'); // set userLogin status
+                  }
+                }
+              });
+
+            }
+          });
+
         });
 
-      });
+      }
 
     }
 
@@ -95,7 +95,7 @@ export function UserProvider ({ children }) {
 
   }, [language, getUserLoginStatusHorn]);
 
-
+  //console.log(getUserLoginStatusHorn);
   return (
     <userContext.Provider value={{ auth, dispatch }}>
       <div className={ `${ auth.load ? 'd-block' : 'd-none' }` }>
