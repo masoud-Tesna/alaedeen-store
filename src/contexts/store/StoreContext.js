@@ -22,7 +22,7 @@ function StoreProvider({ children }) {
   useEffect(() => {
 
     if (store.id !== null) {
-
+      fn_set_local_storage('store_id', store_id_query_string);
       getApiStoreCheck(store.id)
         .then(res => {
           if (res.status === 'D') {
