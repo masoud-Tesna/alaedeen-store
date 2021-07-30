@@ -52,7 +52,7 @@ html:lang(ar) {
           }
         }
 
-        &.chat-receive {
+        &.chat--receive {
           & > .chat--message__body {
             background-color: #DCF8C6 !important;
             float : left!important;
@@ -113,6 +113,28 @@ html:lang(ar) {
           background-color: lighten(#2D8327, 10%) !important;
         }
       }
+    }
+  }
+
+  .chat--topSection.show--skeleton,
+  .chat--bottomSection__skeletons {
+    filter: blur(2.2px);
+    -webkit-filter: blur(2.2px);
+  }
+
+  .defaultWordSkeleton {
+    .ant-skeleton {
+      width: 100% !important;
+
+      .ant-skeleton-input {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .storeLoad--LoadingModal.for--signIn {
+    .storeLoad--LoadingModal__loading {
+      padding: 0 !important;
     }
   }
 }

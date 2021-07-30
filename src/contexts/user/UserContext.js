@@ -34,8 +34,6 @@ export function UserProvider ({ children }) {
 
   useEffect(() => {
 
-    console.log('start');
-
     let mounted  = true;
 
     const checkRememberMe = localStorage.getItem('remember_me');
@@ -53,7 +51,6 @@ export function UserProvider ({ children }) {
 
     if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
       dispatch(checkSignInLoadingAction());
-      console.log('start with local storage');
       signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage, language)
         .then(res => {
           dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
