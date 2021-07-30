@@ -42,13 +42,8 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 import BottomDetails from "./layouts/blocks/static_templates/BottomDetails";
-import { useGetAuthState } from "./contexts/user/UserContext";
 
 function App() {
-
-  const { user_data } = useGetAuthState();
-
-  console.log(user_data)
 
   const { t } = useTranslation();
 
