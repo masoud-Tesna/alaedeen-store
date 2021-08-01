@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fn_set_local_storage } from "../../functions/Helper";
 import axios from "axios";
 
 // Store id Context Create:
@@ -7,6 +6,7 @@ const storeContext = createContext({});
 
 // create store Context Provide:
 function StoreProvider({ children }) {
+
   // useState For Store_id use in app
   const url = new URL(window.location.href);
   const store_id_query_string = url.searchParams.get('store_id');
@@ -22,7 +22,9 @@ function StoreProvider({ children }) {
   useEffect(() => {
 
     if (store.id !== null) {
-      fn_set_local_storage('store_id', store_id_query_string);
+
+      window.localStorage.setItem("store_id", store_id_query_string);
+
       getApiStoreCheck(store.id)
         .then(res => {
           if (res.status === 'D') {
@@ -38,7 +40,7 @@ function StoreProvider({ children }) {
 
     } else {
 
-      const clientStoreIdLocalStorage = window.localStorage.getItem('store_id');
+      const clientStoreIdLocalStorage =  window.localStorage.getItem("store_id");
       if (clientStoreIdLocalStorage) {
         getApiStoreCheck(clientStoreIdLocalStorage)
           .then(res => {
