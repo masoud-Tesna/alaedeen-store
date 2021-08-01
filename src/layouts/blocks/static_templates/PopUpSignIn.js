@@ -15,9 +15,9 @@ import googlePic from '../../../assets/images/google.png';
 import { signInAction, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from "../../../contexts/user/UserContext";
 
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-import { getUserLoginFromHornDomain } from "../../../functions/accessExternalLocalStorage";
 
 const PopUpSignIn = () => {
+
   // initial state for language:
   const { language } = useGetLanguageState();
 
@@ -37,29 +37,7 @@ const PopUpSignIn = () => {
         }else {
           AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
         }
-      })
-      .then(() => {
-       if (values.remember_me) {
-         getUserLoginFromHornDomain.set('user_login', values.user_login, function(userLoginErrorSet, userLoginSet) {
-           getUserLoginFromHornDomain.set('user_password', values.password, function(userPasswordErrorSet, userPasswordSet) {
-             getUserLoginFromHornDomain.set('remember_me', true, function(rememberMeErrorSet, rememberMeSet) {
-               getUserLoginFromHornDomain.close();
-             });
-           });
-         });
-       }else {
-         const getUserLoginFromLocalStorage = localStorage.getItem("user_login");
-         const getUserPasswordFromLocalStorage = localStorage.getItem("user_password");
-
-         if (getUserLoginFromLocalStorage && getUserPasswordFromLocalStorage) {
-           getUserLoginFromHornDomain.set('user_login', getUserLoginFromLocalStorage, function (userLoginErrorSet, userLoginSet) {
-             getUserLoginFromHornDomain.set('user_password', getUserPasswordFromLocalStorage, function (userPasswordErrorSet, userPasswordSet) {
-               getUserLoginFromHornDomain.close();
-             });
-           });
-         }
-       }
-      })
+      });
 
   }
 

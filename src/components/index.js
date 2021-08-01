@@ -24,6 +24,3 @@ export { ExportCapability } from './about_us/ExportCapability';
 
 // export Chat Component For chat Page "/chat"
 export { Chat } from './Chat';
-
-// export accessStoragePage Component For access localStorage Page "/accessStoragePage"
-export { accessStoragePage } from './accessStoragePage';

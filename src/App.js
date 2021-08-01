@@ -25,7 +25,6 @@ import {
   QualityControl,
   ExportCapability,
   Chat,
-  accessStoragePage
 } from "./components";
 
 // import language context:
@@ -462,7 +461,6 @@ function App() {
 
                 <Route path="/chat" component={Chat} />
 
-                <Route path="/accessStorage" component={accessStoragePage} />
               </Switch>
             </div>
             <div className="bottomDetails--section">
