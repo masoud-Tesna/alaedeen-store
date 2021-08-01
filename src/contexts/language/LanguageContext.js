@@ -47,14 +47,14 @@ function LanguageProvider({ children }) {
       return () => mounted = false;
     }
 
-      if (mounted) {
-        dispatchItem(getClientLanguageLoadingAction());
-        getApi('https://hornb2b.com/horn/client-language-api/')
-          .then(res => {
-            dispatchItem(getClientLanguageAction(res.data.client_language));
-            dispatch(changeLanguageAction(res.data.client_language))
-          })
-      }
+    if (mounted) {
+      dispatchItem(getClientLanguageLoadingAction());
+      getApi('https://hornb2b.com/horn/client-language-api/')
+        .then(res => {
+          dispatchItem(getClientLanguageAction(res.data.client_language));
+          dispatch(changeLanguageAction(res.data.client_language))
+        })
+    }
     return () => mounted = false;
   }, []);
 
