@@ -8,11 +8,7 @@ const SiteFooter = () => {
 
   // Check pathName For Set Default Top Panel Or Not:
   if (pathName === 'products' || pathName === 'about' || pathName === 'manufacturing' || pathName === 'certificate' || pathName === 'r-and-d-capability' || pathName === 'quality-control' || pathName === 'export-capability' || pathName === 'chat') {
-    return (
-      <>
-
-      </>
-    );
+    return <></> // remove Footer
   }
 
   // if get default Top panel:
