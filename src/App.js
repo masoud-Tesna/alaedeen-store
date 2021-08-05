@@ -25,6 +25,7 @@ import {
   QualityControl,
   ExportCapability,
   Chat,
+  AllCategories,
 } from "./components";
 
 // import language context:
@@ -447,6 +448,8 @@ function App() {
                 <Route path="/products" component={Products} />
 
                 <Route path="/about" component={About} />
+
+                <Route path="/all-categories" component={AllCategories} />
 
                 <Route path="/manufacturing" component={Manufacturing} />
 

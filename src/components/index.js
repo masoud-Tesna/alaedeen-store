@@ -24,3 +24,6 @@ export { ExportCapability } from './about_us/ExportCapability';
 
 // export Chat Component For chat Page "/chat"
 export { Chat } from './Chat';
+
+// export AllCategories Component For chat Page "/all-categories"
+export { AllCategories } from './AllCategories';

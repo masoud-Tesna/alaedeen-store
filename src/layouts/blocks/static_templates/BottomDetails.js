@@ -18,7 +18,7 @@ const BottomDetails = () => {
   // Get Location pathName:
   const pathName = useParsPathName();
 
-  if (pathName === 'chat') return <></>;
+  if (pathName === 'chat' || pathName === 'all-categories') return <></>;
 
   return (
     <div className={ width >=768 ? 'bottomDetails--container__desktop' : 'bottomDetails--container__mobile w-100' }>
