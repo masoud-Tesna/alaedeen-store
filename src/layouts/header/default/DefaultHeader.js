@@ -403,11 +403,11 @@ const DefaultHeader = () => {
                   <Col span={1}>
                     <i className="fa fa-chevron-left vv-font-size-2 cursor-pointer text-white" onClick={() => { goToPreviousPath() }} />
                   </Col>
-                  <Col span={23}>
+                  <Col span={23} className="pl-3">
                     <Row justify={"end"} gutter={10}>
-                      <Col span={14}>
+                      <Col span={15}>
                         <div className="h-100" style={{ position: 'relative' }}>
-                          <div className="search--bgOpacity" />
+                          <div className="search--bgOpacity" style={{ height: 33.45 }} />
                           <Link to={`all-categories`}>
                             <Row justify={"space-between"} align={"middle"} className="px-4 py-2 h-100">
                               <Col span={20} className="vv-font-size-1-5 text-white text-truncate pr-3 searchBox--text">{ t(__('Search In This Store')) }</Col>
@@ -420,15 +420,15 @@ const DefaultHeader = () => {
                       </Col>
                       <Col span={4} className="text-center">
                         <div style={{ position: 'relative' }} className="h-100">
-                          <div className="share--bgOpacity" />
+                          <div className="share--bgOpacity" style={{ height: 33.45 }} />
                           <i className="fal fa-share-alt text-white vv-font-size-2-2" />
                         </div>
                       </Col>
                       <Col span={2} className="my-auto text-center">
                         <Divider type="vertical" style={{ height: 25, borderColor: '#fff' }}/>
                       </Col>
-                      <Col onClick={showHeaderMenuXs}>
-                        <i className="fas fa-grip-lines cursor-pointer text-white display-4" style={{ height: '33.45px' }} />
+                      <Col span={3} onClick={showHeaderMenuXs}>
+                        <i className="fas fa-grip-lines cursor-pointer text-white display-4" style={{ height: 33.45 }} />
                         {/*<select value={language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-1-4">
                           <option value="en">English</option>
                           <option value="fa">فارسی</option>
