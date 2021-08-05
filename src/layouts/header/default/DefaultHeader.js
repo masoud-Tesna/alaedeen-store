@@ -173,7 +173,7 @@ const DefaultHeader = () => {
               <Col span={24} className="px-4 pt-4 pb-3 header__details--container">
                 <div className="info--bgOpacity" />
                 <Row justify={"space-between"}>
-                  <Col xs={19} className="header__details--contentLeft">
+                  <Col xs={24} className="header__details--contentLeft">
                     <Space size={width >= 768 ? "large" : "small"}>
                       <div className="text-center info--img__container">
                         {isLoading ?
@@ -232,9 +232,9 @@ const DefaultHeader = () => {
                     </Space>
                   </Col>
 
-                  <Col xs={5} className="text-right">
+                  {/*<Col xs={5} className="text-right">
                     <Button className="px-3 bg-a5 rounded-6 text-2d font-weight-bold header__details--followBtn" size="large">{t(__('Follow'))}</Button>
-                  </Col>
+                  </Col>*/}
                 </Row>
               </Col>
             </Row>
