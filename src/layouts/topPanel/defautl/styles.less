@@ -79,6 +79,41 @@ html:lang(ar) {
     }
   }
 
+  .topPanel--content__account {
+    .content--account__companyLogo {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      img {
+        //border-radius: 50%;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      .content--account__companyName,
+      .anticon.anticon-down svg {
+        color: #2e8339;
+      }
+    }
+
+    .anticon.anticon-down {
+      margin: 0 1rem;
+
+      svg {
+        transition: all 0.1s 0.1s;
+        font-weight: bolder;
+      }
+    }
+
+    .content--account__companyName,
+    .anticon.anticon-down svg {
+      font-size: 1.7rem;
+      color: #ffffff;
+    }
+  }
+
   .ant-space-item {
     color: #FFFFFF !important;
   }
