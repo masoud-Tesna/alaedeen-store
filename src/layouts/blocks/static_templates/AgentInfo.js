@@ -31,13 +31,13 @@ const AgentInfo = () => {
                       <Col span={24} className="agentInfo--image">
                         {isLoading ?
                           <Skeleton.Avatar style={{ width: 145, height: 145 }} active={true} size={"large"} shape={"circle"} /> :
-                          <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                          <img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>
                         }
                       </Col>
                       <Col span={24} className="text-47 text-center agentInfo--name">
                         {isLoading ?
                           <Skeleton.Input style={{ width: 130 }} active={true} size={"small"} /> :
-                          `${store_agent.firstname || ''} ${store_agent.lastname || ''}`
+                          `${ store_agent.full_name }`
                         }
                       </Col>
                     </Row>
@@ -46,13 +46,13 @@ const AgentInfo = () => {
                     <Col span={12} className="agentInfo--image">
                       {isLoading ?
                         <Skeleton.Avatar style={{ width: 80, height: 80 }} active={true} size={"large"} shape={"circle"} /> :
-                        <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZG-8Pk5VYr_MOP4Ks3uEeZdArTUAizNRwg&usqp=CAU" alt="nilper"/>
+                        <img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>
                       }
                     </Col>
                     <Col span={12} className="my-auto text-47 agentInfo--name">
                       {isLoading ?
                         <Skeleton.Input style={{ width: 100 }} active={true} size={"small"} /> :
-                        `${store_agent.firstname || ''} ${store_agent.lastname || ''}`
+                        `${ store_agent.full_name }`
                       }
                     </Col>
                   </>
@@ -67,7 +67,7 @@ const AgentInfo = () => {
                     <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
                       {isLoading ?
                         <Skeleton.Input style={{ width: 160 }} active={true} size={"small"} /> :
-                        store_agent.phone || ''
+                        store_agent.telephone || ''
                       }
                     </Col>
                   </Row>
@@ -91,7 +91,7 @@ const AgentInfo = () => {
                     <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
                       {isLoading ?
                         <Skeleton.Input style={{ width: 70 }} active={true} size={"small"} /> :
-                        store_agent.country || ''
+                        store_agent.country_and_region || ''
                       }
                     </Col>
                   </Row>
@@ -103,7 +103,7 @@ const AgentInfo = () => {
                     <Col className="text-47 text-capitalize agentInfo--details__value" span={12}>
                       {isLoading ?
                         <Skeleton.Input style={{ width: 70 }} active={true} size={"small"} /> :
-                        store_agent.state || ''
+                        store_agent.province_and_state || ''
                       }
                     </Col>
                   </Row>
