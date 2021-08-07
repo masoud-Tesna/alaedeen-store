@@ -30,7 +30,11 @@ const { TabPane } = Tabs;
 
 const DefaultHeader = () => {
 
-  const { id: storeId } = useGetStoreState();
+
+
+  const { isLoading, name: storeName, logo: storeLogo } = useGetStoreState();
+
+  console.log(isLoading)
 
   const { user_data } = useGetAuthState();
 
@@ -57,9 +61,6 @@ const DefaultHeader = () => {
 
   // initial state for show spinner:
   const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
-
-  const { isLoading, data } = useGetApi(`header-info-api`, `store_id=${storeId}`, 'header_info');
-  const { header_info } = data || [];
 
   // function for change language:
   const handleChangeLanguage = (lang) => {
@@ -445,10 +446,13 @@ const DefaultHeader = () => {
                   <Col xs={24} className="header__details--contentLeft">
                     <Space size={width >= 768 ? "large" : "small"}>
                       <div className="text-center info--img__container">
+
                         {isLoading ?
                           <Skeleton.Input style={{ width: width < 768 ? 50 : 100, height: width < 768 ? 50 : 100 }} active={true} size={"large"} /> :
-                          <ShowResponsiveImage imagePath={ header_info.logo } imageFolder='company_logo' width={ width < 768 ? 50 : 100 } height={ width < 768 ? 50 : 100 } imageAlt={ header_info.store } object_id={200}  object_type={'store_logo'}/>
+                          <img src={ storeLogo } alt={ storeName }/>
                         }
+
+
                       </div>
                       <div>
                         <Row>
@@ -456,7 +460,7 @@ const DefaultHeader = () => {
                             <span className="text-33 text-capitalize info--storeName">
                               {isLoading ?
                                 <Skeleton.Input style={{ width: 60 }} active={true} size={"small"} /> :
-                                header_info.store
+                                storeName
                               }
                             </span>
                           </Col>
