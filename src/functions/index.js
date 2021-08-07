@@ -36,10 +36,16 @@ export function useGetApi (mode, params, useQueryKey) {
 
   const { language } = useGetLanguageState();
 
-  // async function for get API:
-  const url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
-  const useQueryKeyClone = `${useQueryKey}_${language}`;
+  let useQueryKeyClone,
+      url;
 
+  if (language !== null) {
+    url = `https://hornb2b.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
+    useQueryKeyClone = `${useQueryKey}_${language}`;
+  }
+
+
+  // async function for get API:
   async function getApi() {
     const { data } = await axios.get(url);
     return data;
