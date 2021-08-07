@@ -12,7 +12,7 @@ function StoreProvider({ children }) {
   const store_id_query_string = url.searchParams.get('store_id');
 
   // useState For Store use in app
-  const [store, setStore] = useState({status: 'loading', id: store_id_query_string, name: null, email: null});
+  const [store, setStore] = useState({status: 'loading', id: store_id_query_string, name: null, email: null, logo: null});
 
   async function getApiStoreCheck(store_id) {
     const { data } = await axios.get(`https://hornb2b.com/horn/store-check-api/?store_id=${store_id}`);
@@ -21,11 +21,15 @@ function StoreProvider({ children }) {
 
   useEffect(() => {
 
-    if (store.id !== null) {
+    const store_id = window.localStorage.getItem("store_id") || store_id_query_string ;
 
+    if (store_id_query_string) {
       window.localStorage.setItem("store_id", store_id_query_string);
+    }
 
-      getApiStoreCheck(store.id)
+    if (store_id || store_id !== null) {
+
+      getApiStoreCheck(store_id)
         .then(res => {
           if (res.status === 'D') {
             setStore(prevState => {
@@ -33,30 +37,10 @@ function StoreProvider({ children }) {
             });
           }else if (res.status === 'A') {
             setStore(prevState => {
-              return {...prevState, status: 'active', name: res.name, email: res.email}
+              return {...prevState, status: 'active', name: res.name, email: res.email, logo: res.logo}
             });
           }
         });
-
-    } else {
-
-      const clientStoreIdLocalStorage =  window.localStorage.getItem("store_id");
-      if (clientStoreIdLocalStorage) {
-        getApiStoreCheck(clientStoreIdLocalStorage)
-          .then(res => {
-            if (res.status === 'D') {
-              setStore(prevState => {
-                return {...prevState, status: 'disable'}
-              });
-            }else if (res.status === 'A') {
-              setStore(prevState => {
-                return {...prevState, status: 'active', id: clientStoreIdLocalStorage, name: res.name, email: res.email}
-              });
-            }
-          });
-      } else {
-        window.location.href = "https://hornb2b.com/factories";
-      }
 
     }
 
