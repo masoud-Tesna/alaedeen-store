@@ -32,14 +32,14 @@ const Application = () => {
   return (
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
-        <StoreProvider>
-          <LanguageProvider>
+        <LanguageProvider>
+          <StoreProvider>
             <UserProvider>
               <App />
               <ReactQueryDevtools />
             </UserProvider>
-          </LanguageProvider>
-        </StoreProvider>
+          </StoreProvider>
+        </LanguageProvider>
       </QueryClientProvider>
     </CookiesProvider>
   );
