@@ -37,8 +37,6 @@ function StoreProvider({ children }) {
 
   }, [data]);
 
-  console.log(store)
-
   return (
     <storeContext.Provider value={ store }>
       {children}
