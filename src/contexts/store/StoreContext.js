@@ -13,7 +13,7 @@ function StoreProvider({ children }) {
   const store_id_query_string = url.searchParams.get('store_id');
 
   // useState For Store use in app
-  const [store, setStore] = useState({status: 'loading', id: store_id_query_string, name: null, email: null, logo: null});
+  const [store, setStore] = useState({status: 'loading', id: store_id_query_string, name: null, brand: null, email: null, logo: null});
 
 
   const store_id = window.localStorage.getItem("store_id") || store_id_query_string ;
@@ -30,12 +30,14 @@ function StoreProvider({ children }) {
         });
       }else if (data.status === 'A') {
         setStore(prevState => {
-          return {...prevState, status: 'active', id: store_id, name: data.name, email: data.email, logo: data.logo}
+          return {...prevState, status: 'active', id: store_id, name: data.name, brand: data.brand, email: data.email, logo: data.logo}
         });
       }
     }
 
   }, [data]);
+
+  console.log(store)
 
   return (
     <storeContext.Provider value={ store }>
