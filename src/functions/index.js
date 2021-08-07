@@ -45,7 +45,9 @@ export function useGetApi (mode, params, useQueryKey) {
     return data;
   }
 
-  return useQuery(['getApi', useQueryKeyClone], getApi);
+  return useQuery(['getApi', useQueryKeyClone], getApi, {
+    enabled: !!language,
+  });
 }
 
 export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
