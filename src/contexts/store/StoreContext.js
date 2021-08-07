@@ -16,7 +16,7 @@ function StoreProvider({ children }) {
   const [store, setStore] = useState({isLoading: true, status: 'loading', id: store_id_query_string, name: null, brand: null, email: null, logo: null});
 
 
-  const store_id = window.localStorage.getItem("store_id") || store_id_query_string ;
+  const store_id = store_id_query_string || window.localStorage.getItem("store_id") ;
 
   const { data, isLoading } = useGetApi(`store-check-api`, `store_id=${store_id}`, `storeCheck_${store_id}`);
 
