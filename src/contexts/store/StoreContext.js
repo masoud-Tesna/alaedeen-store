@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+
+import { useGetApi } from "../../functions";
 
 // Store id Context Create:
 const storeContext = createContext({});
@@ -14,37 +15,27 @@ function StoreProvider({ children }) {
   // useState For Store use in app
   const [store, setStore] = useState({status: 'loading', id: store_id_query_string, name: null, email: null, logo: null});
 
-  async function getApiStoreCheck(store_id) {
-    const { data } = await axios.get(`https://hornb2b.com/horn/store-check-api/?store_id=${store_id}`);
-    return data
-  }
+
+  const store_id = window.localStorage.getItem("store_id") || store_id_query_string ;
+
+  const { data } = useGetApi(`store-check-api`, `store_id=${store_id}`, `storeCheck_${store_id}`);
+
 
   useEffect(() => {
 
-    const store_id = window.localStorage.getItem("store_id") || store_id_query_string ;
-
-    if (store_id_query_string) {
-      window.localStorage.setItem("store_id", store_id_query_string);
-    }
-
-    if (store_id || store_id !== null) {
-
-      getApiStoreCheck(store_id)
-        .then(res => {
-          if (res.status === 'D') {
-            setStore(prevState => {
-              return {...prevState, status: 'disable'}
-            });
-          }else if (res.status === 'A') {
-            setStore(prevState => {
-              return {...prevState, status: 'active', name: res.name, email: res.email, logo: res.logo}
-            });
-          }
+    if (data) {
+      if (data.status === 'D') {
+        setStore(prevState => {
+          return {...prevState, status: 'disable'}
         });
-
+      }else if (data.status === 'A') {
+        setStore(prevState => {
+          return {...prevState, status: 'active', id: store_id, name: data.name, email: data.email, logo: data.logo}
+        });
+      }
     }
 
-  }, []);
+  }, [data]);
 
   return (
     <storeContext.Provider value={ store }>
