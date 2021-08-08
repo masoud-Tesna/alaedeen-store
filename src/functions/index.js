@@ -17,10 +17,10 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
   let url,
     useQueryKeyClone;
   if (setLanguage) {
-    url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+    url = `https://alaedeen.com/horn/products-api/?${params}&lang_code=${language}`;
     useQueryKeyClone = `${useQueryKey}_${language}`;
   }else {
-    url = `https://hornb2b.com/horn/products-api/?${params}`;
+    url = `https://alaedeen.com/horn/products-api/?${params}`;
     useQueryKeyClone = useQueryKey;
   }
 
@@ -40,7 +40,7 @@ export function useGetApi (mode, params, useQueryKey) {
       url;
 
   if (language !== null) {
-    url = `https://hornb2b.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
+    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
     useQueryKeyClone = `${useQueryKey}_${language}`;
   }
 
@@ -59,7 +59,7 @@ export function useGetApi (mode, params, useQueryKey) {
 export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
 
   // async function for get API:
-  const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+  const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
   async function getImageResized() {
     const { data } = await axios.get(url);
     return data;
@@ -73,7 +73,7 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
 
   useEffect(() => {
     // async function for get API:
-    const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+    const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
     async function getImageResized() {
       return await axios.get(url);
     }

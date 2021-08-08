@@ -35,7 +35,7 @@ const Chat = () => {
   const [form] = Form.useForm();
 
   async function getMessagesApi() {
-    const url = `https://hornb2b.com/horn/store-get-messages-api/?user_id=${user_data.auth.user_id}&store_id=${storeId}`;
+    const url = `https://alaedeen.com/horn/store-get-messages-api/?user_id=${user_data.auth.user_id}&store_id=${storeId}`;
     const { data } = await axios.get(url);
     return data;
   }
@@ -68,7 +68,7 @@ const Chat = () => {
   };
 
   const sendMessagePost = ({ values }) => {
-    axios.post(`https://hornb2b.com/horn/store-send-message-api`, { values })
+    axios.post(`https://alaedeen.com/horn/store-send-message-api`, { values })
       .then(() => {
         form.resetFields();
         refetch()

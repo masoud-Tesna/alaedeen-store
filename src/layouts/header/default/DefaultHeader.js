@@ -97,7 +97,7 @@ const DefaultHeader = () => {
 
   const goToPreviousPath = () => {
     location.pathname === '/' ?
-      window.location.href = "http://hornb2b.com" :
+      window.location.href = "http://alaedeen.com" :
       history.goBack();
   }
 
@@ -238,7 +238,7 @@ const DefaultHeader = () => {
                                   {t(__(' Sign in'))}
                                 </Link>
                                 <Divider type="vertical" className="border-70"/>
-                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/">
+                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/horn/register/">
                                   {t(__('Join Free'))}
                                 </a>
                               </Col>
@@ -332,7 +332,7 @@ const DefaultHeader = () => {
                       </Row>
                     </div>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/wishlist/" >
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/wishlist/" >
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-star text-primary vv-font-size-3" />
@@ -343,7 +343,7 @@ const DefaultHeader = () => {
                       </Row>
                     </a>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/compare/">
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/compare/">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="icon-vv-compare text-primary vv-font-size-2-5" />
@@ -354,7 +354,7 @@ const DefaultHeader = () => {
                       </Row>
                     </a>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/index.php?dispatch=vendor_communication.threads">
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-envelope text-primary vv-font-size-3" />

@@ -1,7 +1,7 @@
 {
   "name": "horn-store",
-  "proxy": "https://hornb2b.com",
-  "homepage": "https://store.hornb2b.com",
+  "proxy": "https://alaedeen.com",
+  "homepage": "https://store.alaedeen.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

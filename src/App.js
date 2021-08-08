@@ -419,7 +419,7 @@ function App() {
                 className="storeLoad--LoadingModal__disable"
                 title={ t(__('The store is being prepared. Please visit other Horn stores.')) }
                 extra={
-                  <a className="text-47 vv-font-size-2" href="https://hornb2b.com/factories">
+                  <a className="text-47 vv-font-size-2" href="https://alaedeen.com/factories">
                     { t(__("factories page")) } >>
                   </a>
                 }

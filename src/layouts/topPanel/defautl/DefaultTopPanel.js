@@ -77,25 +77,25 @@ const DefaultTopPanel = () => {
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/profile-settings/">
+        <a href="https://alaedeen.com/horn/profile-settings/">
           { t(__('profile settings')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/compare/">
+        <a href="https://alaedeen.com/horn/compare/">
           { t(__('Comparison')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/index.php?dispatch=vendor_communication.threads">
+        <a href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
           { t(__('Messages')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/wishlist/">
+        <a href="https://alaedeen.com/horn/wishlist/">
           { t(__('Favorites')) }
         </a>
       </Menu.Item>
@@ -175,13 +175,13 @@ const DefaultTopPanel = () => {
                         <Space size={"small"}>
                           <i className="fal fa-user display-5 text-white d-block mr-3" />
                           <span>
-                    <a className="text-white vv-font-size-2" href={"https://hornb2b.com/sign-in"} >
+                    <a className="text-white vv-font-size-2" href={"https://alaedeen.com/sign-in"} >
                       {t(__('Sign in'))}
                     </a>
                   </span>
                           <Divider type="vertical" className="border-70"/>
                           <span>
-                    <a className="text-white vv-font-size-2" href="https://hornb2b.com/horn/register/">
+                    <a className="text-white vv-font-size-2" href="https://alaedeen.com/horn/register/">
                       {t(__('Join Free'))}
                     </a>
                   </span>
