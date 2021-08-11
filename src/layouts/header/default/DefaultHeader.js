@@ -34,8 +34,6 @@ const DefaultHeader = () => {
 
   const { isLoading, name: storeName, logo: storeLogo } = useGetStoreState();
 
-  console.log(isLoading)
-
   const { user_data } = useGetAuthState();
 
   const { AuthDispatch } = useDispatchAuthState();

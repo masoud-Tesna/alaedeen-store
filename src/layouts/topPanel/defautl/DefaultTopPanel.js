@@ -11,8 +11,8 @@ import { Row, Col, Divider, Space, Menu, Skeleton, Dropdown, Button } from 'antd
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
-// import images used:
-import hornLogo from '../../../assets/images/logoXs.png';
+// import logo:
+import logoXl from '../../../assets/images/alaedeenLogo-Xl.png';
 
 // import another components used:
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
@@ -125,7 +125,7 @@ const DefaultTopPanel = () => {
               <Col className="topPanel--content__left my-auto">
                 <Space size="small" align={"center"}>
                   <Link className="topPanel--col__logoXS" to={"/"} >
-                    <img src={hornLogo} alt="Horn"/>
+                    <img src={logoXl} alt="Alaedeen"/>
                   </Link>
                   <Categories userClass="categories--dropDown topPanel--content__item hover" />
                   <Divider type="vertical" className="border-70"/>
@@ -137,7 +137,7 @@ const DefaultTopPanel = () => {
                 </Space>
               </Col>
 
-              <Col className="topPanel--content__rightCenter topPanel--content__account my-auto" span={5} offset={8}>
+              <Col className="topPanel--content__rightCenter topPanel--content__account my-auto text-right" span={6}>
 
                 { user_data.load ?
                   <>

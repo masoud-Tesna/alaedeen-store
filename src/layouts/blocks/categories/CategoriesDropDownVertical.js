@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 // import custom hooks:
 import { useGetApi } from "../../../functions";
 import { useGetStoreState } from "../../../contexts/store/StoreContext";
+import { useState } from "react";
 
 const CategoriesContent = () => {
   const { id: storeId } = useGetStoreState();
@@ -16,11 +17,9 @@ const CategoriesContent = () => {
   const { isLoading, data } = useGetApi(`store-categories-api`, `store_id=${storeId}`, 'categories');
   const { categories } = data || [];
 
-
   return(
     <Menu
       style={{ minWidth: 250 }}
-      mode="inline"
       triggerSubMenuAction={"click"}
     >
       {isLoading ?
@@ -41,14 +40,16 @@ const CategoriesContent = () => {
 
 const CategoriesDropDownVertical = ({ userClass }) => {
 
+  const [isCategoryVisible, setIsCategoryVisible] = useState(false);
+
   const { t } = useTranslation();
 
   return (
-    <Dropdown className={ userClass } overlay={CategoriesContent()} trigger={['click']}>
+    <Dropdown className={ userClass } overlay={CategoriesContent()} trigger={['click']} arrow={true} onVisibleChange={e => setIsCategoryVisible(e)}>
       <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
         <i className="fal fa-list-ul mr-3 vv-font-size-2" />
         <span className="topPanel--item__text">{t(__('Categories'))}</span>
-        <DownOutlined className="ml-3" />
+        <DownOutlined className="ml-3 align-middle"  rotate={ isCategoryVisible ? 180 : 0 } />
       </span>
     </Dropdown>
   );
