@@ -11,8 +11,6 @@ const AllCategories = () => {
   const { isLoading, data } = useGetApi(`store-categories-api`, `store_id=${storeId}`, 'categories');
   const { categories } = data || [];
 
-  console.log(categories)
-
   return (
     <Row className="allCategories--container">
       {isLoading ?
