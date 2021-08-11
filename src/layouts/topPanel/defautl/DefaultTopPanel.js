@@ -148,7 +148,7 @@ const DefaultTopPanel = () => {
                       <>
                         <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
 
-                          <Row className="w-100" align="middle" gutter={12} onClick={e => e.preventDefault()}>
+                          <Row className="w-100" align="middle" gutter={12} justify="end" onClick={e => e.preventDefault()}>
                             <Col>
                               { user_data.auth.company_logo ?
                                 <span className="content--account__companyLogo">
@@ -158,7 +158,7 @@ const DefaultTopPanel = () => {
                               }
                             </Col>
 
-                            <Col span={16}>
+                            <Col>
                               <span className="font-weight-600 content--account__companyName">
                                 {user_data.auth.company ?
                                   <>{ user_data.auth.company }</> :
