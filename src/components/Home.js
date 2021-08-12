@@ -50,7 +50,7 @@ const Home = () => {
       </div>
 
       <div className="showVideoEmbed--section">
-        <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/A8HYE/vt/frame?isamp" extraClassName={'homePage'} />
+        <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/uPLkJ/vt/frame?isamp" extraClassName={'homePage'} />
       </div>
 
       <div className="agentInfo--section">

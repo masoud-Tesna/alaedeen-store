@@ -31,7 +31,10 @@ const AgentInfo = () => {
                       <Col span={24} className="agentInfo--image">
                         {isLoading ?
                           <Skeleton.Avatar style={{ width: 145, height: 145 }} active={true} size={"large"} shape={"circle"} /> :
-                          <img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>
+                          <div className="text-center" style={{ width: 145, height: 145 }}>
+                            <i className="fal fa-user vv-font-size-9 text-70 d-block" style={{ lineHeight: "15rem" }} />
+                          </div>
+                          /*<img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>*/
                         }
                       </Col>
                       <Col span={24} className="text-47 text-center agentInfo--name">
@@ -46,7 +49,10 @@ const AgentInfo = () => {
                     <Col span={12} className="agentInfo--image">
                       {isLoading ?
                         <Skeleton.Avatar style={{ width: 80, height: 80 }} active={true} size={"large"} shape={"circle"} /> :
-                        <img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>
+                        <div className="text-center" style={{ width: 80, height: 80 }}>
+                          <i className="fal fa-user vv-font-size-9 text-70 d-block" style={{ lineHeight: "9rem" }} />
+                        </div>
+                        /*<img className="rounded-circle" src={ store_agent.personal_photo || '' } alt={ store_agent.full_name }/>*/
                       }
                     </Col>
                     <Col span={12} className="my-auto text-47 agentInfo--name">
