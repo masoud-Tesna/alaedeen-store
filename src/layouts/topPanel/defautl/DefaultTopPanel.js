@@ -124,8 +124,22 @@ const DefaultTopPanel = () => {
             <Row className="h-100" gutter={24} justify="space-between">
               <Col className="topPanel--content__left my-auto">
                 <Space size="small" align={"center"}>
-                  <Link className="topPanel--col__logoXS" to={"/"} >
-                    <img src={logoXl} alt="Alaedeen"/>
+                  <Link to={"/"} className="d-block topPanel--col__logoXS">
+                    <Row align="middle">
+                      <Col flex="22px" className="logo--character">
+                        <i className="logo-icon-alaedeen" />
+                      </Col>
+                      <Col flex="1 1" className="pl-3">
+                        <Row className="h-100">
+                          <Col span={24} className="logo--alaedeenCom">
+                            <i className="logo-icon-alaedeen-com" />
+                          </Col>
+                          <Col span={24} className="logo--alaedeenSlug">
+                            <p className="m-0 text-white vv-font-size-1-2">Alaedeen Slug Section</p>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
                   </Link>
                   <Categories userClass="categories--dropDown topPanel--content__item hover" />
                   <Divider type="vertical" className="border-70"/>
