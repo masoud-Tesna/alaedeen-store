@@ -18,27 +18,42 @@ function StoreProvider({ children }) {
 
   const store_id = store_id_query_string || window.localStorage.getItem("store_id") ;
 
-  const { data, isLoading } = useGetApi(`store-check-api`, `store_id=${store_id}`, `storeCheck_${store_id}`);
+  const { data, isLoading } = useGetApi(`store-check-api`, `store_id=${store_id}`, `storeCheck_${store_id}`, {
+    enable: !!store_id
+  });
 
   useEffect(() => {
+    if (store_id) {
 
-    setStore(prevState => {
-      return {...prevState, isLoading: true}
-    });
+      setStore(prevState => {
+        return { ...prevState, isLoading: true }
+      });
 
-    if (data) {
-      if (data.status === 'D') {
-        setStore(prevState => {
-          return {...prevState, isLoading: isLoading, status: 'disable'}
-        });
-      }else if (data.status === 'A') {
-        setStore(prevState => {
-          return {...prevState, isLoading: isLoading, status: 'active', id: store_id, name: data.name, brand: data.brand, email: data.email, logo: data.logo}
-        });
+      if (data) {
+        if (data.status === 'D') {
+          setStore(prevState => {
+            return { ...prevState, isLoading: isLoading, status: 'disable' }
+          });
+        } else if (data.status === 'A') {
+          setStore(prevState => {
+            return {
+              ...prevState,
+              isLoading: isLoading,
+              status: 'active',
+              id: store_id,
+              name: data.name,
+              brand: data.brand,
+              email: data.email,
+              logo: data.logo
+            }
+          });
+        }
       }
+    }else {
+      window.location.href = "https://alaedeen.com/factories";
     }
 
-  }, [data, isLoading]);
+  }, [data, isLoading, store_id]);
 
   return (
     <storeContext.Provider value={ store }>
