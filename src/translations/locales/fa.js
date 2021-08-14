@@ -16,7 +16,8 @@ const fa = {
   "latest_products_store": "آخرین محصولات",
   "categories_store": "دسته بندی‌ها",
   "send_inquiry_store": "ارسال استعلام",
-  "chat_now_store": "چت"
+  "chat_now_store": "چت",
+  "alaedeen_slug_section": "تولیدکننده‌گان و تولیدات ایرانی"
 };
 
 export default fa;

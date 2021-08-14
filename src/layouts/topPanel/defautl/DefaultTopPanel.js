@@ -11,8 +11,8 @@ import { Row, Col, Divider, Space, Menu, Skeleton, Dropdown, Button } from 'antd
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
-// import logo:
-import logoXl from '../../../assets/images/alaedeenLogo-Xl.png';
+// import alaedeen character:
+import alaedeenChar from '../../../assets/images/alaedeen-char.svg';
 
 // import another components used:
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
@@ -126,16 +126,16 @@ const DefaultTopPanel = () => {
                 <Space size="small" align={"center"}>
                   <Link to={"/"} className="d-block topPanel--col__logoXS">
                     <Row align="middle">
-                      <Col flex="22px" className="logo--character">
-                        <i className="logo-icon-alaedeen" />
+                      <Col flex="26px" className="logo--character">
+                        <img src={alaedeenChar} alt=""/>
                       </Col>
-                      <Col flex="1 1" className="pl-3">
+                      <Col flex="1 1" className="pl-2">
                         <Row className="h-100">
                           <Col span={24} className="logo--alaedeenCom">
                             <i className="logo-icon-alaedeen-com" />
                           </Col>
                           <Col span={24} className="logo--alaedeenSlug">
-                            <p className="m-0 text-white vv-font-size-1-2">Alaedeen Slug Section</p>
+                            <p className="m-0 text-white vv-font-size-1-1rem">{ t(__('Alaedeen Slug Section')) }</p>
                           </Col>
                         </Row>
                       </Col>

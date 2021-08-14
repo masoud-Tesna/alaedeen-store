@@ -16,7 +16,8 @@ const ar = {
   "latest_products_store": "أحدث المنتجات",
   "categories_store": "فئات",
   "send_inquiry_store": "Send Inquiry",
-  "chat_now_store": "دردش الآن"
+  "chat_now_store": "دردش الآن",
+  "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
 };
 
 export default ar;

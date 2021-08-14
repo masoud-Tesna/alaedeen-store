@@ -16,7 +16,8 @@ const en = {
   "latest_products_store": "Latest Products",
   "categories_store": "Categories",
   "send_inquiry_store": "Send Inquiry",
-  "chat_now_store": "Chat Now"
+  "chat_now_store": "Chat Now",
+  "alaedeen_slug_section": "Iranian manufacturers & products"
 };
 
 export default en;
