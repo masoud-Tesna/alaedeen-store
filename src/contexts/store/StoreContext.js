@@ -35,21 +35,21 @@ function StoreProvider({ children }) {
         });
 
       if (data) {
-        if (data.status === 'D') {
+        if (data?.status === 'D') {
           setStore(prevState => {
             return { ...prevState, isLoading: isLoading, status: 'disable' }
           });
-        } else if (data.status === 'A') {
+        } else if (data?.status === 'A') {
           setStore(prevState => {
             return {
               ...prevState,
               isLoading: isLoading,
               status: 'active',
               id: store_id,
-              name: data.name,
-              brand: data.brand,
-              email: data.email,
-              logo: data.logo
+              name: data?.name,
+              brand: data?.brand,
+              email: data?.email,
+              logo: data?.logo
             }
           });
         }

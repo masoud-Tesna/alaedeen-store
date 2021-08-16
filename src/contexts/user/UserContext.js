@@ -45,12 +45,13 @@ export function UserProvider ({ children }) {
 
     let mounted  = true;
 
-    if (userLoginCookie && userPasswordCookie) {
+    if (userLoginCookie && userPasswordCookie && language) {
+
       dispatch(checkSignInLoadingAction());
 
       signIn(userLoginCookie, userPasswordCookie, language)
         .then(res => {
-          dispatch(signInAction(res.data.auth, userLoginCookie, userPasswordCookie, false));
+          dispatch(signInAction(res?.data?.auth, userLoginCookie, userPasswordCookie, false));
         });
 
     }

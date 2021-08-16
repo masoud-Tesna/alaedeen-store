@@ -39,7 +39,7 @@ export function useGetApi (mode, params, useQueryKey) {
   let useQueryKeyClone,
       url;
 
-  if (language !== null) {
+  if (language) {
     url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
     useQueryKeyClone = `${useQueryKey}_${language}`;
   }
