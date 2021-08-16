@@ -23,11 +23,16 @@ function StoreProvider({ children }) {
   });
 
   useEffect(() => {
-    if (store_id) {
+    if (store_id_query_string) {
+      window.localStorage.setItem("store_id", store_id_query_string);
+    }
+      if (store_id) {
 
-      setStore(prevState => {
-        return { ...prevState, isLoading: true }
-      });
+        window.localStorage.setItem("store_id", store_id);
+
+        setStore(prevState => {
+          return { ...prevState, isLoading: true }
+        });
 
       if (data) {
         if (data.status === 'D') {
