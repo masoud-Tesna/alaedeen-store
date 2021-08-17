@@ -1,8 +1,9 @@
 const fa = {
+  "join_free": "اشتراک رایگان",
   "telephone": "تلفن:",
   "address": "نشانی:",
-  "country_or_region": "کشور/منطقه:",
-  "province_or_state": "استان/ایالت",
+  "country_or_region": "کشور\/منطقه:",
+  "province_or_state": "استان\/ایالت",
   "city": "شهر",
   "follow": "دنبال کن",
   "search": "جستجو",
@@ -15,8 +16,14 @@ const fa = {
   "popular_products_store": "محصولات پربازدید",
   "latest_products_store": "آخرین محصولات",
   "categories_store": "دسته بندی‌ها",
-  "send_inquiry_store": "ارسال استعلام",
+  "send_inquiry_store": "ارسال درخواست",
   "chat_now_store": "چت",
+  "country_and_region": "بلد",
+  "products": "محصولات",
+  "share": "اشتراک‌گذاری",
+  "send_inquiry": "ارسال درخواست",
+  "popular_products": "محصولات محبوب",
+  "manufacturers_assessed_by_independent_third_parties": "تولیدکنندگان توسط اشخاص مجرب و مورد اعتماد ارزیابی می‌شوند ",
   "alaedeen_slug_section": "تولیدکننده‌گان و تولیدات ایرانی"
 };
 

@@ -1,8 +1,9 @@
 const ar = {
+  "join_free": "انضم مجانا",
   "telephone": "رقم هاتف:",
   "address": "عنوان:",
-  "country_or_region": "البلد/المنطقة:",
-  "province_or_state": "المقاطعة/الولاية:",
+  "country_or_region": "البلد\/المنطقة:",
+  "province_or_state": "المقاطعة\/الولاية:",
   "city": "مدينة",
   "follow": "تابِع",
   "search": "بحث",
@@ -12,11 +13,17 @@ const ar = {
   "about_us": "معلومات عنا",
   "main_categories": "الفئات الرئيسية",
   "all_categories_store": "جميع الفئات",
-  "popular_products_store": "Popular Products",
+  "popular_products_store": "المنتجات الشعبية",
   "latest_products_store": "أحدث المنتجات",
   "categories_store": "فئات",
-  "send_inquiry_store": "Send Inquiry",
+  "send_inquiry_store": "ارسال استعلام",
   "chat_now_store": "دردش الآن",
+  "country_and_region": "کشور",
+  "products": "منتجات",
+  "share": "نشر",
+  "send_inquiry": "إرسال استعلام",
+  "popular_products": "المنتجات الشعبية",
+  "manufacturers_assessed_by_independent_third_parties": "الشركات المصنعة التي تم تقييمها من قبل أطراف ثالثة مستقلة",
   "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
 };
 

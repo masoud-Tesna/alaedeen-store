@@ -1,8 +1,9 @@
 const en = {
+  "join_free": "Join free",
   "telephone": "Telephone:",
   "address": "Address:",
-  "country_or_region": "Country/Region:",
-  "province_or_state": "Province/State:",
+  "country_or_region": "Country\/Region:",
+  "province_or_state": "Province\/State:",
   "city": "City",
   "follow": "Follow",
   "search": "Search",
@@ -13,10 +14,16 @@ const en = {
   "main_categories": "Main Categories",
   "all_categories_store": "All Categories",
   "popular_products_store": "Popular Products",
-  "latest_products_store": "Latest Products",
+  "latest_products_store": "The Latest Products",
   "categories_store": "Categories",
   "send_inquiry_store": "Send Inquiry",
   "chat_now_store": "Chat Now",
+  "country_and_region": "Country & Region",
+  "products": "products",
+  "share": "Share",
+  "send_inquiry": "Send inquiry",
+  "popular_products": "POPULAR PRODUCTS",
+  "manufacturers_assessed_by_independent_third_parties": "manufacturers assessed by independent third parties",
   "alaedeen_slug_section": "Iranian manufacturers & products"
 };
 
