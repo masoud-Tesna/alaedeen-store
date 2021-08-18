@@ -34,6 +34,8 @@ const DefaultHeader = () => {
 
   const headerColorCode = storeSettings?.header?.color_code?.value || '#f20604';
 
+  const headerBgImg = storeSettings?.header?.background_image?.value || "";
+
   const { user_data } = useGetAuthState();
 
   const { AuthDispatch } = useDispatchAuthState();
@@ -395,7 +397,7 @@ const DefaultHeader = () => {
       <Col className="header__topSection--container" span={24} style={{ backgroundColor: `rgba(${fn_hex_to_rgb(headerColorCode, true)}, 0.7)` }}>
         <Row>
           <Col className="header__topSection default" span={24}>
-            <div className="header__bgImage" />
+            <div className="header__bgImage" style={{ backgroundImage: `url(${headerBgImg})` }} />
             <Row className={ `header__details ${width < 768 && x.join(" ")}` }>
               <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${width < 768 && x.join(" ")}` } span={24}>
                 <Row>
