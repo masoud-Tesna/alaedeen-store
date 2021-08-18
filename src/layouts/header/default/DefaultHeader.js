@@ -12,7 +12,7 @@ import verifiedTop from '../../../assets/images/verifiedTop.png';
 import ISO1799 from '../../../assets/images/ISO1799.png';
 
 // import helper functions:
-import { __, useParsPathName } from "../../../functions/Helper";
+import { __, fn_hex_to_rgb, useParsPathName } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
@@ -30,9 +30,9 @@ const { TabPane } = Tabs;
 
 const DefaultHeader = () => {
 
+  const { isLoading, name: storeName, logo: storeLogo, storeSettings } = useGetStoreState();
 
-
-  const { isLoading, name: storeName, logo: storeLogo } = useGetStoreState();
+  const { value: headerColorCode } = storeSettings.header.color_code;
 
   const { user_data } = useGetAuthState();
 
@@ -161,12 +161,12 @@ const DefaultHeader = () => {
     x.push('scrolled');
   }
 
+  if(showLoadSpinner) { /*Show Loading Spinner if Change language*/
+    return <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+  }
+
   return (
     <>
-      {/*Show Loading Spinner if Change language*/}
-      <div className={ `${ showLoadSpinner ? 'd-block' : 'd-none' }` }>
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      </div>
 
       {/* if Screen Width <= 768px (Mobile) render drawer Menu: */}
       {width <= 768 &&
@@ -392,7 +392,7 @@ const DefaultHeader = () => {
         </Drawer>
       }
 
-      <Col className="header__bgColor" span={24}>
+      <Col className="header__topSection--container" span={24} style={{ backgroundColor: `rgba(${fn_hex_to_rgb(headerColorCode, true)}, 0.7)` }}>
         <Row>
           <Col className="header__topSection default" span={24}>
             <div className="header__bgImage" />
@@ -513,7 +513,7 @@ const DefaultHeader = () => {
         </Row>
       </Col>
 
-      <Col span={24} className={ `bg-f2 header__bottomSection ${width < 768 && x.join(" ")}` }>
+      <Col span={24} className={ `header__bottomSection ${width < 768 && x.join(" ")}` } style={{ backgroundColor: headerColorCode }}>
         <Row className="h-100 header__bottomSection--container" align={"bottom"} justify={"space-between"}>
           <Col xs={24} lg={10}>
             <Tabs activeKey={pathName} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">
