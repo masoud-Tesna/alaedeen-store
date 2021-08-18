@@ -15,8 +15,13 @@ import ShowVideoEmbed from "../layouts/blocks/static_templates/ShowVideoEmbed";
 import AgentInfo from "../layouts/blocks/static_templates/AgentInfo";
 import { useSetLoaded } from "../functions/Helper";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import { useGetStoreState } from "../contexts/store/StoreContext";
 
 const Home = () => {
+
+  const { storeSettings } = useGetStoreState();
+
+  const mainPageVideoEmbed = storeSettings?.main_page?.video_embed_link?.value;
 
   const { isLoaded } = useSetLoaded();
 
@@ -49,9 +54,11 @@ const Home = () => {
         <LatestProductsView />
       </div>
 
-      <div className="showVideoEmbed--section">
-        <ShowVideoEmbed embedLink="https://www.aparat.com/video/video/embed/videohash/uPLkJ/vt/frame?isamp" extraClassName={'homePage'} />
-      </div>
+      {mainPageVideoEmbed &&
+        <div className="showVideoEmbed--section">
+          <ShowVideoEmbed embedLink={ mainPageVideoEmbed } extraClassName={ 'homePage' }/>
+        </div>
+      }
 
       <div className="agentInfo--section">
         <AgentInfo />
