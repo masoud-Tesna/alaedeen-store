@@ -13,7 +13,7 @@ function StoreProvider({ children }) {
   const store_id_query_string = url.searchParams.get('store_id');
 
   // useState For Store use in app
-  const [store, setStore] = useState({isLoading: true, status: 'loading', id: store_id_query_string, name: null, brand: null, email: null, logo: null});
+  const [store, setStore] = useState({isLoading: true, status: 'loading', id: store_id_query_string, name: null, brand: null, email: null, logo: null, storeSettings: null});
 
 
   const store_id = store_id_query_string || window.localStorage.getItem("store_id") ;
@@ -49,7 +49,8 @@ function StoreProvider({ children }) {
               name: data?.name,
               brand: data?.brand,
               email: data?.email,
-              logo: data?.logo
+              logo: data?.logo,
+              storeSettings: data?.store_settings
             }
           });
         }
