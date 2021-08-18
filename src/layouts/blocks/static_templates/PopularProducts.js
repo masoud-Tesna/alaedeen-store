@@ -15,14 +15,21 @@ import { useGetApi, useWindowSize } from "../../../functions";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetStoreState } from "../../../contexts/store/StoreContext";
 
 const PopularProducts = () => {
+
+  const { id: storeId, storeSettings } = useGetStoreState();
+
+  const borderColorCode = storeSettings?.product_block?.border_color_code?.value ?? '#bcbcbc';
+
+  const favoriteColorCode = storeSettings?.product_block?.favorite_icon_color_code?.value || '#f20604';
 
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
-  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=4&company_id=264&page=1`, `popularProducts`);
+  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=4&company_id=${storeId}&page=1`, `popularProducts`);
   const { products } = data || [];
 
   return (
@@ -55,6 +62,8 @@ const PopularProducts = () => {
                         product={product}
                         widthProductImage={width >= 768 ? 233 : 120}
                         heightProductImage={width >= 768 ? 233 : 120}
+                        borderColorCode ={ borderColorCode }
+                        favoriteColorCode ={ favoriteColorCode }
                       />
                     );
                   })}

@@ -67,15 +67,15 @@ const ProductsMultiColumnVertical = (props) => {
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
               <div className = "cursor-pointer itemFavoriteIcon" onClick={() => {console.log('click')}}>
-                <i className={`fal fa-heart text-f2 vv-font-size-2-5 `} />
+                <i className={`fal fa-heart vv-font-size-2-5 `} style={{ color: props.favoriteColorCode }} />
               </div>
               <a href={ product.link }>
                 <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product } object_id={product.product_id}  object_type={'prd'}/>
               </a>
-              <div className = "productsMultiColumnVertical--item__borderTopRight" />
-              <div className = "productsMultiColumnVertical--item__borderTopLeft" />
-              <div className = "productsMultiColumnVertical--item__borderBottomRight" />
-              <div className = "productsMultiColumnVertical--item__borderBottomLeft" />
+              <div className = "productsMultiColumnVertical--item__borderTopRight" style={{ '--product-border-color': props.borderColorCode }} />
+              <div className = "productsMultiColumnVertical--item__borderTopLeft" style={{ '--product-border-color': props.borderColorCode }} />
+              <div className = "productsMultiColumnVertical--item__borderBottomRight" style={{ '--product-border-color': props.borderColorCode }} />
+              <div className = "productsMultiColumnVertical--item__borderBottomLeft" style={{ '--product-border-color': props.borderColorCode }} />
             </Col>
 
             <a className="ant-row ant-col w-100" href={ product.link }>
