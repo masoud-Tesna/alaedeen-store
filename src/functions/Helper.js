@@ -74,3 +74,12 @@ export function fn_set_date_day(day) {
   date.setTime(date.getTime() + (day*24*60*60*1000));
   return date;
 }
+
+export const fn_hex_to_rgb = (hex, sharp = false) => {
+  hex = sharp && hex.replaceAll("#", '');
+  hex = '0x' + hex
+  let r = hex >> 16 & 0xFF
+  let g = hex >> 8 & 0xFF
+  let b = hex & 0xFF
+  return `${r}, ${g}, ${b}`
+}
