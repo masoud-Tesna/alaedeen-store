@@ -32,7 +32,7 @@ const DefaultHeader = () => {
 
   const { isLoading, name: storeName, logo: storeLogo, storeSettings } = useGetStoreState();
 
-  const { value: headerColorCode } = storeSettings.header.color_code;
+  const headerColorCode = storeSettings?.header?.color_code?.value || '#f20604';
 
   const { user_data } = useGetAuthState();
 
