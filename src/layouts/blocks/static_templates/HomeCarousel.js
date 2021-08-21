@@ -14,12 +14,7 @@ const HomeCarousel = () => {
 
   const sliderMobileImages = storeSettings?.slider?.slider_images?.M || [];
 
-
-  console.log(sliderDesktopImages, sliderMobileImages)
-
   const { width } = useWindowSize();
-
-  const imageHeight = width >= 768 ? 441 : 166;
 
   return (
     <Row className="homeCarousel--container">
