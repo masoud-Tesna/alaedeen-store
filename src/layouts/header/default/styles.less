@@ -1,3 +1,6 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
   .site--header .ant-row-rtl,
@@ -27,12 +30,16 @@ html:lang(ar) {
     .header__topSection {
       .header__bgImage {
         content: "";
-        opacity: 0.61;
+        opacity: 0.2;
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
         position: absolute;
+
+        @media (min-width: @screen-md) {
+          opacity: 0.5;
+        }
       }
 
       .header__details {
