@@ -26,6 +26,7 @@ import {
   ExportCapability,
   Chat,
   AllCategories,
+  Page,
 } from "./components";
 
 // import language context:
@@ -57,7 +58,7 @@ function App() {
 
   const { status: storeStatus } = useGetStoreState();
 
-  if (storeStatus === 'loading' || storeStatus === 'disable') {
+  if (storeStatus === 'loading' || storeStatus=== 'disable') {
     return (
       <ConfigProvider>
         <Layout className="layout">
@@ -92,7 +93,7 @@ function App() {
             </Col>
 
             <Col span={24}>
-              <div style={{ backgroundColor: "rgba(242, 6, 4, 0.2)"}}>
+              <div style={{ backgroundColor: "rgba(112, 112, 112, 0.7)"}}>
                 <Row justify="center">
                   <Col span={24} style={{ height: 35 }} className="d-md-none">
                     <Row justify={"space-between"} className="h-100">
@@ -137,7 +138,7 @@ function App() {
                     </Row>
                   </Col>
                   <Col className="align-self-end" span={24} style={{
-                    backgroundColor: "#F20604",
+                    backgroundColor: "#707070",
                     height: width < 768 ? 38 : 55,
                     marginTop: -7
                   }}>
@@ -460,6 +461,8 @@ function App() {
                 <Route path="/quality-control" component={QualityControl} />
 
                 <Route path="/export-capability" component={ExportCapability} />
+
+                <Route path="/page/:page" component={Page} />
 
 
                 <Route path="/chat" component={Chat} />
