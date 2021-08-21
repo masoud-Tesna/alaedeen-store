@@ -27,3 +27,6 @@ export { Chat } from './Chat';
 
 // export AllCategories Component For chat Page "/all-categories"
 export { AllCategories } from './AllCategories';
+
+// export Page Component For Page "/Page/:id"
+export { Page } from './Page';
