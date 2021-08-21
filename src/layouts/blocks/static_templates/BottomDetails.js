@@ -31,7 +31,7 @@ const BottomDetails = () => {
                   <i className="fal fa-envelope text-2d display-4 bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
-                  Send inquiry
+                  {t(__('Send inquiry'))}
                 </div>
               </Link>
             </Col>
@@ -41,7 +41,7 @@ const BottomDetails = () => {
                   <i className="fal fa-comments text-2d display-4 font-weight-500 bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
-                  Chat
+                  {t(__('Chat'))}
                 </div>
               </Link>
             </Col>
