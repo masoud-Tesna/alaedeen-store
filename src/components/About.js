@@ -125,7 +125,7 @@ const About = () => {
                 <>Loading...</> :
                 (aboutStores.general.country || aboutStores.general.state) &&
                 <>
-                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Country / Region')) }</Col>
+                  <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Country/Region')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >
                     { aboutStores.general.country && `${aboutStores.general.country}, ` } { aboutStores.general.state && aboutStores.general.state }
                   </Col>
