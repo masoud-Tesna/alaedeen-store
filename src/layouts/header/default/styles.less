@@ -61,7 +61,6 @@ html:lang(ar) {
           top: 0;
           z-index: 999;
           width: 100%;
-          background-color: #F20604 !important;
           z-index: 1000;
           transition: 0.5s all ease-in-out;         /* added unit */
           -moz-transition: 0.5s all ease-in-out;    /* added unit */
@@ -177,11 +176,20 @@ html:lang(ar) {
       .header__bottomSection--searchShare {
         margin-top: 7px;
         height: 32px;
-      }
-      .header__bottomSection--search,
-      .header__bottomSection--share {
-        background-color: #FFFFFF;
-        border-radius: 5px;
+
+        .header__bottomSection--search {
+          max-width: 391px;
+        }
+
+        .header__bottomSection--share {
+          min-width: 140px;
+        }
+
+        .header__bottomSection--search,
+        .header__bottomSection--share {
+          background-color: #FFFFFF;
+          border-radius: 5px;
+        }
       }
     }
   }

@@ -399,7 +399,7 @@ const DefaultHeader = () => {
           <Col className="header__topSection default" span={24}>
             <div className="header__bgImage" style={{ backgroundImage: `url(${encodeURI(headerBgImg)})` }} />
             <Row className={ `header__details ${width < 768 && x.join(" ")}` }>
-              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${width < 768 && x.join(" ")}` } span={24}>
+              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${width < 768 && x.join(" ")}` } span={24} style={{ backgroundColor: headerColorCode }}>
                 <Row>
                   <Col span={1}>
                     <i className="fa fa-chevron-left vv-font-size-2 cursor-pointer text-white" onClick={() => { goToPreviousPath() }} />
@@ -524,9 +524,9 @@ const DefaultHeader = () => {
               <TabPane tab={ t(__('about us')) } key="about"/>
             </Tabs>
           </Col>
-          <Col span={10} className="d-none d-lg-block align-self-center header__bottomSection--searchShare">
+          <Col span={13} className="d-none d-lg-block align-self-center header__bottomSection--searchShare">
             <Row className="h-100" justify={"space-between"}>
-              <Col span={14} className="header__bottomSection--search">
+              <Col span={16} className="header__bottomSection--search">
                 <Link to={`all-categories`}>
                   <Row justify={"space-between"} align={"middle"} className="px-4 h-100">
                     <Col className="vv-font-size-1-8 text-47 header__bottomSection--searchText">{ t(__('Search In This Store')) }</Col>
@@ -536,7 +536,7 @@ const DefaultHeader = () => {
                   </Row>
                 </Link>
               </Col>
-              <Col className="header__bottomSection--share" span={5}>
+              <Col className="header__bottomSection--share">
                 <Row justify={"space-between"} align={"middle"} className="px-4 h-100 cursor-pointer">
                   <Col className="vv-font-size-1-8 text-black header__bottomSection--searchText">{ t(__('share')) }</Col>
                   <Col>
