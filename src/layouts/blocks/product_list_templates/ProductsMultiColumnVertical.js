@@ -38,11 +38,11 @@ const ProductsMultiColumnVertical = (props) => {
   // product data:
   const { product } = props;
 
-  const productPrice = parseFloat(product.price).toFixed(2);
-  const productListPrice = parseFloat(product.list_price).toFixed(2);
+  const productPrice = parseFloat(product?.price).toFixed(2);
+  const productListPrice = parseFloat(product?.list_price).toFixed(2);
 
-  const desc = product.short_description ? product.short_description : product.full_description;
-  const productDesc = desc? fn_stripHtml(desc) : '';
+  const desc = product?.short_description || product?.full_description;
+  const productDesc = desc ? fn_stripHtml(desc) : '';
 
   // show skeleton if swiper is true
   if (swiper && load) {
@@ -69,8 +69,8 @@ const ProductsMultiColumnVertical = (props) => {
               <div className = "cursor-pointer itemFavoriteIcon" onClick={() => {console.log('click')}}>
                 <i className={`fal fa-heart vv-font-size-2-5 `} style={{ color: props.favoriteColorCode }} />
               </div>
-              <a href={ product.link }>
-                <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product } object_id={product.product_id}  object_type={'prd'}/>
+              <a href={ product?.link }>
+                <ShowResponsiveImage imagePath={ product?.main_pair?.detailed?.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product?.product } object_id={product?.product_id}  object_type={'prd'}/>
               </a>
               <div className = "productsMultiColumnVertical--item__borderTopRight" style={{ '--product-border-color': props.borderColorCode }} />
               <div className = "productsMultiColumnVertical--item__borderTopLeft" style={{ '--product-border-color': props.borderColorCode }} />
@@ -78,9 +78,9 @@ const ProductsMultiColumnVertical = (props) => {
               <div className = "productsMultiColumnVertical--item__borderBottomLeft" style={{ '--product-border-color': props.borderColorCode }} />
             </Col>
 
-            <a className="ant-row ant-col w-100" href={ product.link }>
+            <a className="ant-row ant-col w-100" href={ product?.link }>
               <Col span={24} className={ `text-47 vv-font-size-1-8 mt-3 ${!productsPage && 'text-center'} text-truncate productsMultiColumnVertical--item__title` }>
-                { product.product }
+                { product?.product }
               </Col>
             </a>
           </Row>
@@ -90,7 +90,7 @@ const ProductsMultiColumnVertical = (props) => {
           <Row>
             {productsPage &&
             <Col span={24} className="mt-2 productsMultiColumnVertical--item__desceription">
-              <a href={ product.link }>
+              <a href={ product?.link }>
                 <TextTruncate
                   className = "vv-font-size-1-6 text-47 d-inline-block"
                   line={2}
@@ -108,15 +108,15 @@ const ProductsMultiColumnVertical = (props) => {
               { productListPrice != 0.00 &&
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
               }
-              {product.quantity_unit &&
-              <span className={ `${ !productsPage && 'd-none' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
+              {product?.quantity_unit &&
+              <span className={ `${ !productsPage && 'd-none' } vv-font-size-1-6 text-92` }> / { product?.quantity_unit }</span>
               }
             </Col>
             }
 
-            {(productsPage && product.min_qty) &&
+            {(productsPage && product?.min_qty) &&
             <Col span={24} className="mt-2 productsMultiColumnVertical--item__qty">
-              <span className="vv-font-size-1-6 text-47">{ product.min_qty } { product.quantity_unit }</span> <span className="vv-font-size-1-5 text-92">(MOQ)</span>
+              <span className="vv-font-size-1-6 text-47">{ product?.min_qty } { product?.quantity_unit }</span> <span className="vv-font-size-1-5 text-92">(MOQ)</span>
             </Col>
             }
           </Row>
