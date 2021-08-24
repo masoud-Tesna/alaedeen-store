@@ -141,12 +141,12 @@ const DefaultTopPanel = () => {
                       </Col>
                     </Row>
                   </Link>
-                  <Categories userClass="categories--dropDown topPanel--content__item hover" />
+                  <Categories userClass="categories--dropDown topPanel--content__item hover d-block dir-ltr" />
                   <Divider type="vertical" className="border-70"/>
-                  <Link className="topPanel--content__item hover" to={"/factories"} >
-                  <span className="topPanel--item__text">
-                    {t(__('Stores'))}
-                  </span>
+                  <Link className="topPanel--content__item hover text-white d-block" to={"/factories"} >
+                    <span className="topPanel--item__text d-block">
+                      {t(__('Stores'))}
+                    </span>
                   </Link>
                 </Space>
               </Col>
@@ -189,16 +189,16 @@ const DefaultTopPanel = () => {
                         <Space size={"small"}>
                           <i className="fal fa-user display-5 text-white d-block mr-3" />
                           <span>
-                    <a className="text-white vv-font-size-2" href={"https://alaedeen.com/sign-in"} >
-                      {t(__('Sign in'))}
-                    </a>
-                  </span>
+                            <a className="text-white vv-font-size-2" href={"https://alaedeen.com/sign-in"} >
+                              {t(__('Sign in'))}
+                            </a>
+                          </span>
                           <Divider type="vertical" className="border-70"/>
                           <span>
-                    <a className="text-white vv-font-size-2" href="https://alaedeen.com/horn/register/">
-                      {t(__('Join Free'))}
-                    </a>
-                  </span>
+                            <a className="text-white vv-font-size-2" href="https://alaedeen.com/horn/register/">
+                              {t(__('Join Free'))}
+                            </a>
+                          </span>
                         </Space>
                       </>
                     }
