@@ -12,8 +12,14 @@ import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_template
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useSetLoaded } from "../functions/Helper";
+import { useGetStoreState } from "../contexts/store/StoreContext";
+import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const Products = () => {
+
+  const { id: storeId } = useGetStoreState();
+
+  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
@@ -26,16 +32,16 @@ const Products = () => {
 
   const [page, setPage] = useState(initialPage || 1);
 
-  const { isLoading, data, isFetching } = useGetApi(`products-api`, `items_per_page=20&company_id=264&page=${page}`, `products_${page}`);
+  const { isLoading, data, isFetching } = useGetApi(`products-api`, `items_per_page=20&company_id=${storeId}&page=${page}`, `products_${page}`);
   const { products, params } = data || [];
 
 
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
-      return <i className = "fal fa-chevron-left vv-font-size-2" />;
+      return <i className ={ `fal fa-chevron-${language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
     }
     if (type === 'next') {
-      return <i className = "fal fa-chevron-right vv-font-size-2" />;
+      return <i className ={ `fal fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
     }
     return originalElement;
   }
