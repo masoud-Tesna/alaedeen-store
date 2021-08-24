@@ -7,6 +7,9 @@ import './styles/App.less';
 // flag icons:
 import 'flag-icon-css/less/flag-icon.less';
 
+// import alaedeen character:
+import alaedeenChar from './assets/images/alaedeen-char.svg';
+
 // Components:
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -58,12 +61,12 @@ function App() {
 
   const { status: storeStatus } = useGetStoreState();
 
-  if (storeStatus === 'loading' || storeStatus=== 'disable') {
+  if (storeStatus === 'loading' || storeStatus === 'disable') {
     return (
       <ConfigProvider>
         <Layout className="layout">
           <Row justify={"center"}>
-            <Col className="d-none d-md-block" style={{ height: 42, backgroundColor: "#2C2134" }} span={24}>
+            <Col className="d-none d-md-block" style={{ height: 55, backgroundColor: "#2C2134" }} span={24}>
               <Row className={"h-100 px-5"} align={"middle"} justify={"space-between"}>
                 <Col span={12}>
                   <Space size={"large"}>
@@ -95,7 +98,7 @@ function App() {
             <Col span={24}>
               <div style={{ backgroundColor: "rgba(112, 112, 112, 0.7)"}}>
                 <Row justify="center">
-                  <Col span={24} style={{ height: 35 }} className="d-md-none">
+                  <Col span={24} style={{ height: 55.1 }} className="d-md-none">
                     <Row justify={"space-between"} className="h-100">
                       <Col />
                       <Col className="pr-5 my-auto">
@@ -106,13 +109,14 @@ function App() {
                       </Col>
                     </Row>
                   </Col>
-                  <Col xs={20} md={23} style={{
+                  <Col style={{
                     backgroundImage: "repeating-linear-gradient(rgba(255, 255, 255, 0.1), rgb(255, 255, 255) 75%, rgb(255, 255, 255))",
-                    height: width < 768 ? 85 : 185,
+                    height: width < 768 ? 119.35 : 147,
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15,
                     zIndex: 2,
-                    marginTop: width < 768 ? 0 : "5rem"
+                    marginTop: width < 768 ? 0 : "4rem",
+                    width: `calc(100vw - ${width < 768 ? "30px" : "8rem"})`
                   }}>
                     <Row className="h-100 px-4 py-4">
                       <Col xs={5} md={3} className="my-auto">
@@ -139,7 +143,7 @@ function App() {
                   </Col>
                   <Col className="align-self-end" span={24} style={{
                     backgroundColor: "#707070",
-                    height: width < 768 ? 38 : 55,
+                    height: 55,
                     marginTop: -7
                   }}>
                     <Row className="h-100">
@@ -405,12 +409,12 @@ function App() {
               </Row>
             </Col>
 
-            <div className={ `bg-white shadow rounded-10 storeLoad--LoadingModal ${storeStatus}` }>
-              {storeStatus === 'loading' &&
+            <div className={ `bg-white shadow rounded-10 storeLoad--LoadingModal loading` }>
+              {storeStatus !== 'loading' &&
               <Result
                 className="storeLoad--LoadingModal__loading"
-                icon={<SmileOutlined />}
-                title={ t(__('Loading Store!')) }
+                icon={ <img src={alaedeenChar} alt="Alaedeen.com" style={{ width: width < 768 ? 50 : 70 }}/> }
+                title={ <i className="logo-icon-alaedeen-com" /> }
               />
               }
 

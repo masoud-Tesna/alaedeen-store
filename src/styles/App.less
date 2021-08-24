@@ -140,8 +140,8 @@ html * {
 
 .storeLoad--LoadingModal {
   position: fixed;
-  &.load {
-    top: calc(50vh - 120px);
+  &.loading {
+    top: calc(50vh - 200px);
   }
 
   &.disable {
@@ -155,9 +155,25 @@ html * {
 
   .storeLoad--LoadingModal__loading {
     width: 90vw;
+    padding: 2rem 0;
+
+    > div {
+      width: 100%;
+    }
+
+    i {
+      font-size: 2.7rem;
+
+      @media (min-width: @screen-md) {
+        font-size: 3.5rem;
+      }
+    }
+
     @media (min-width: @screen-md) {
+      display: grid;
+      align-content: center !important;
       width: 780px;
-      height: 300px;
+      height: 450px;
     }
 
     .ant-result-title {
