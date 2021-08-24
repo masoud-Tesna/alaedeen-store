@@ -65,7 +65,9 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
     return data;
   }
 
-  return useQuery(['imageResponsive', useQueryKey], getImageResized);
+  return useQuery(['imageResponsive', useQueryKey], getImageResized, {
+    enabled: !!image_path
+  });
 
   /*const [load, setLoad] = useState(true);
   const [image, setImage] = useState([]);
