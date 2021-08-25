@@ -17,7 +17,9 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const Products = () => {
 
-  const { id: storeId } = useGetStoreState();
+  const { id: storeId, storeSettings } = useGetStoreState();
+
+  const favoriteColorCode = storeSettings?.product_block?.favorite_icon_color_code?.value || '#f20604';
 
   const { language } = useGetLanguageState();
 
@@ -84,6 +86,7 @@ const Products = () => {
                       productsPage
                       widthProductImage={width >= 768 ? 280 : 170}
                       heightProductImage={width >= 768 ? 280 : 170}
+                      favoriteColorCode ={ favoriteColorCode }
                     />
                   );
                 })}
