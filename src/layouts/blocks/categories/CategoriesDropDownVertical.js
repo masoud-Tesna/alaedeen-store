@@ -27,8 +27,8 @@ const CategoriesContent = () => {
         <>
           {categories.map((category) => {
             return(
-              <Menu.Item key={ `dropdown_${category.category_id}` }>
-                <a href={ category.link }>{ category.category }</a>
+              <Menu.Item key={ `CategoriesDropDownVertical_${category?.category_id}` }>
+                <a href={ category.link }>{ category?.category }</a>
               </Menu.Item>
             )
           })}
