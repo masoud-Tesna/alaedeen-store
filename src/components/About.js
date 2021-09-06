@@ -33,7 +33,7 @@ const About = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, 'about_store');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, `about_store${storeId}`);
   const { factories: aboutStores } = data || [];
 
   useEffect(() => {
@@ -50,19 +50,19 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores.embed_video.length !== 0 || aboutStores.company_introduction.fields.detailed_company_introduction) &&
+            (aboutStores?.embed_video?.length !== 0 || aboutStores?.company_introduction?.fields?.detailed_company_introduction) &&
             <Col span={24} className="mb-5">
               <Row>
                 <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
                   { t(__('about us')) }
                 </Col>
                 <Col span={24} className={ `mt-3 about--videosSection` }>
-                  {aboutStores.embed_video.length !== 0 &&
+                  {aboutStores?.embed_video?.length !== 0 &&
                   <div className="about--videos">
-                    { aboutStores.embed_video.map((embedVideo) => {
+                    { aboutStores?.embed_video?.map((embedVideo) => {
                       return (
-                        <div key={ `video_embed_${ embedVideo.link_id }` } className="about--video">
-                          <ShowVideoEmbed embedLink={ embedVideo.link } extraClassName={ 'aboutPage' } embedClassName="rounded-10"/>
+                        <div key={ `video_embed_${ embedVideo?.link_id }` } className="about--video">
+                          <ShowVideoEmbed embedLink={ embedVideo?.link } extraClassName={ 'aboutPage' } embedClassName="rounded-10"/>
                         </div>
                       );
                     }) }
@@ -70,7 +70,7 @@ const About = () => {
                   }
                 </Col>
                 <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
-                  { aboutStores.company_introduction.fields.detailed_company_introduction && aboutStores.company_introduction.fields.detailed_company_introduction }
+                  <p dangerouslySetInnerHTML={ {__html: aboutStores?.company_introduction?.fields?.detailed_company_introduction} } />
                 </Col>
               </Row>
             </Col>
@@ -87,61 +87,61 @@ const About = () => {
             <Row className="row-cols-2 row-cols-md-4 " gutter={[16, 30]}>
               {isLoading ?
                 <>Loading...</> :
-                aboutStores.general.business_type.length !== 0 &&
+                aboutStores?.general?.business_type?.length !== 0 &&
                   <>
                     <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Business Type')) }</Col>
-                    <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.general.business_type }</Col>
+                    <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.general?.business_type }</Col>
                   </>
               }
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores.basic_company_details.fields.year_company_registered.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.year_company_registered?.length !== 0 &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Year Established')) }</Col>
-                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.year_company_registered }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.year_company_registered }</Col>
                 </>
               }
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores.basic_company_details.fields.total_no_employees.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.total_no_employees?.length !== 0 &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Total Employees')) }</Col>
-                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.total_no_employees }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.total_no_employees }</Col>
                 </>
               }
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores.basic_company_details.fields.main_category.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.main_category?.length !== 0 &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main category')) }</Col>
-                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores.basic_company_details.fields.main_category }</Col>
+                  <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.main_category }</Col>
                 </>
               }
 
               {isLoading ?
                 <>Loading...</> :
-                (aboutStores.general.country || aboutStores.general.state) &&
+                (aboutStores?.general?.country || aboutStores?.general?.state) &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Country/Region')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >
-                    { aboutStores.general.country && `${aboutStores.general.country}, ` } { aboutStores.general.state && aboutStores.general.state }
+                    { aboutStores?.general?.country && `${aboutStores?.general?.country}, ` } { aboutStores?.general?.state }
                   </Col>
                 </>
               }
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores.export_capability.fields.main_markets_and_distribution.length !== 0 &&
+                aboutStores?.export_capability?.fields?.main_markets_and_distribution?.length !== 0 &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main Markets')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >
-                    {aboutStores.export_capability.fields.main_markets_and_distribution.map((market, index) => {
+                    {aboutStores?.export_capability?.fields?.main_markets_and_distribution?.map((market, index) => {
                       return (
                         <span key={`main_market_${index}`} className="d-block vv-font-size-1-2rem text-47">
-                          { `${market.country} ${market.percent}%` }
+                          { `${market?.country} ${market?.percent}%` }
                         </span>
                       );
                     })}
