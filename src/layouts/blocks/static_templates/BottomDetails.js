@@ -26,24 +26,24 @@ const BottomDetails = () => {
         <div className="shadow bottomDetails--content__desktop">
           <Row gutter={[0, 16]} className="py-4">
             <Col span={24} className="text-center">
-              <Link to={"/send-inquiry"} >
+              <a href="javascript:void(0)"  >
                 <div>
                   <i className="fal fa-envelope text-2d display-4 bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
                   {t(__('Send inquiry'))}
                 </div>
-              </Link>
+              </a>
             </Col>
             <Col span={24} className="text-center">
-              <Link to={"/chat"} >
+              <a href="javascript:void(0)" >
                 <div>
                   <i className="fal fa-comments text-2d display-4 font-weight-500 bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
                   {t(__('Chat'))}
                 </div>
-              </Link>
+              </a>
             </Col>
           </Row>
         </div> : /*For Mobile*/
