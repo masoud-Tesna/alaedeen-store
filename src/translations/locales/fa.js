@@ -1,8 +1,10 @@
 const fa = {
   "categories": "دسته بندی‌ها",
+  "stores": "فروشگاه",
   "sign_in": "ورود",
   "join_free": "اشتراک رایگان",
   "all_categories": "دسته بندی‌ها",
+  "total_stores": "فروشگاه",
   "view_more": "مشاهده بیشتر",
   "premium_oem_factories": "کارخانه‌های برتر",
   "show_more": "نمایش بیشتر",
@@ -58,7 +60,12 @@ const fa = {
   "production_capability": "ظرفیت تولید",
   "iran": "ایران",
   "view_more_r_and_d_capability": "مشاهدهٔ بیشتر قابلیت تحقیق و توسعه",
-  "alaedeen_slug_section": "تولیدکننده‌گان و تولیدات ایرانی"
+  "piece_and_pieces": "عدد",
+  "profile_settings": "تنظیمات",
+  "sign_out": "خروج از حساب کاربری",
+  "alaedeen_slug_section": "تولید‌کنندگان و تولیدات ایرانی",
+  "language": "زبان",
+  "currency": "واحد پول"
 };
 
 export default fa;

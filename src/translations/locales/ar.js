@@ -1,8 +1,10 @@
 const ar = {
   "categories": "فئات",
+  "stores": "المخازن",
   "sign_in": "تسجيل الدخول",
   "join_free": "انضم مجانا",
   "all_categories": "فئات",
+  "total_stores": "المخازن",
   "view_more": "اظهر المزید",
   "premium_oem_factories": "أفضل المصانع",
   "show_more": "اظهر المزید",
@@ -58,7 +60,12 @@ const ar = {
   "production_capability": "القدرة على الإنتاج",
   "iran": "ایران",
   "view_more_r_and_d_capability": "عرض المزيد من القدرة على البحث والتطوير",
-  "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
+  "piece_and_pieces": "قطعة \/ قطع",
+  "profile_settings": "إعدادات الملف الشخصي",
+  "sign_out": "خروج",
+  "alaedeen_slug_section": "المنتجات الایرانیة و المنتجين",
+  "language": "اللغة",
+  "currency": "العملة"
 };
 
 export default ar;

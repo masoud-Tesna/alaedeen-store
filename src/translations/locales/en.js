@@ -1,8 +1,10 @@
 const en = {
   "categories": "Categories",
+  "stores": "Stores",
   "sign_in": "Sign in",
   "join_free": "Join free",
   "all_categories": "All Categories",
+  "total_stores": "Total Stores",
   "view_more": "View more",
   "premium_oem_factories": "PREMIUM OEM FACTORIES",
   "show_more": "Show More",
@@ -58,7 +60,12 @@ const en = {
   "production_capability": "Production Capability",
   "iran": "Iran",
   "view_more_r_and_d_capability": "View more R & D capability",
-  "alaedeen_slug_section": "Iranian manufacturers & products"
+  "piece_and_pieces": "Piece \/ Pieces",
+  "profile_settings": "Profile settings",
+  "sign_out": "Sign out",
+  "alaedeen_slug_section": "Iranian manufacturers & products",
+  "language": "Language",
+  "currency": "Currency"
 };
 
 export default en;
