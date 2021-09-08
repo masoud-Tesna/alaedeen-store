@@ -124,7 +124,7 @@ const DefaultTopPanel = () => {
             <Row className="h-100" gutter={24} justify="space-between">
               <Col className="topPanel--content__left my-auto">
                 <Space size="small" align={"center"}>
-                  <Link to={"/"} className="d-block topPanel--col__logoXS">
+                  <a href="https://alaedeen.com" className="d-block topPanel--col__logoXS">
                     <Row align="middle">
                       <Col flex="26px" className="logo--character">
                         <img src={alaedeenChar} alt=""/>
@@ -140,7 +140,7 @@ const DefaultTopPanel = () => {
                         </Row>
                       </Col>
                     </Row>
-                  </Link>
+                  </a>
                   <Categories userClass="categories--dropDown topPanel--content__item hover d-block dir-ltr" />
                   <Divider type="vertical" className="border-70"/>
                   <Link className="topPanel--content__item hover text-white d-block" to={"/factories"} >
