@@ -18,8 +18,8 @@ const AllCategories = () => {
         <>
           {categories.map((category) => {
             return(
-              <Col span={24} className="allCategories--item" style={{ paddingLeft: `${category.level - 2}rem` }} key={ category.category_id }>
-                <a href={ category.link } className="text-47 font-weight-600 d-block w-100 h-100">{ category.category }</a>
+              <Col span={24} className="allCategories--item" style={{ paddingLeft: `${category?.level - 2}rem` }} key={ category?.category_id }>
+                <a href={ `https://alaedeen.com/categories/${category?.seo_name}` } className="text-47 font-weight-600 d-block w-100 h-100">{ category?.category }</a>
               </Col>
             )
           })}

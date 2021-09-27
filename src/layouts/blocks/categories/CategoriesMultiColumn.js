@@ -66,18 +66,18 @@ const CategoriesMultiColumn = () => {
               <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
                 {categories.map((category, index) => {
                   return (
-                    <Col xs={9} lg={5} md={7} xl={4} xxl={3} key={category.category_id} className="categoriesMultiColumn--item">
-                      <a className="d-block h-100" href={ category.link }>
+                    <Col xs={9} lg={5} md={7} xl={4} xxl={3} key={category?.category_id} className="categoriesMultiColumn--item">
+                      <a className="d-block h-100" href={ `https://alaedeen.com/categories/${category?.seo_name}` }>
                         <Row className="categoriesMultiColumn--item__row">
                           <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                             <div className="categoriesMultiColumn--img__wrapper">
 
 
-                              { (category.main_pair.detailed && category.main_pair.detailed.image_path) ?
-                                <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path }
+                              { (category?.main_pair.detailed && category?.main_pair?.detailed?.image_path) ?
+                                <ShowResponsiveImage imagePath={ category?.main_pair?.detailed?.image_path }
                                                      imageFolder='detailed' width={ width < 768 ? 73 : 115 }
-                                                     height={ width < 768 ? 73 : 115 } imageAlt={ category.category }
-                                                     object_id={ category.category_id } object_type={ 'cat' }/> :
+                                                     height={ width < 768 ? 73 : 115 } imageAlt={ category?.category }
+                                                     object_id={ category?.category_id } object_type={ 'cat' }/> :
                                 <Image
                                   width={ width < 768 ? 73 : 115 }
                                   height={ width < 768 ? 73 : 115 }
@@ -96,7 +96,7 @@ const CategoriesMultiColumn = () => {
                               line={2}
                               element="span"
                               truncateText=" …"
-                              text={category.category}
+                              text={category?.category}
                             />
                           </Col>
                         </Row>
