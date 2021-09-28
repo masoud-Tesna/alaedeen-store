@@ -17,14 +17,14 @@ import { useGetApi, useWindowSize } from "../functions";
 import ShowVideoEmbed from "../layouts/blocks/static_templates/ShowVideoEmbed";
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import ShowResponsiveImage from "../layouts/common/ShowResponsiveImage";
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const About = () => {
 
   const { id: storeId } = useGetStoreState();
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   // get screen width:
   const { width } = useWindowSize();
@@ -230,7 +230,7 @@ const About = () => {
                 <Link to={"/r-and-d-capability"}>
                   <div className="about--another__bgImage" />
                   <Row className="about--rAndD__content h-100" justify={"space-between"}>
-                    <Col className={ `${language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+                    <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
                       <Row>
                         <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                           { t(__('R&D Capability')) }
@@ -240,8 +240,8 @@ const About = () => {
                         </Col>
                       </Row>
                     </Col>
-                    <Col className={ `my-auto ${language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
-                      <i className={ `fa fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
+                    <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+                      <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
                     </Col>
                   </Row>
                 </Link>
@@ -255,7 +255,7 @@ const About = () => {
               <Link to={"/quality-control"}>
                 <div className="about--another__bgImage" />
                 <Row className="about--qualityControl__content h-100" justify={"space-between"}>
-                  <Col className={ `${language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+                  <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
                     <Row>
                       <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                         { t(__('Quality Control')) }
@@ -265,8 +265,8 @@ const About = () => {
                       </Col>
                     </Row>
                   </Col>
-                  <Col className={ `my-auto ${language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
-                    <i className={ `fa fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
+                  <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+                    <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
                   </Col>
                 </Row>
               </Link>
@@ -280,7 +280,7 @@ const About = () => {
               <Link to={"/export-capability"}>
                 <div className="about--another__bgImage" />
                 <Row className="about--exportCapability__content h-100" justify={"space-between"}>
-                  <Col className={ `${language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+                  <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
                     <Row>
                       <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                         { t(__('Export Capability')) }
@@ -290,8 +290,8 @@ const About = () => {
                       </Col>
                     </Row>
                   </Col>
-                  <Col className={ `my-auto ${language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
-                    <i className={ `fa fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
+                  <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+                    <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white` } />
                   </Col>
                 </Row>
               </Link>

@@ -5,19 +5,18 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Button, Space, Tabs, Divider, Skeleton, Drawer, Collapse } from 'antd';
+import { Row, Col, Space, Tabs, Divider, Skeleton, Drawer, Collapse } from 'antd';
 
 // import icons:
 import verifiedTop from '../../../assets/images/verifiedTop.png';
 import ISO1799 from '../../../assets/images/ISO1799.png';
 
 // import helper functions:
-import { __, fn_hex_to_rgb, useParsPathName } from "../../../functions/Helper";
+import { __, useParsPathName } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
 import { useGetApi, useWindowSize } from "../../../functions";
-import { changeLanguageAction, useDispatchLanguageState, useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import LoaderSpinner from "../../blocks/static_templates/LoadSpinner";
 import { useGetStoreState } from "../../../contexts/store/StoreContext";
 
@@ -25,6 +24,7 @@ import { useGetStoreState } from "../../../contexts/store/StoreContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts/user/UserContext";
 import { DownOutlined } from "@ant-design/icons";
+import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from "../../../contexts/config/ConfigContext";
 
 const { TabPane } = Tabs;
 
@@ -42,12 +42,9 @@ const DefaultHeader = () => {
 
   const { t } = useTranslation();
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
-  const { languageDispatch } = useDispatchLanguageState();
-
-  // initial state for currency:
-  const [currency, setCurrency] = useState('USD');
+  // get initial config:
+  const { config } = useGetConfig();
+  const { configDispatch } = useConfigDispatch();
 
   // Get Width Window:
   const { width } = useWindowSize();
@@ -64,10 +61,10 @@ const DefaultHeader = () => {
 
   // function for change language:
   const handleChangeLanguage = (lang) => {
-    if (lang !== language) {
+    if (lang !== config.language) {
       setShowLoadSpinner(true);
 
-      languageDispatch(changeLanguageAction(lang));
+      configDispatch(changeLanguageAction(lang));
       setTimeout(() => {
         setShowLoadSpinner(false);
         setVisibleHeaderMenuXs(false);
@@ -78,11 +75,10 @@ const DefaultHeader = () => {
 
   // function for change currency:
   const handleChangeCurrency = (e) => {
-    setCurrency(e.target.value);
-    if (e.target.value !== currency) {
+    if (e.target.value !== config.currency) {
       setShowLoadSpinner(true);
 
-      setCurrency(e.target.value);
+      configDispatch(changeCurrencyAction(e.target.value));
       setTimeout(() => {
         setShowLoadSpinner(false);
         closeHeaderMenuXs();
@@ -277,7 +273,7 @@ const DefaultHeader = () => {
                           <Collapse
                             expandIconPosition={"right"}
                             ghost
-                            expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                            expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
                           >
                             <Collapse.Panel header={t(__('Language & Currency'))} key="1">
                               <div className="mb-4">
@@ -287,7 +283,7 @@ const DefaultHeader = () => {
                                   </Col>
                                   <Col className="my-auto" span={12}>
                                     <select
-                                      value={language}
+                                      value={config.language}
                                       onChange={e => handleChangeLanguage(e.target.value)}
                                       className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
                                       <option value="en">English</option>
@@ -305,7 +301,7 @@ const DefaultHeader = () => {
                                   </Col>
                                   <Col className="my-auto" span={12}>
                                     <select
-                                      value={currency}
+                                      value={config.currency}
                                       onChange={e => handleChangeCurrency(e)}
                                       className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
                                       <option value="USD">US dollars</option>
@@ -369,7 +365,7 @@ const DefaultHeader = () => {
                 <Divider className="border-bc" />
                 <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
                   <Space direction="vertical" size={15}>
-                    <a href={`https://calendar.iranfair.com/${language === 'ar'? '' : language}`} target="_blank" rel="noreferrer" className="border border-primary text-primary w-100 d-block text-center">{t(__('International Exhibition'))}</a>
+                    <a href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer" className="border border-primary text-primary w-100 d-block text-center">{t(__('International Exhibition'))}</a>
                   </Space>
                 </Col>
               </Row>

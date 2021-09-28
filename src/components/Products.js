@@ -13,7 +13,7 @@ import ProductsMultiColumnVertical from "../layouts/blocks/product_list_template
 import LoadSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useSetLoaded } from "../functions/Helper";
 import { useGetStoreState } from "../contexts/store/StoreContext";
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const Products = () => {
 
@@ -21,7 +21,8 @@ const Products = () => {
 
   const favoriteColorCode = storeSettings?.product_block?.favorite_icon_color_code?.value || '#f20604';
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { width } = useWindowSize();
 
@@ -40,10 +41,10 @@ const Products = () => {
 
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
-      return <i className ={ `fal fa-chevron-${language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
     }
     if (type === 'next') {
-      return <i className ={ `fal fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
     }
     return originalElement;
   }

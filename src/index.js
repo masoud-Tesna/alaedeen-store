@@ -16,7 +16,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { StoreProvider } from "./contexts/store/StoreContext";
 
 // import language context:
-import { LanguageProvider } from "./contexts/language/LanguageContext";
+import { ConfigProvider } from "./contexts/config/ConfigContext";
 
 // import user  context:
 import { UserProvider } from "./contexts/user/UserContext";
@@ -32,14 +32,14 @@ const Application = () => {
   return (
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
-        <LanguageProvider>
+        <ConfigProvider>
           <StoreProvider>
             <UserProvider>
               <App />
               <ReactQueryDevtools />
             </UserProvider>
           </StoreProvider>
-        </LanguageProvider>
+        </ConfigProvider>
       </QueryClientProvider>
     </CookiesProvider>
   );

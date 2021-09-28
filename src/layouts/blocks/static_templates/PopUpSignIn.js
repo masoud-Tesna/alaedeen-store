@@ -12,14 +12,14 @@ import { useTranslation } from "react-i18next";
 import googlePic from '../../../assets/images/google.png';
 
 // import language context:
-import { signInAction, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from "../../../contexts/user/UserContext";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+import { signInAction, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from "../../../contexts/user/UserContext";
 
 const PopUpSignIn = () => {
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -29,7 +29,7 @@ const PopUpSignIn = () => {
   const onFinish = values => {
 
     AuthDispatch(checkSignInLoadingAction());
-    signIn(values.user_login, values.password, language)
+    signIn(values.user_login, values.password, config.language)
       .then(res => {
         if (values.remember_me) {
           AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));

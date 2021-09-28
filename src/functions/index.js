@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 
 import axios from "axios";
 
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 // Function For Get Product by API From Server:
 /*export function useGetProductApi (params, useQueryKey, setLanguage = true) {
@@ -34,14 +34,15 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 export function useGetApi (mode, params, useQueryKey) {
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   let useQueryKeyClone,
       url;
 
-  if (language) {
-    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
-    useQueryKeyClone = `${useQueryKey}_${language}`;
+  if (config.language) {
+    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
+    useQueryKeyClone = `${useQueryKey}_${config.language}`;
   }
 
 
@@ -52,7 +53,7 @@ export function useGetApi (mode, params, useQueryKey) {
   }
 
   return useQuery(['getApi', useQueryKeyClone], getApi, {
-    enabled: !!language,
+    enabled: !!config.language,
   });
 }
 

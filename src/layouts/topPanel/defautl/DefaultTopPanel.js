@@ -18,7 +18,7 @@ import alaedeenChar from '../../../assets/images/alaedeen-char.svg';
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
 
 // import language context:
-import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } from '../../../contexts/language/LanguageContext';
+import { useGetConfig, useConfigDispatch, changeLanguageAction } from "../../../contexts/config/ConfigContext";
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -43,19 +43,20 @@ const DefaultTopPanel = () => {
   // get screen width:
   const { width } = useWindowSize();
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
-  const { languageDispatch } = useDispatchLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
+  const { configDispatch } = useConfigDispatch();
 
   // initial state for show spinner:
   const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
 
   // function for change language:
   function handleChangeLanguage(e) {
-    if (e.target.value !== language) {
+    if (e.target.value !== config.language) {
       setShowLoadSpinner(true);
 
-      languageDispatch(changeLanguageAction(e.target.value));
+      configDispatch(changeLanguageAction(e.target.value));
+
       setTimeout(() => {
         setShowLoadSpinner(false);
       }, 1000);
@@ -211,7 +212,7 @@ const DefaultTopPanel = () => {
 
               <Col className="topPanel--content__right my-auto">
                 <Space size={3}>
-                  <select value={language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-2 mr-3">
+                  <select value={config.language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-2 mr-3">
                     <option value="en">English</option>
                     <option value="fa">فارسی</option>
                     <option value="ar">عربی</option>

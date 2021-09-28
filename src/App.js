@@ -33,7 +33,7 @@ import {
 } from "./components";
 
 // import language context:
-import { useGetLanguageState } from "./contexts/language/LanguageContext";
+import { useGetConfig } from "./contexts/config/ConfigContext";
 import { useGetStoreState } from "./contexts/store/StoreContext";
 
 // import Custom Hooks:
@@ -51,11 +51,12 @@ function App() {
 
   const { t } = useTranslation();
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { width } = useWindowSize();
 
-  const directionTheme = language === 'en' ? 'ltr' : 'rtl';
+  const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
 
   const { Header, Footer, Content } = Layout;
 
