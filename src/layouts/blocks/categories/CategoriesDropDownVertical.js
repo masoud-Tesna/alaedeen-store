@@ -28,7 +28,7 @@ const CategoriesContent = () => {
           {categories.map((category) => {
             return(
               <Menu.Item key={ `CategoriesDropDownVertical_${category?.category_id}` }>
-                <a href={ `https://alaedeen.com/categories/${category?.seo_name}` }>{ category?.category }</a>
+                <a href={ `https://alaedeen.com/categories/${category?.seo_name}/?store_id=${storeId}` }>{ category?.category }</a>
               </Menu.Item>
             )
           })}

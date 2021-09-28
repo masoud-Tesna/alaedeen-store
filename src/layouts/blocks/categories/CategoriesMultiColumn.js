@@ -67,7 +67,7 @@ const CategoriesMultiColumn = () => {
                 {categories.map((category, index) => {
                   return (
                     <Col xs={9} lg={5} md={7} xl={4} xxl={3} key={category?.category_id} className="categoriesMultiColumn--item">
-                      <a className="d-block h-100" href={ `https://alaedeen.com/categories/${category?.seo_name}` }>
+                      <a className="d-block h-100" href={ `https://alaedeen.com/categories/${category?.seo_name}/?store_id=${storeId}` }>
                         <Row className="categoriesMultiColumn--item__row">
                           <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                             <div className="categoriesMultiColumn--img__wrapper">
