@@ -1,3 +1,6 @@
+// import Style LESS File:
+import './styles/CategoriesMultiColumn.less';
+
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
@@ -21,6 +24,7 @@ const CategoriesContent = () => {
     <Menu
       style={{ minWidth: 250 }}
       triggerSubMenuAction={"click"}
+      className="dropDownCategories--content"
     >
       {isLoading ?
         <>Loading...</> :
@@ -28,7 +32,7 @@ const CategoriesContent = () => {
           {categories.map((category) => {
             return(
               <Menu.Item key={ `CategoriesDropDownVertical_${category?.category_id}` }>
-                <a href={ `https://alaedeen.com/categories/${category?.seo_name}/?store_id=${storeId}` }>{ category?.category }</a>
+                <a href={ `https://alaedeen.com/categories/${category?.seo_name}/?store_id=${storeId}` } className={category?.p_count === 0 && 'categoryLink--disable'}>{ category?.category }</a>
               </Menu.Item>
             )
           })}
