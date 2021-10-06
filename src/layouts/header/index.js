@@ -14,12 +14,8 @@ const Header = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if ((pathName === 'factories' && width <= 991) || pathName === 'manufacturing' || pathName === 'certificate' || pathName === 'r-and-d-capability' || pathName === 'quality-control' || pathName === 'export-capability' || pathName === 'chat' || pathName === 'all-categories') {
-    return (
-      <>
-
-      </>
-    );
+  if ((pathName[0] === 'factories' && width <= 991) || (pathName[0] === 'about' && pathName[1] !== "") || pathName[0] === 'chat' || pathName[0] === 'all-categories') {
+    return <></>
   }
 
   // if get default Top panel:
