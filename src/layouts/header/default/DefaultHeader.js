@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 // import Styles For default:
@@ -96,35 +96,6 @@ const DefaultHeader = () => {
   }
 
 
-  const [scrolled, setScrolled] = useState(false);
-
-  const [widthPage, setWidthPage] = useState(window.innerWidth);
-
-  let x= [];
-
-  const handleScroll = () => {
-    const offsetY = window.scrollY;
-    if (widthPage >= 768) {
-      setScrolled(false);
-    } // if WidthPage state value <= 576 change condition for scroll and set class name
-    else if (widthPage >= 577) {
-      if(offsetY > 128 ){
-        setScrolled(true);
-      }
-      else{
-        setScrolled(false);
-      }
-    } // if WidthPage state value >= 577 change condition for scroll and set class name
-    else if (widthPage <= 576) {
-      if(offsetY > 124 ){
-        setScrolled(true);
-      }
-      else{
-        setScrolled(false);
-      }
-    } // if WidthPage state value <= 576 change condition for scroll and set class name
-  }
-
   // initial state for drawer Menu (mobile version):
   const [visibleHeaderMenuXs, setVisibleHeaderMenuXs] = useState(false);
 
@@ -144,18 +115,27 @@ const DefaultHeader = () => {
     closeHeaderMenuXs();
   }
 
-  //FIX ME:
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
-    window.addEventListener('load', handleScroll); //if Load Page in bottom page...
+  const [scrolled, setScrolled] = useState("");
 
-    window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
-    window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
+  const handleScroll = () => {
+    const offsetY = window.scrollY;
+
+    if(offsetY > 172.5 ){
+      setScrolled("scrolled");
+    }
+    else{
+      setScrolled("");
+    }
+  };
+
+  useLayoutEffect(() => {
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, []);
-
-  if(scrolled){
-    x.push('scrolled');
-  }
 
   if(showLoadSpinner) { /*Show Loading Spinner if Change language*/
     return <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
@@ -392,8 +372,8 @@ const DefaultHeader = () => {
         <Row>
           <Col className="header__topSection default" span={24}>
             <div className="header__bgImage" style={{ backgroundImage: `url(${encodeURI(headerBgImg)})` }} />
-            <Row className={ `header__details ${width < 768 && x.join(" ")}` }>
-              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${width < 768 && x.join(" ")}` } span={24} style={{ backgroundColor: headerColorCode }}>
+            <Row className={ `header__details ${scrolled}` }>
+              <Col className={ `d-md-none py-3 px-md-5 pt-md-5 header__topSection--sticky ${scrolled}` } span={24} style={{ backgroundColor: headerColorCode }}>
                 <Row>
                   <Col span={1}>
                     <i className="fa fa-chevron-left vv-font-size-2 cursor-pointer text-white" onClick={() => { goToPreviousPath() }} />
@@ -509,7 +489,7 @@ const DefaultHeader = () => {
         </Row>
       </Col>
 
-      <Col span={24} className={ `header__bottomSection ${width < 768 && x.join(" ")}` } style={{ backgroundColor: headerColorCode }}>
+      <Col span={24} className={ `header__bottomSection ${scrolled}` } style={{ backgroundColor: headerColorCode }}>
         <Row className="h-100 header__bottomSection--container" align={"bottom"} justify={"space-between"}>
           <Col xs={24} lg={10}>
             <Tabs activeKey={pathName} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">

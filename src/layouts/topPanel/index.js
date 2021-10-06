@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 // Layouts:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
@@ -13,32 +13,24 @@ const TopPanel = () => {
   // Get Location:
   const pathName = useParsPathName();
 
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState("");
 
   const handleScroll = () => {
-    const offsetY = window.scrollY;
-
-    // New
-    if(offsetY > 40 ){
-      setScrolled(true);
-    }else {
-      setScrolled(false);
+    if (window.scrollY > 40) {
+      setScrolled("scrolled");
+    } else {
+      setScrolled("");
     }
+  };
 
-  }
+  useLayoutEffect(() => {
 
-  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
 
-    window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
-
-    window.addEventListener('load', () => {
-      //if Load Page Update widthPage State Value
-    });
-    window.addEventListener('resize', () => {
-      //if Resize Page Update widthPage State Value
-    });
-
-  }, [handleScroll]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, []);
 
   // Check pathName For Set Default Top Panel Or Not:
   if (pathName === 'pathName') {
@@ -46,7 +38,7 @@ const TopPanel = () => {
   }
 
   if (pathName === 'chat' || pathName === 'all-categories') {
-    return <TopPanelWhitBackIcon scrolledClass={ scrolled && 'scrolled' } pathName={pathName} />
+    return <TopPanelWhitBackIcon scrolledClass={ scrolled } pathName={pathName} />
   }
 
   // if get default Header:

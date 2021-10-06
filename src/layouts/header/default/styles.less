@@ -23,6 +23,11 @@ html:lang(ar) {
 }
 
 .ant-layout-header.site--header {
+  /*height: calc(80px + 1.2rem);*/
+  /*height: 226px;*/
+  height: auto !important;
+  line-height: unset;
+  padding: 0;
 
   .header__topSection--container {
     //height: 226px;
@@ -45,26 +50,41 @@ html:lang(ar) {
       .header__details {
         &:not(.scrolled) {
           padding: 0 15px;
+
+          @media (min-width: @screen-md) {
+            padding: 0 3rem;
+          }
         }
 
         .header__topSection--sticky {
+          min-height: 53px;
           //padding: 0 15px;
           padding: 0;
-          transition: 0.5s all ease;                /* added unit */
-          -moz-transition: 0.5s all ease;           /* added unit */
-          -webkit-transition: 0.5s all ease;        /* added unit */
-        }
+          transition: 0.5s all ease;
+          -moz-transition: 0.5s all ease;
+          -webkit-transition: 0.5s all ease;
 
-        .header__topSection--sticky.scrolled {
-          padding: 0 15px;
-          position: fixed;
-          top: 0;
-          z-index: 999;
-          width: 100%;
-          z-index: 1000;
-          transition: 0.5s all ease-in-out;         /* added unit */
-          -moz-transition: 0.5s all ease-in-out;    /* added unit */
-          -webkit-transition: 0.5s all ease-in-out; /* added unit */
+          &.scrolled {
+            padding: 0 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 20;
+            transition: 0.5s all ease-in-out;
+            -moz-transition: 0.5s all ease-in-out;
+            -webkit-transition: 0.5s all ease-in-out;
+
+            @media (min-width: @screen-md) {
+              padding: 0;
+              position: relative;
+              transition: none;
+              -moz-transition: none;
+              -webkit-transition: none;
+              top: unset;
+              z-index: unset;
+
+            }
+          }
         }
 
         .search--bgOpacity,
@@ -82,6 +102,11 @@ html:lang(ar) {
 
         .header__details--container {
           z-index: 1;
+
+          @media (min-width: @screen-md) {
+            margin-top: 4rem;
+          }
+
           .info--bgOpacity {
             content: "";
             top: 0;
@@ -101,6 +126,16 @@ html:lang(ar) {
             line-height: 50px;
             border-radius: 8px;
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+
+            @media (min-width: @screen-md) {
+              width: 100px;
+              height: 100px;
+              line-height: 100px;
+              background-color: transparent;
+              border-radius: 0;
+              box-shadow: none;
+            }
+
             img {
               width: 100%;
             }
@@ -109,10 +144,18 @@ html:lang(ar) {
           .info--storeName,
           .flag-icon {
             font-size: 2rem;
+
+            @media (min-width: @screen-md) {
+              font-size: 3rem;
+            }
           }
 
           .info--icon__title {
             font-size: 1.2rem;
+
+            @media (min-width: @screen-md) {
+              font-size: 2rem;
+            }
           }
 
           .header__details--followBtn {
@@ -120,8 +163,18 @@ html:lang(ar) {
             padding: 0 !important;
             height: 27px;
             line-height: 20px;
+
+            @media (min-width: @screen-md) {
+              width: 101px;
+              height: 40px;
+            }
+
             span {
               font-size: 1.3rem;
+
+              @media (min-width: @screen-md) {
+                font-size: 2rem;
+              }
             }
           }
         }
@@ -132,12 +185,38 @@ html:lang(ar) {
   .header__bottomSection {
     margin-top: -7px;
     height: 55px;
-    transition: 0.5s all ease;                /* added unit */
-    -moz-transition: 0.5s all ease;           /* added unit */
-    -webkit-transition: 0.5s all ease;        /* added unit */
+    transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+
+    &.scrolled {
+      position: fixed;
+      animation: header__bottomSectionScrolled--animation 0.5s ease-in-out;
+      transition: 0.5s all ease-in-out;
+      -moz-transition: 0.5s all ease-in-out;
+      -webkit-transition: 0.5s all ease-in-out;
+      top: 60px;
+      width: 100%;
+      z-index: 20;
+
+      @media (min-width: @screen-md) {
+        position: relative;
+        animation: none;
+        transition: none;
+        -moz-transition: none;    /* added unit */
+        -webkit-transition: none; /* added unit */
+        top: unset;
+        z-index: unset;
+
+      }
+    }
 
     .header__bottomSection--container {
       padding: 0 15px;
+
+      @media (min-width: @screen-md) {
+        padding: 0 3rem;
+      }
 
       .header__tabContainer {
         .ant-tabs-nav {
@@ -157,8 +236,13 @@ html:lang(ar) {
               font-size: 1.8rem;
               font-weight: 600;
               padding: 0 1.5rem;
+
+              @media (min-width: @screen-md) {
+                font-size: 2rem;
+              }
             }
           }
+
           .ant-tabs-tab.ant-tabs-tab-active {
             .ant-tabs-tab-btn {
               font-weight: bold;
@@ -194,26 +278,6 @@ html:lang(ar) {
     }
   }
 
-  .header__bottomSection.scrolled {
-    position: fixed;
-    z-index: 999;
-    animation: header__bottomSectionScrolled--animation 0.5s ease-in-out;
-    transition: 0.5s all ease-in-out;         /* added unit */
-    -moz-transition: 0.5s all ease-in-out;    /* added unit */
-    -webkit-transition: 0.5s all ease-in-out; /* added unit */
-    top: 61px;
-    width: 100%;
-    z-index: 1000;
-  }
-
-}
-
-.ant-layout-header.site--header {
-  /*height: calc(80px + 1.2rem);*/
-  /*height: 226px;*/
-  height: auto !important;
-  line-height: unset;
-  padding: 0;
 }
 
 .topPanel--menuXs {
@@ -301,87 +365,12 @@ html:lang(ar) {
   }
 }
 
-@media (min-width: 768px) {
-  .ant-layout-header.site--header {
-
-    .header__topSection--container {
-      .header__topSection {
-        .header__details {
-          &:not(.scrolled) {
-            padding: 0 3rem;
-          }
-
-          .header__details--container {
-            margin-top: 4rem;
-
-            .info--img__container {
-              width: 100px;
-              height: 100px;
-              line-height: 100px;
-              background-color: transparent;
-              border-radius: 0;
-              box-shadow: none;
-            }
-
-            .info--storeName,
-            .flag-icon {
-              font-size: 3rem;
-            }
-
-            .info--icon__title {
-              font-size: 2rem;
-            }
-
-            .header__details--followBtn {
-              width: 101px;
-              height: 40px;
-              span {
-                font-size: 2rem;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .header__bottomSection {
-      .header__bottomSection--container {
-        padding: 0 3rem;
-
-        .header__tabContainer {
-          .ant-tabs-nav {
-            .ant-tabs-tab {
-              .ant-tabs-tab-btn {
-                color: #FFFFFF !important;
-                font-size: 2rem;
-                font-weight: 600;
-                padding: 0 1.5rem;
-              }
-            }
-            .ant-tabs-tab.ant-tabs-tab-active {
-              .ant-tabs-tab-btn {
-                font-weight: bold;
-                text-shadow: none;
-              }
-            }
-
-            .ant-tabs-ink-bar {
-              height: 3px !important;
-              background: #FFFFFF;
-            }
-          }
-        }
-      }
-    }
-
-  }
-}
 
 @keyframes header__bottomSectionScrolled--animation {
   from {
-    top: 0px;
+    top: 10px;
   }
   to {
-    top: 49.61px;
+    top: 60px;
   }
 }
