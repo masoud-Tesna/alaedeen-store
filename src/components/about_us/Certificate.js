@@ -107,22 +107,20 @@ const Certificate = () => {
                           <Row>
                             <Col span={24} className="py-4 manufacturing--info__processNameContent">
                               <Row gutter={[0, 15]}>
-                                {Object.entries(certification).map(([certificateKey, certificateItem], index) => {
-                                  if (certificateKey !== 'certificate_photos') {
-                                    return (
-                                      <Col key={`certificate_${certificateKey}_${index}`} span={24}>
-                                        <Row>
-                                          <Col span={12} className="vv-font-size-1-4 text-92">
-                                            { t(__(certificateKey)) }
-                                          </Col>
+                                {Object.entries(certification).filter(([certificateKey]) => certificateKey !== 'certificate_photos').map(([certificateKey, certificateItem], index) => {
+                                  return (
+                                    <Col key={`certificate_${certificateKey}_${index}`} span={24}>
+                                      <Row>
+                                        <Col span={12} className="vv-font-size-1-4 text-92">
+                                          { t(__(certificateKey)) }
+                                        </Col>
 
-                                          <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { certificateItem || '---' }
-                                          </Col>
-                                        </Row>
-                                      </Col>
-                                    )
-                                  }
+                                        <Col span={12} className="vv-font-size-1-4 text-47">
+                                          { certificateItem || '---' }
+                                        </Col>
+                                      </Row>
+                                    </Col>
+                                  )
                                 })}
                               </Row>
                             </Col>
