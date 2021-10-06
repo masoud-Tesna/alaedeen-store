@@ -170,7 +170,7 @@ const About = () => {
                       { Object.entries(aboutStores.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--video">
-                            <Link to={`/manufacturing/?slide=${key}`}>
+                            <Link to={`/about/manufacturing/?slide=${key}`}>
                               <div className="rounded-10 about--imageBg" style={{ backgroundImage: `url(${process.process_pictures[0]})` }} />
                               <div className="text-white ml-4 mb-4 vv-font-size-1-8 font-weight-600 about--imageBg__title">
                                 { process.process_name || '' }
@@ -202,7 +202,7 @@ const About = () => {
                       { Object.entries(aboutStores.certificate_center.parents.certification.fields).map(([key, certificate], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--image">
-                            <Link to={`/certificate/?slide=${key}`}>
+                            <Link to={`/about/certificate/?slide=${key}`}>
                               <Row>
                                 <Col className = "about--imageBackground" span={24}>
                                   <ShowResponsiveImage imagePath={ certificate.certificate_photos[0] } imageFolder='profiles' width={width < 768 ? 140 : 400} height={width < 768 ? 110 : 240} object_id={index + 1}  object_type={`certificate_img_${key}`}/>
@@ -227,7 +227,7 @@ const About = () => {
             <>Loading...</> :
             (aboutStores.r_and_d_capability.parents.process.fields.length !== 0 && aboutStores.r_and_d_capability.parents.process.show === "Y") &&
               <Col className="about--another__item about--rAndD__container" span={24}>
-                <Link to={"/r-and-d-capability"}>
+                <Link to={"/about/r-and-d-capability"}>
                   <div className="about--another__bgImage" />
                   <Row className="about--rAndD__content h-100" justify={"space-between"}>
                     <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
@@ -252,7 +252,7 @@ const About = () => {
             <>Loading...</> :
             (aboutStores.quality_control.parents.process.fields.length !== 0 && aboutStores.quality_control.parents.process.show === "Y") &&
               <Col className="about--another__item about--qualityControl__container" span={24}>
-              <Link to={"/quality-control"}>
+              <Link to={"/about/quality-control"}>
                 <div className="about--another__bgImage" />
                 <Row className="about--qualityControl__content h-100" justify={"space-between"}>
                   <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
@@ -277,7 +277,7 @@ const About = () => {
             <>Loading...</> :
             (aboutStores.export_capability.fields.export_percentage.length !== 0 && aboutStores.export_capability.fields.main_markets_and_distribution.length !== 0) &&
               <Col className="about--another__item about--exportCapability__container" span={24}>
-              <Link to={"/export-capability"}>
+              <Link to={"/about/export-capability"}>
                 <div className="about--another__bgImage" />
                 <Row className="about--exportCapability__content h-100" justify={"space-between"}>
                   <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
