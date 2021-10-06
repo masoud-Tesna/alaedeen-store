@@ -39,16 +39,15 @@ export function __ (world, prefix = "", sign = ".") {
 
 export const useParsPathName = () => {
   // Get Location pathName:
-  let pathName = useLocation().pathname;
+  const pathName = useLocation().pathname;
 
-  if (pathName === '/') {
-    return 'homePage';
+  const pathNameSplit = pathName.split("/").filter(path => path !== "");
+
+  if (pathNameSplit.length < 1) {
+    return ['homePage'];
   }
 
-  pathName = pathName.toString().trim().toLowerCase()
-    .replaceAll("/", "");
-
-  return pathName;
+  return pathNameSplit;
 }
 
 export const useSetLoaded = () => {
