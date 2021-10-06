@@ -452,19 +452,19 @@ function App() {
 
                 <Route path="/products" component={Products} />
 
-                <Route path="/about" component={About} />
-
                 <Route path="/all-categories" component={AllCategories} />
 
-                <Route path="/manufacturing" component={Manufacturing} />
+                <Route exact path="/about" component={About} />
 
-                <Route path="/Certificate" component={Certificate} />
+                <Route path="/about/manufacturing" component={Manufacturing} />
 
-                <Route path="/r-and-d-capability" component={RandDCapability} />
+                <Route path="/about/Certificate" component={Certificate} />
 
-                <Route path="/quality-control" component={QualityControl} />
+                <Route path="/about/r-and-d-capability" component={RandDCapability} />
 
-                <Route path="/export-capability" component={ExportCapability} />
+                <Route path="/about/quality-control" component={QualityControl} />
+
+                <Route path="/about/export-capability" component={ExportCapability} />
 
                 <Route path="/page/:page" component={Page} />
 
