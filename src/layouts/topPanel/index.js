@@ -33,7 +33,7 @@ const TopPanel = () => {
   }, []);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName[0] === 'pathName') {
+  if ((pathName[0] === 'about' && pathName[1])) {
     return <></> // remove TopPanel
   }
 
