@@ -8,30 +8,6 @@ import axios from "axios";
 
 import { useGetConfig } from "../contexts/config/ConfigContext";
 
-// Function For Get Product by API From Server:
-/*export function useGetProductApi (params, useQueryKey, setLanguage = true) {
-
-  const { language } = useGetLanguageState();
-
-  // async function for get API:
-  let url,
-    useQueryKeyClone;
-  if (setLanguage) {
-    url = `https://alaedeen.com/horn/products-api/?${params}&lang_code=${language}`;
-    useQueryKeyClone = `${useQueryKey}_${language}`;
-  }else {
-    url = `https://alaedeen.com/horn/products-api/?${params}`;
-    useQueryKeyClone = useQueryKey;
-  }
-
-  async function getProducts() {
-    const { data } = await axios.get(url);
-    return data;
-  }
-
-  return useQuery(['products', useQueryKeyClone], getProducts);
-}*/
-
 export function useGetApi (mode, params, useQueryKey) {
 
   // get initial config:
