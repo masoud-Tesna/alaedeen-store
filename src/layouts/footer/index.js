@@ -7,7 +7,7 @@ const SiteFooter = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === 'products' || pathName === 'about' || pathName === 'manufacturing' || pathName === 'certificate' || pathName === 'r-and-d-capability' || pathName === 'quality-control' || pathName === 'export-capability' || pathName === 'chat' || pathName === 'all-categories') {
+  if (pathName[0] === 'products' || pathName[0] === 'about' || pathName[0] === 'chat' || pathName[0] === 'all-categories') {
     return <></> // remove Footer
   }
 

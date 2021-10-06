@@ -14,7 +14,7 @@ const Header = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if ((pathName[0] === 'factories' && width <= 991) || (pathName[0] === 'about' && pathName[1] !== "") || pathName[0] === 'chat' || pathName[0] === 'all-categories') {
+  if ((pathName[0] === 'factories' && width <= 991) || (pathName[0] === 'about' && pathName[1]) || pathName[0] === 'chat' || pathName[0] === 'all-categories') {
     return <></>
   }
 

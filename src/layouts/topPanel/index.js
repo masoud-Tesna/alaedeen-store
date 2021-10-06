@@ -33,12 +33,12 @@ const TopPanel = () => {
   }, []);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === 'pathName') {
+  if (pathName[0] === 'pathName') {
     return <></> // remove TopPanel
   }
 
-  if (pathName === 'chat' || pathName === 'all-categories') {
-    return <TopPanelWhitBackIcon scrolledClass={ scrolled } pathName={pathName} />
+  if (pathName[0] === 'chat' || pathName[0] === 'all-categories') {
+    return <TopPanelWhitBackIcon scrolledClass={ scrolled } pathName={pathName[0]} />
   }
 
   // if get default Header:
