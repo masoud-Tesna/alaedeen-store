@@ -16,12 +16,10 @@ import { __, useParsPathName } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../functions";
 import LoaderSpinner from "../../blocks/static_templates/LoadSpinner";
 import { useGetStoreState } from "../../../contexts/store/StoreContext";
 
-// import responsive image show component:
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts/user/UserContext";
 import { DownOutlined } from "@ant-design/icons";
 import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from "../../../contexts/config/ConfigContext";

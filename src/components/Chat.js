@@ -4,7 +4,6 @@ import './styles/Chat.less';
 // import ant design components used:
 import { Button, Col, Row, Input, Form, Skeleton, Result } from "antd";
 import { useEffect, useState } from "react";
-import { SendOutlined, SmileOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useGetStoreState } from "../contexts/store/StoreContext";
 import { useQuery } from "react-query";
@@ -13,16 +12,10 @@ import { useQuery } from "react-query";
 import Moment from 'react-moment';
 import { useGetAuthState } from "../contexts/user/UserContext";
 import PopUpSignIn from "../layouts/blocks/static_templates/PopUpSignIn";
-import { useWindowSize } from "../functions";
-import { __, fn_random_number_between } from "../functions/Helper";
+import { fn_random_number_between } from "../functions/Helper";
 
-import FormPage from "./chat/uploadFile";
-
-const { TextArea } = Input;
 
 const Chat = () => {
-
-  const { width } = useWindowSize();
 
   //initial state and dispatch for auth context:
   const { user_data } = useGetAuthState();

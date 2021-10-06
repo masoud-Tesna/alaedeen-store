@@ -12,8 +12,6 @@ import { useGetStoreState } from "../../../contexts/store/StoreContext";
 // import translate functions used:
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
-import { useEffect, useState } from "react";
-
 
 const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
 

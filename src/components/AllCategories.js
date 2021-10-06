@@ -1,7 +1,7 @@
 // import style file:
 import './styles/AllCategories.less';
 import { useGetApi } from "../functions";
-import { Col, Menu, Row } from "antd";
+import { Col, Row } from "antd";
 import { useGetStoreState } from "../contexts/store/StoreContext";
 
 const AllCategories = () => {

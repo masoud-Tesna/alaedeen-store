@@ -7,7 +7,6 @@ import './styles/Page.less';
 import { Col, Row, Skeleton } from "antd";
 import { useGetStoreState } from "../contexts/store/StoreContext";
 import { useGetApi } from "../functions";
-import { fn_stripHtml } from "../functions/Helper";
 
 const Page = () => {
 

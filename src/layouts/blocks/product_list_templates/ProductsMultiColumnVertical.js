@@ -102,10 +102,10 @@ const ProductsMultiColumnVertical = (props) => {
             </Col>
             }
 
-            {productPrice != 0.000 &&
+            {productPrice !== "0.00" &&
             <Col span={24} className={ `mt-2 ${!productsPage && 'text-center'} productsMultiColumnVertical--item__price` }>
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
-              { productListPrice != 0.00 &&
+              { productListPrice !== "0.00" &&
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
               }
               {product?.quantity_unit &&

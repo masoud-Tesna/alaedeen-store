@@ -15,7 +15,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Design:
 import { Col, ConfigProvider, Layout, Result, Row, Skeleton, Space } from 'antd';
-import { SmileOutlined } from "@ant-design/icons";
 
 // Pages:
 import {
