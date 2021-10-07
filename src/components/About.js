@@ -33,7 +33,7 @@ const About = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, `about_store${storeId}`);
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, `about_store_${storeId}`);
   const { factories: aboutStores } = data || [];
 
   useEffect(() => {
@@ -159,7 +159,7 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores.manufacturing_capability.parents.process.fields.length !== 0 && aboutStores.manufacturing_capability.parents.process.show === "Y") &&
+            (aboutStores?.manufacturing_capability?.parents?.process?.fields?.length !== 0 && aboutStores?.manufacturing_capability?.parents?.process?.show === "Y") &&
               <Col span={24}>
                 <Row className="mb-5">
                   <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
@@ -167,7 +167,7 @@ const About = () => {
                   </Col>
                   <Col span={24} className="mt-3 about--videosSection">
                     <div className="about--videos">
-                      { Object.entries(aboutStores.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
+                      { Object.entries(aboutStores?.manufacturing_capability?.parents?.process?.fields).map(([key, process], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--video">
                             <Link to={`/about/manufacturing/?slide=${key}`}>
@@ -191,7 +191,7 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores.certificate_center.parents.certification.fields.length !== 0 && aboutStores.certificate_center.parents.certification.show === "Y") &&
+            (aboutStores?.certificate_center?.parents?.certification?.fields?.length !== 0 && aboutStores?.certificate_center?.parents?.certification?.show === "Y") &&
               <Col span={24}>
                 <Row className="mb-5">
                   <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
@@ -199,13 +199,13 @@ const About = () => {
                   </Col>
                   <Col span={24} className="mt-3 about--imagesSection">
                     <div className="about--images">
-                      { Object.entries(aboutStores.certificate_center.parents.certification.fields).map(([key, certificate], index) => {
+                      { Object.entries(aboutStores?.certificate_center?.parents?.certification?.fields).map(([key, certificate], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--image">
                             <Link to={`/about/certificate/?slide=${key}`}>
                               <Row>
                                 <Col className = "about--imageBackground" span={24}>
-                                  <ShowResponsiveImage imagePath={ certificate.certificate_photos[0] } imageFolder='profiles' width={width < 768 ? 140 : 400} height={width < 768 ? 110 : 240} object_id={index + 1}  object_type={`certificate_img_${key}`}/>
+                                  <ShowResponsiveImage imagePath={ certificate.certificate_photos[0] } imageFolder='profiles' width={width < 768 ? 140 : 400} height={width < 768 ? 110 : 240} object_id={index + 1}  object_type={`about_store_${storeId}/certificate_img_${key}`}/>
                                 </Col>
                                 <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>{ certificate.certificate_name }</Col>
                               </Row>

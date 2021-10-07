@@ -46,7 +46,7 @@ const Certificate = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=certificate`, 'get_certificate');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=certificate`, `about_store_${storeId}/certificate`);
   const { factories: certificates } = data || [];
 
   const query = useQueryString();
@@ -64,10 +64,10 @@ const Certificate = () => {
         "type": "fraction"
       }} navigation={false}>
 
-        { images.map((image, index) => {
+        { images?.map((image, index) => {
           return (
             <SwiperSlide key={`certificates_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`certificates_img_${processKey}`}/>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`about_store_${storeId}/certificates_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
@@ -89,12 +89,12 @@ const Certificate = () => {
 
           {isLoading ?
             <>Loading...</> :
-            Object.entries(certificates.certificate_center.certification.fields).map(([key, certification], index) => {
+            Object.entries(certificates?.certificate_center?.certification?.fields).map(([key, certification], index) => {
               return (
                 <SwiperSlide key={`swiper_process_${index}`}>
                   <Row className="manufacturing--info__content">
                     <Col span={24} className="manufacturing--images">
-                      <ImagesSwiper images={certification.certificate_photos} processKey={index + 1} />
+                      <ImagesSwiper images={certification?.certificate_photos} processKey={index + 1} />
                     </Col>
 
                     <Col span={24} className="mt-4 manufacturing--info__certificate">
@@ -137,12 +137,12 @@ const Certificate = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row gutter={[0, 30]}>
-                            {Object.entries(certificates.certificate_center.honor_and_award_certifications.fields).map(([honorKey, honorItem], index) => {
+                            {Object.entries(certificates?.certificate_center?.honor_and_award_certifications?.fields).map(([honorKey, honorItem], index) => {
                               return (
                                 <Col key={`honor_and_award_certifications_${honorKey}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
                                     <Col span={24} className="manufacturing--images">
-                                      <ImagesSwiper images={honorItem.certificate_photos} processKey={index + 1} />
+                                      <ImagesSwiper images={honorItem?.certificate_photos} processKey={index + 1} />
                                     </Col>
 
                                     <Col span={24}>
@@ -152,7 +152,7 @@ const Certificate = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { honorItem.certificate_name || '---' }
+                                          { honorItem?.certificate_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -164,7 +164,7 @@ const Certificate = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { honorItem.issued_by || '---' }
+                                          { honorItem?.issued_by || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -186,12 +186,12 @@ const Certificate = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row gutter={[0, 30]}>
-                            {Object.entries(certificates.certificate_center.patents.fields).map(([patentsKey, patentsItem], index) => {
+                            {Object.entries(certificates?.certificate_center?.patents?.fields).map(([patentsKey, patentsItem], index) => {
                               return (
                                 <Col key={`patents_${patentsKey}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
                                     <Col span={24} className="manufacturing--images">
-                                      <ImagesSwiper images={patentsItem.patent_photos} processKey={index + 1} />
+                                      <ImagesSwiper images={patentsItem?.patent_photos} processKey={index + 1} />
                                     </Col>
 
                                     <Col span={24}>
@@ -201,7 +201,7 @@ const Certificate = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { patentsItem.patent_name || '---' }
+                                          { patentsItem?.patent_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>

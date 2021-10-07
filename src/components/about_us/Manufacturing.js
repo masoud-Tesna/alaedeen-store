@@ -46,7 +46,7 @@ const Manufacturing = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=manufacturing`, 'manufacturing');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=manufacturing`, `about_store_${storeId}/manufacturing`);
   const { factories: manufacturing } = data || [];
 
   const query = useQueryString();
@@ -64,10 +64,10 @@ const Manufacturing = () => {
         "type": "fraction"
       }} navigation={false}>
 
-        { images.map((image, index) => {
+        { images?.map((image, index) => {
           return (
-            <SwiperSlide key={`process_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`process_img_${processKey}`}/>
+            <SwiperSlide key={`manufacturing_image_${index}`}>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`about_store_${storeId}/manufacturing_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
@@ -89,12 +89,12 @@ const Manufacturing = () => {
 
           {isLoading ?
             <>Loading...</> :
-            Object.entries(manufacturing.manufacturing_capability.parents.process.fields).map(([key, process], index) => {
+            Object.entries(manufacturing?.manufacturing_capability?.parents?.process?.fields).map(([key, process], index) => {
               return (
                 <SwiperSlide key={`swiper_process_${index}`}>
                   <Row className="manufacturing--info__content">
                     <Col span={24} className="manufacturing--images">
-                      <ImagesSwiper images={process.process_pictures} processKey={index + 1} />
+                      <ImagesSwiper images={process?.process_pictures} processKey={index + 1} />
                     </Col>
 
                     <Col span={24} className="mt-4 manufacturing--info__productionLine">
@@ -110,14 +110,14 @@ const Manufacturing = () => {
                             </Col>
 
                             <Col span={12} className="vv-font-size-1-4 text-47">
-                              { process.process_name || '---' }
+                              { process?.process_name || '---' }
                             </Col>
                           </Row>
                         </Col>
 
                         <Col span={24} className="manufacturing--info__desc py-4">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
-                          { process.process_describe || '' }
+                          { process?.process_describe || '' }
                         </Col>
                       </Row>
                     </Col>
@@ -130,7 +130,7 @@ const Manufacturing = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(manufacturing.manufacturing_capability.parents.equipment.fields).map(([key, equipment], index) => {
+                            {Object.entries(manufacturing?.manufacturing_capability?.parents?.equipment?.fields).map(([key, equipment], index) => {
                               return (
                                 <Col key={`equipment_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
@@ -141,7 +141,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_name || '---' }
+                                          { equipment?.equipment_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -153,7 +153,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_model || '---' }
+                                          { equipment?.equipment_model || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -165,7 +165,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_quantity || '---' }
+                                          { equipment?.equipment_quantity || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -186,7 +186,7 @@ const Manufacturing = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(manufacturing.manufacturing_capability.parents.production_line.fields).map(([key, production_line], index) => {
+                            {Object.entries(manufacturing?.manufacturing_capability?.parents?.production_line?.fields).map(([key, production_line], index) => {
                               return (
                                 <Col key={`productin_line_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
@@ -197,7 +197,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_line.production_line_name || '---' }
+                                          { production_line?.production_line_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -209,7 +209,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_line.supervisor_number || '---' }
+                                          { production_line?.supervisor_number || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -221,7 +221,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_line.number_of_operators || '---' }
+                                          { production_line?.number_of_operators || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -233,7 +233,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_line.qc_and_qa_number || '---' }
+                                          { production_line?.qc_and_qa_number || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -254,7 +254,7 @@ const Manufacturing = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(manufacturing.manufacturing_capability.fields).map(([key, fields], index) => {
+                            {Object.entries(manufacturing?.manufacturing_capability?.fields).map(([key, fields], index) => {
                               return (
                                 <Col key={`general_info_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
@@ -286,7 +286,7 @@ const Manufacturing = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(manufacturing.manufacturing_capability.parents.production_details.fields).map(([key, production_details], index) => {
+                            {Object.entries(manufacturing?.manufacturing_capability?.parents?.production_details?.fields).map(([key, production_details], index) => {
                               return (
                                 <Col key={`productin_line_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
@@ -297,7 +297,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_details.production_name || '---' }
+                                          { production_details?.production_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -309,7 +309,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_details.units_produced_previous_year || '---' }
+                                          { production_details?.units_produced_previous_year || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -321,7 +321,7 @@ const Manufacturing = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { production_details.highest_ever_annual_output || '---' }
+                                          { production_details?.highest_ever_annual_output || '---' }
                                         </Col>
                                       </Row>
                                     </Col>

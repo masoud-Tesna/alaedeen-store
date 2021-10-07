@@ -46,7 +46,7 @@ const RandDCapability = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=r_and_d_capability`, 'get_r_and_d_capability');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=r_and_d_capability`, `about_store_${storeId}/r_and_d_capability`);
   const { factories: capabilities } = data || [];
 
   const query = useQueryString();
@@ -64,10 +64,10 @@ const RandDCapability = () => {
         "type": "fraction"
       }} navigation={false}>
 
-        { images.map((image, index) => {
+        { images?.map((image, index) => {
           return (
-            <SwiperSlide key={`capabilities_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`capabilities_img_${processKey}`}/>
+            <SwiperSlide key={`r_and_d_capability_image_${index}`}>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`about_store_${storeId}/r_and_d_capability_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
@@ -89,12 +89,12 @@ const RandDCapability = () => {
 
           {isLoading ?
             <>Loading...</> :
-            Object.entries(capabilities.r_and_d_capability.process.fields).map(([key, capability], index) => {
+            Object.entries(capabilities?.r_and_d_capability?.process?.fields).map(([key, capability], index) => {
               return (
                 <SwiperSlide key={`swiper_process_${index}`}>
                   <Row className="manufacturing--info__content">
                     <Col span={24} className="manufacturing--images">
-                      <ImagesSwiper images={capability.process_pictures} processKey={index + 1} />
+                      <ImagesSwiper images={capability?.process_pictures} processKey={index + 1} />
                     </Col>
 
                     <Col span={24} className="mt-4 manufacturing--info__certificate">
@@ -114,7 +114,7 @@ const RandDCapability = () => {
                                     </Col>
 
                                     <Col span={12} className="vv-font-size-1-4 text-47">
-                                      { capability.process_name || '---' }
+                                      { capability?.process_name || '---' }
                                     </Col>
                                   </Row>
                                 </Col>
@@ -125,7 +125,7 @@ const RandDCapability = () => {
 
                         <Col span={24} className="manufacturing--info__desc py-4">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
-                          { capability.process_describe || '' }
+                          { capability?.process_describe || '' }
                         </Col>
                       </Row>
                     </Col>

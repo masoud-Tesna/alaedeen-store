@@ -46,7 +46,7 @@ const ExportCapability = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=export_capability`, 'export_capability');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=export_capability`, `about_store_${storeId}/export_capability`);
   const { factories: exportCapabilities } = data || [];
 
 
@@ -60,10 +60,10 @@ const ExportCapability = () => {
         "type": "fraction"
       }} navigation={false}>
 
-        { images.map((image, index) => {
+        { images?.map((image, index) => {
           return (
-            <SwiperSlide key={`customerCase_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`customerCase_img_${processKey}`}/>
+            <SwiperSlide key={`export_capability_image_${index}`}>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`about_store_${storeId}/export_capability_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
@@ -100,7 +100,7 @@ const ExportCapability = () => {
                               </Col>
 
                               <Col span={12} className="vv-font-size-1-4 text-47">
-                                { exportCapabilities.export_capability.fields.export_percentage || '---' }
+                                { exportCapabilities?.export_capability?.fields?.export_percentage || '---' }
                               </Col>
                             </Row>
                           </Col>
@@ -117,7 +117,7 @@ const ExportCapability = () => {
 
                               <Col span={24} className="vv-font-size-1-4 text-47">
                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                  {Object.entries(exportCapabilities.export_capability.fields.main_markets_and_distribution).map(([key, distribution], index) => {
+                                  {Object.entries(exportCapabilities?.export_capability?.fields?.main_markets_and_distribution).map(([key, distribution], index) => {
                                     return (
                                       <Col key={`distribution_${key}_${index}`}>
                                         { `${distribution.country} ${distribution.percent}` }
@@ -141,7 +141,7 @@ const ExportCapability = () => {
                               </Col>
 
                               <Col span={12} className="vv-font-size-1-4 text-47">
-                                { exportCapabilities.export_capability.fields.year_when_your_company_started_exporting || '---' }
+                                { exportCapabilities?.export_capability?.fields?.year_when_your_company_started_exporting || '---' }
                               </Col>
                             </Row>
                           </Col>
@@ -158,7 +158,7 @@ const ExportCapability = () => {
 
                               <Col span={24} className="vv-font-size-1-4 text-47">
                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                  {Object.entries(exportCapabilities.export_capability.fields.accepted_delivery_terms).map(([key, accepted_delivery_terms], index) => {
+                                  {Object.entries(exportCapabilities?.export_capability?.fields?.accepted_delivery_terms).map(([key, accepted_delivery_terms], index) => {
                                     return (
                                       <Col key={`distribution_${key}_${index}`}>
                                         { accepted_delivery_terms }
@@ -182,7 +182,7 @@ const ExportCapability = () => {
                               </Col>
 
                               <Col span={12} className="vv-font-size-1-4 text-47">
-                                { exportCapabilities.export_capability.fields.average_lead_time || '---' }
+                                { exportCapabilities?.export_capability?.fields?.average_lead_time || '---' }
                               </Col>
                             </Row>
                           </Col>
@@ -199,7 +199,7 @@ const ExportCapability = () => {
 
                               <Col span={24} className="vv-font-size-1-4 text-47">
                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                  {Object.entries(exportCapabilities.export_capability.fields.accepted_payment_currency).map(([key, accepted_payment_currency], index) => {
+                                  {Object.entries(exportCapabilities?.export_capability?.fields?.accepted_payment_currency).map(([key, accepted_payment_currency], index) => {
                                     return (
                                       <Col key={`distribution_${key}_${index}`}>
                                         { accepted_payment_currency }
@@ -224,7 +224,7 @@ const ExportCapability = () => {
 
                               <Col span={24} className="vv-font-size-1-4 text-47">
                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                  {Object.entries(exportCapabilities.export_capability.fields.language_spoken).map(([key, language_spoken], index) => {
+                                  {Object.entries(exportCapabilities?.export_capability?.fields?.language_spoken).map(([key, language_spoken], index) => {
                                     return (
                                       <Col key={`distribution_${key}_${index}`}>
                                         { language_spoken }
@@ -248,12 +248,12 @@ const ExportCapability = () => {
                   "type": "fraction"
                 }} navigation={false} className="manufacturing--swiper">
 
-                  { Object.entries(exportCapabilities.export_capability.parents.project_and_customer.fields).map(([key, customersCase], index) => {
+                  { Object.entries(exportCapabilities?.export_capability?.parents?.project_and_customer?.fields).map(([key, customersCase], index) => {
                     return (
                       <SwiperSlide key={`swiper_customerCase_${index}`}>
                         <Row className="manufacturing--info__content">
                           <Col span={24} className="manufacturing--images">
-                            <ImagesSwiper images={customersCase.cooperation_photos} processKey={index + 1} />
+                            <ImagesSwiper images={customersCase?.cooperation_photos} processKey={index + 1} />
                           </Col>
 
                           <Col span={24} className="mt-4 manufacturing--info__certificate">
@@ -273,7 +273,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { customersCase.project_and_customer_name || '---' }
+                                            { customersCase?.project_and_customer_name || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -285,7 +285,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { customersCase.customers_country_and_region || '---' }
+                                            { customersCase?.customers_country_and_region || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -297,7 +297,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { customersCase.products_you_supply_to_customer || '---' }
+                                            { customersCase?.products_you_supply_to_customer || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -309,7 +309,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            <Statistic value={ customersCase.annual_turnover || '---' } suffix="$" style={{ lineHeight: "13px" }} />
+                                            <Statistic value={ customersCase?.annual_turnover || '---' } suffix="$" style={{ lineHeight: "13px" }} />
                                           </Col>
                                         </Row>
                                       </Col>
@@ -333,12 +333,12 @@ const ExportCapability = () => {
                   "type": "fraction"
                 }} navigation={false} className="manufacturing--swiper">
 
-                  { Object.entries(exportCapabilities.export_capability.parents.company_overseas_office.fields).map(([key, overseasOffice], index) => {
+                  { Object.entries(exportCapabilities?.export_capability?.parents?.company_overseas_office?.fields).map(([key, overseasOffice], index) => {
                     return (
                       <SwiperSlide key={`swiper_customerCase_${index}`}>
                         <Row className="manufacturing--info__content">
                           <Col span={24} className="manufacturing--images">
-                            <ImagesSwiper images={overseasOffice.office_photos} processKey={index + 1} />
+                            <ImagesSwiper images={overseasOffice?.office_photos} processKey={index + 1} />
                           </Col>
 
                           <Col span={24} className="mt-4 manufacturing--info__certificate">
@@ -358,7 +358,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { overseasOffice.country_and_region || '---' }
+                                            { overseasOffice?.country_and_region || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -370,7 +370,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { overseasOffice.province_and_state_and_county || '---' }
+                                            { overseasOffice?.province_and_state_and_county || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -382,7 +382,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { overseasOffice.city || '---' }
+                                            { overseasOffice?.city || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -394,7 +394,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { overseasOffice.street_address || '---' }
+                                            { overseasOffice?.street_address || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -406,7 +406,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { `${overseasOffice.country_code}-${overseasOffice.phone_number}` }
+                                            { `${overseasOffice?.country_code}-${overseasOffice?.phone_number}` }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -418,7 +418,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            { overseasOffice.duties || '---' }
+                                            { overseasOffice?.duties || '---' }
                                           </Col>
                                         </Row>
                                       </Col>
@@ -430,7 +430,7 @@ const ExportCapability = () => {
                                           </Col>
 
                                           <Col span={12} className="vv-font-size-1-4 text-47">
-                                            <Statistic value={ overseasOffice.number_of_staff || '---' } style={{ lineHeight: "13px" }} />
+                                            <Statistic value={ overseasOffice?.number_of_staff || '---' } style={{ lineHeight: "13px" }} />
 
                                           </Col>
                                         </Row>

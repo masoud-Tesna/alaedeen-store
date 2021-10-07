@@ -46,7 +46,7 @@ const QualityControl = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=quality_control`, 'manufacturing');
+  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=quality_control`, `about_store_${storeId}/quality_control`);
   const { factories: QualityControls } = data || [];
 
   const query = useQueryString();
@@ -64,10 +64,10 @@ const QualityControl = () => {
         "type": "fraction"
       }} navigation={false}>
 
-        { images.map((image, index) => {
+        { images?.map((image, index) => {
           return (
             <SwiperSlide key={`QualityControls_image_${index}`}>
-              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`QualityControls_img_${processKey}`}/>
+              <ShowResponsiveImage imagePath={ image } imageFolder='profiles' width={width} height={width < 768 ? 233 : 433} object_id={index + 1}  object_type={`about_store_${storeId}/QualityControls_img_${processKey}`}/>
             </SwiperSlide>
           )
         }) }
@@ -89,12 +89,12 @@ const QualityControl = () => {
 
           {isLoading ?
             <>Loading...</> :
-            Object.entries(QualityControls.quality_control.process.fields).map(([key, QualityControl], index) => {
+            Object.entries(QualityControls?.quality_control?.process?.fields).map(([key, QualityControl], index) => {
               return (
                 <SwiperSlide key={`swiper_QualityControl_${index}`}>
                   <Row className="manufacturing--info__content">
                     <Col span={24} className="manufacturing--images">
-                      <ImagesSwiper images={QualityControl.process_pictures} processKey={index + 1} />
+                      <ImagesSwiper images={QualityControl?.process_pictures} processKey={index + 1} />
                     </Col>
 
                     <Col span={24} className="mt-4 manufacturing--info__QualityControl">
@@ -110,14 +110,14 @@ const QualityControl = () => {
                             </Col>
 
                             <Col span={12} className="vv-font-size-1-4 text-47">
-                              { QualityControl.process_name || '---' }
+                              { QualityControl?.process_name || '---' }
                             </Col>
                           </Row>
                         </Col>
 
                         <Col span={24} className="manufacturing--info__desc py-4">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
-                          { QualityControl.process_describe || '' }
+                          { QualityControl?.process_describe || '' }
                         </Col>
                       </Row>
                     </Col>
@@ -130,7 +130,7 @@ const QualityControl = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(QualityControls.quality_control.equipment.fields).map(([key, equipment], index) => {
+                            {Object.entries(QualityControls?.quality_control?.equipment?.fields).map(([key, equipment], index) => {
                               return (
                                 <Col key={`equipment_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
                                   <Row gutter={[0, 15]}>
@@ -141,7 +141,7 @@ const QualityControl = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_name || '---' }
+                                          { equipment?.equipment_name || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -153,7 +153,7 @@ const QualityControl = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_model || '---' }
+                                          { equipment?.equipment_model || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
@@ -165,7 +165,7 @@ const QualityControl = () => {
                                         </Col>
 
                                         <Col span={12} className="vv-font-size-1-4 text-47">
-                                          { equipment.equipment_quantity || '---' }
+                                          { equipment?.equipment_quantity || '---' }
                                         </Col>
                                       </Row>
                                     </Col>
