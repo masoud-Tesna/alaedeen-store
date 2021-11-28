@@ -51,7 +51,7 @@ const ExportCapability = () => {
 
 
   useEffect(() => {
-    document.getElementById('HornStoreApp').scrollIntoView()
+    document.getElementById('AlaedeenStoreApp').scrollIntoView()
   }, []);
 
   const ImagesSwiper = ({ images, processKey }) => {

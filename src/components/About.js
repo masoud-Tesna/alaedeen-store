@@ -37,7 +37,7 @@ const About = () => {
   const { factories: aboutStores } = data || [];
 
   useEffect(() => {
-    document.getElementById('HornStoreApp').scrollIntoView()
+    document.getElementById('AlaedeenStoreApp').scrollIntoView()
   }, []);
 
   if (isLoaded) {
