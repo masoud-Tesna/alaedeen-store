@@ -8,18 +8,13 @@ import axios from "axios";
 
 import { useGetConfig } from "../contexts/config/ConfigContext";
 
-export function useGetApi (mode, params, useQueryKey) {
+export function useGetApi(mode, params, key, options) {
 
-  // get initial config:
+  // get initial config from context:
   const { config } = useGetConfig();
 
-  let useQueryKeyClone,
-      url;
-
-  if (config.language) {
-    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
-    useQueryKeyClone = `${useQueryKey}_${config.language}`;
-  }
+  const url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
+  const queryKey = `${key}_${config.language}`;
 
 
   // async function for get API:
@@ -28,12 +23,12 @@ export function useGetApi (mode, params, useQueryKey) {
     return data;
   }
 
-  return useQuery(['getApi', useQueryKeyClone], getApi, {
-    enabled: !!config.language,
+  return useQuery(['getApi', queryKey], getApi, {
+    ...options
   });
 }
 
-export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
+export function useResizeImage(image_path, image_folder, image_width, image_height, useQueryKey) {
 
   // async function for get API:
   const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
@@ -81,7 +76,7 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
   return { image, load, error }*/
 }
 
-export function useWindowSize () {
+export function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
@@ -112,7 +107,6 @@ export function useWindowSize () {
   return windowSize;
 }
 
-export function useQueryString () {
+export function useQueryString() {
   return new URLSearchParams(useLocation().search);
 }
-

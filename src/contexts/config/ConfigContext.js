@@ -6,7 +6,7 @@ import { ConfigReducer } from './ConfigReducer';
 // import Config initial state:
 import { ConfigInitialState } from './ConfigInitialState';
 
-import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeLanguageAction, changeClientLanguageAction, changeCurrencyAction } from './ConfigActionCreators';
+import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
 import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
@@ -39,24 +39,6 @@ function ConfigProvider({ children }) {
       configDispatch(changeClientLanguageAction(data?.client_language));
     }
   });
-
-  useEffect(() => {
-    // get language from local storage in client browser:
-    const clientLangLocalStorage = window.localStorage.getItem('lang_code');
-
-    // get currency from local storage in client browser:
-    const clientCurrencyLocalStorage = window.localStorage.getItem('client_currency');
-
-    // if language client isset: language app isset from local storage
-    if (clientLangLocalStorage) {
-      configDispatch(changeLanguageAction(clientLangLocalStorage));
-    }
-
-    // if currency client isset: currency app isset from local storage
-    if (clientLangLocalStorage) {
-      configDispatch(changeCurrencyAction(clientCurrencyLocalStorage));
-    }
-  }, [])
 
   return (
     <configContext.Provider value={{ config, configDispatch }}>
