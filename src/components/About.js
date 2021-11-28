@@ -33,7 +33,7 @@ const About = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}`, `about_store_${storeId}`);
+  const { isLoading, data } = useGetApi(`factories-api`, `store_id=${storeId}`, `about_store_${storeId}`);
   const { factories: aboutStores } = data || [];
 
   useEffect(() => {

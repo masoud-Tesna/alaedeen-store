@@ -46,7 +46,7 @@ const Manufacturing = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=manufacturing`, `about_store_${storeId}/manufacturing`);
+  const { isLoading, data } = useGetApi(`factories-api`, `store_id=${storeId}&field=manufacturing`, `about_store_${storeId}/manufacturing`);
   const { factories: manufacturing } = data || [];
 
   const query = useQueryString();

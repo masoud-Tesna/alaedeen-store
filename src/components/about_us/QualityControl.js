@@ -46,7 +46,7 @@ const QualityControl = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=quality_control`, `about_store_${storeId}/quality_control`);
+  const { isLoading, data } = useGetApi(`factories-api`, `store_id=${storeId}&field=quality_control`, `about_store_${storeId}/quality_control`);
   const { factories: QualityControls } = data || [];
 
   const query = useQueryString();

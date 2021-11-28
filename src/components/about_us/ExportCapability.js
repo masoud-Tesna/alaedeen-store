@@ -46,7 +46,7 @@ const ExportCapability = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=export_capability`, `about_store_${storeId}/export_capability`);
+  const { isLoading, data } = useGetApi(`factories-api`, `store_id=${storeId}&field=export_capability`, `about_store_${storeId}/export_capability`);
   const { factories: exportCapabilities } = data || [];
 
 

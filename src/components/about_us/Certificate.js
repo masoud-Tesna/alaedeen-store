@@ -46,7 +46,7 @@ const Certificate = () => {
 
   const { isLoaded } = useSetLoaded();
 
-  const { isLoading, data } = useGetApi(`factories-api`, `company_id=${storeId}&field=certificate`, `about_store_${storeId}/certificate`);
+  const { isLoading, data } = useGetApi(`factories-api`, `store_id=${storeId}&field=certificate`, `about_store_${storeId}/certificate`);
   const { factories: certificates } = data || [];
 
   const query = useQueryString();
