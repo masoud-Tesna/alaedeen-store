@@ -1,22 +1,18 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export function fn_stripHtml (strip) {
+export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
 }
 
-export function __ (world, prefix = "", sign = ".") {
+export function __(world, prefix = "", sign = ".") {
 
   let returnWord = world;
 
   returnWord = returnWord.toString().trim().toLowerCase()
-    .replaceAll("    ", "_")
-    .replaceAll("   ", "_")
-    .replaceAll("  ", "_")
-    .replaceAll(" ", "_")
-    .replaceAll(" / ", "_and_")
-    .replaceAll("/", "_and_")
+    .replaceAll(" / ", "_or_")
+    .replaceAll("/", "_or_")
     .replaceAll(" & ", "_and_")
     .replaceAll("&", "_and_")
     .replaceAll("(", "")
@@ -24,10 +20,15 @@ export function __ (world, prefix = "", sign = ".") {
     .replaceAll("?", "")
     .replaceAll("!", "")
     .replaceAll(".", "")
+    .replaceAll("'", "")
     .replaceAll(",", "")
     .replaceAll("’", "")
     .replaceAll("²", "")
     .replaceAll("%", "")
+    .replaceAll("    ", "_")
+    .replaceAll("   ", "_")
+    .replaceAll("  ", "_")
+    .replaceAll(" ", "_")
     .replaceAll(" - ", "_")
     .replaceAll("-", "_");
 
