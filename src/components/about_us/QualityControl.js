@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 
 // import style file:
-import '../styles/Manufacturing.less';
+import '../styles/AboutComponents.less';
 
 // import custom hooks and helper functions:
 import { useGetApi, useQueryString, useWindowSize } from "../../functions";
 import { __, useSetLoaded } from "../../functions/Helper";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
-import "swiper/components/pagination/pagination.min.css";
+import "swiper/modules/pagination/pagination.min.css";
+import "swiper/modules/navigation/navigation.less";
 
 // import Swiper core and required modules
-import SwiperCore, { Pagination,Navigation } from 'swiper/core';
+import SwiperCore, { Pagination,Navigation } from 'swiper';
 
 // import Ant Design Components:
 import { Col, Row } from "antd";
@@ -60,9 +61,13 @@ const QualityControl = () => {
 
   const ImagesSwiper = ({ images, processKey }) => {
     return(
-      <Swiper pagination={{
-        "type": "fraction"
-      }} navigation={false}>
+      <Swiper
+        pagination={{
+          "clickable": true,
+          "type": "fraction"
+        }}
+        navigation={ width >= 992 }
+      >
 
         { images?.map((image, index) => {
           return (
@@ -83,9 +88,15 @@ const QualityControl = () => {
   return (
     <Row className="vh-100 manufacturing--container">
       <Col span={24}>
-        <Swiper pagination={{
-          "type": "fraction"
-        }} navigation={false} initialSlide={ initialSlide } className="manufacturing--swiper">
+        <Swiper
+          pagination={{
+            "clickable": true,
+            "type": "fraction"
+          }}
+          navigation={false}
+          initialSlide={ initialSlide }
+          className="manufacturing--swiper"
+        >
 
           {isLoading ?
             <>Loading...</> :

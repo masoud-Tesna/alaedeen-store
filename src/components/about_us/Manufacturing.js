@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 
 // import style file:
-import '../styles/Manufacturing.less';
+import '../styles/AboutComponents.less';
 
 // import custom hooks and helper functions:
 import { useGetApi, useQueryString, useWindowSize } from "../../functions";
 import { __, useSetLoaded } from "../../functions/Helper";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 // Import Swiper styles
-import "swiper/swiper.min.css";
-import "swiper/components/pagination/pagination.min.css";
+import "swiper/swiper.less";
+import "swiper/modules/pagination/pagination.less";
+import "swiper/modules/navigation/navigation.less";
 
 // import Swiper core and required modules
-import SwiperCore, { Pagination,Navigation } from 'swiper/core';
+import SwiperCore, { Pagination, Navigation } from 'swiper';
 
 // import Ant Design Components:
 import { Col, Row } from "antd";
@@ -33,7 +34,7 @@ import LoadSpinner from "../../layouts/blocks/static_templates/LoadSpinner";
 import ShowResponsiveImage from "../../layouts/common/ShowResponsiveImage";
 
 // install Swiper modules
-SwiperCore.use([Pagination,Navigation]);
+SwiperCore.use([Pagination, Navigation]);
 
 const Manufacturing = () => {
 
@@ -60,9 +61,13 @@ const Manufacturing = () => {
 
   const ImagesSwiper = ({ images, processKey }) => {
     return(
-      <Swiper pagination={{
-        "type": "fraction"
-      }} navigation={false}>
+      <Swiper
+        pagination={{
+          "clickable": true,
+          "type": "fraction"
+        }}
+        navigation={ width >= 992 }
+      >
 
         { images?.map((image, index) => {
           return (
@@ -83,15 +88,21 @@ const Manufacturing = () => {
   return (
     <Row className="vh-100 manufacturing--container">
       <Col span={24}>
-        <Swiper pagination={{
-          "type": "fraction"
-        }} navigation={false} initialSlide={ initialSlide } className="manufacturing--swiper">
+        <Swiper
+          pagination={{
+            "clickable": true,
+            "type": "fraction"
+          }}
+          navigation={false}
+          initialSlide={ initialSlide }
+          className="manufacturing--swiper"
+        >
 
           {isLoading ?
             <>Loading...</> :
             Object.entries(manufacturing?.manufacturing_capability?.parents?.process?.fields).map(([key, process], index) => {
               return (
-                <SwiperSlide key={`swiper_process_${index}`}>
+                <SwiperSlide key={`swiper_process_${index}_${key}`}>
                   <Row className="manufacturing--info__content">
                     <Col span={24} className="manufacturing--images">
                       <ImagesSwiper images={process?.process_pictures} processKey={index + 1} />

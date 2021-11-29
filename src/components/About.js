@@ -84,7 +84,7 @@ const About = () => {
             { t(__('Component Overview')) }
           </Col>
           <Col span={24} className="mt-3 about--componentOverview__tableSection">
-            <Row className="row-cols-2 row-cols-md-4 " gutter={[16, 30]}>
+            <Row className="row-cols-2 row-cols-md-4 " gutter={16}>
               {isLoading ?
                 <>Loading...</> :
                 aboutStores?.general?.business_type?.length !== 0 &&

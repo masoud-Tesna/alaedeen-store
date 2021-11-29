@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 
 // import style file:
-import '../styles/Manufacturing.less';
+import '../styles/AboutComponents.less';
 
 // import custom hooks and helper functions:
 import { useGetApi, useWindowSize } from "../../functions";
 import { __, useSetLoaded } from "../../functions/Helper";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
-import "swiper/components/pagination/pagination.min.css";
+import "swiper/modules/pagination/pagination.min.css";
+import "swiper/modules/navigation/navigation.less";
 
 // import Swiper core and required modules
-import SwiperCore, { Pagination,Navigation } from 'swiper/core';
+import SwiperCore, { Pagination,Navigation } from 'swiper';
 
 // import Ant Design Components:
 import { Col, Row, Statistic } from "antd";
@@ -56,9 +57,13 @@ const ExportCapability = () => {
 
   const ImagesSwiper = ({ images, processKey }) => {
     return(
-      <Swiper pagination={{
-        "type": "fraction"
-      }} navigation={false}>
+      <Swiper
+        pagination={{
+          "clickable": true,
+          "type": "fraction"
+        }}
+        navigation={ width >= 992 }
+      >
 
         { images?.map((image, index) => {
           return (
@@ -244,9 +249,14 @@ const ExportCapability = () => {
               </Col>
 
               <Col span={24} className="mt-2 shadow-bottom mb-4 customerCase--container">
-                <Swiper pagination={{
-                  "type": "fraction"
-                }} navigation={false} className="manufacturing--swiper">
+                <Swiper
+                  pagination={{
+                    "clickable": true,
+                    "type": "fraction"
+                  }}
+                  navigation={false}
+                  className="manufacturing--swiper"
+                >
 
                   { Object.entries(exportCapabilities?.export_capability?.parents?.project_and_customer?.fields).map(([key, customersCase], index) => {
                     return (
@@ -329,9 +339,14 @@ const ExportCapability = () => {
               </Col>
 
               <Col span={24} className="mt-2 shadow-bottom mb-5  overseasOffice--container">
-                <Swiper pagination={{
-                  "type": "fraction"
-                }} navigation={false} className="manufacturing--swiper">
+                <Swiper
+                  pagination={{
+                    "clickable": true,
+                    "type": "fraction"
+                  }}
+                  navigation={false}
+                  className="manufacturing--swiper"
+                >
 
                   { Object.entries(exportCapabilities?.export_capability?.parents?.company_overseas_office?.fields).map(([key, overseasOffice], index) => {
                     return (
