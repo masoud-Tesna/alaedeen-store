@@ -108,7 +108,7 @@ const Certificate = () => {
                       <ImagesSwiper images={certification?.certificate_photos} processKey={index + 1} />
                     </Col>
 
-                    <Col span={24} className="mt-4 manufacturing--info__certificate">
+                    <Col span={24} className="mt-4 manufacturing--info__certificate shadow-bottom">
                       <Row>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title py-4">
                           { t(__('Certification')) }
@@ -116,8 +116,8 @@ const Certificate = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                              <Row gutter={[0, 15]}>
+                            <Col span={24} className="padding-y manufacturing--info__processNameContent">
+                              <Row>
                                 {Object.entries(certification).filter(([certificateKey]) => certificateKey !== 'certificate_photos').map(([certificateKey, certificateItem], index) => {
                                   return (
                                     <Col key={`certificate_${certificateKey}_${index}`} span={24}>
@@ -140,7 +140,7 @@ const Certificate = () => {
                       </Row>
                     </Col>
 
-                    <Col span={24} className="mt-5 manufacturing--info__honorAndAwardCertifications">
+                    <Col span={24} className="mt-5 manufacturing--info__honorAndAwardCertifications shadow-bottom">
                       <Row gutter={[0, 20]}>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title">
                           { t(__('honor_and_award_certifications')) }
@@ -150,9 +150,9 @@ const Certificate = () => {
                           <Row gutter={[0, 30]}>
                             {Object.entries(certificates?.certificate_center?.honor_and_award_certifications?.fields).map(([honorKey, honorItem], index) => {
                               return (
-                                <Col key={`honor_and_award_certifications_${honorKey}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
-                                    <Col span={24} className="manufacturing--images">
+                                <Col key={`honor_and_award_certifications_${honorKey}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
+                                    <Col span={24} className="manufacturing--images px-0">
                                       <ImagesSwiper images={honorItem?.certificate_photos} processKey={index + 1} />
                                     </Col>
 
@@ -199,9 +199,9 @@ const Certificate = () => {
                           <Row gutter={[0, 30]}>
                             {Object.entries(certificates?.certificate_center?.patents?.fields).map(([patentsKey, patentsItem], index) => {
                               return (
-                                <Col key={`patents_${patentsKey}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
-                                    <Col span={24} className="manufacturing--images">
+                                <Col key={`patents_${patentsKey}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
+                                    <Col span={24} className="manufacturing--images px-0">
                                       <ImagesSwiper images={patentsItem?.patent_photos} processKey={index + 1} />
                                     </Col>
 

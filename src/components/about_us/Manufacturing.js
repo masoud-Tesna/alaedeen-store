@@ -108,13 +108,13 @@ const Manufacturing = () => {
                       <ImagesSwiper images={process?.process_pictures} processKey={index + 1} />
                     </Col>
 
-                    <Col span={24} className="mt-4 manufacturing--info__productionLine">
+                    <Col span={24} className="mt-4 shadow-bottom manufacturing--info__productionLine">
                       <Row>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title py-4">
                           { t(__('production line')) }
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__processName py-4 bg-f6">
+                        <Col span={24} className="manufacturing--info__processName productionLine bg-white">
                           <Row>
                             <Col span={12} className="vv-font-size-1-4 text-92">
                               { t(__('Process name')) }
@@ -126,14 +126,14 @@ const Manufacturing = () => {
                           </Row>
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__desc py-4">
+                        <Col span={24} className="manufacturing--info__desc productionLine">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
                           { process?.process_describe || '' }
                         </Col>
                       </Row>
                     </Col>
 
-                    <Col span={24} className="mt-5 manufacturing--info__productionEquipment">
+                    <Col span={24} className="mt-5 shadow-bottom manufacturing--info__productionEquipment">
                       <Row gutter={[0, 20]}>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title">
                           { t(__('production equipment')) }
@@ -143,8 +143,8 @@ const Manufacturing = () => {
                           <Row>
                             {Object.entries(manufacturing?.manufacturing_capability?.parents?.equipment?.fields).map(([key, equipment], index) => {
                               return (
-                                <Col key={`equipment_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
+                                <Col key={`equipment_${key}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
                                     <Col span={24}>
                                       <Row>
                                         <Col span={12} className="vv-font-size-1-4 text-92">
@@ -189,7 +189,7 @@ const Manufacturing = () => {
                       </Row>
                     </Col>
 
-                    <Col span={24} className="mt-5 manufacturing--info__productionLine">
+                    <Col span={24} className="mt-5 shadow-bottom manufacturing--info__productionLine">
                       <Row gutter={[0, 20]}>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title">
                           { t(__('production line')) }
@@ -199,8 +199,8 @@ const Manufacturing = () => {
                           <Row>
                             {Object.entries(manufacturing?.manufacturing_capability?.parents?.production_line?.fields).map(([key, production_line], index) => {
                               return (
-                                <Col key={`productin_line_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
+                                <Col key={`productin_line_${key}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
                                     <Col span={24}>
                                       <Row>
                                         <Col span={12} className="vv-font-size-1-4 text-92">
@@ -257,7 +257,7 @@ const Manufacturing = () => {
                       </Row>
                     </Col>
 
-                    <Col span={24} className="mt-5 manufacturing--info__fields">
+                    <Col span={24} className="mt-5 shadow-bottom manufacturing--info__fields">
                       <Row gutter={[0, 20]}>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title">
                           { t(__('General information')) }
@@ -265,11 +265,11 @@ const Manufacturing = () => {
 
                         <Col span={24} className="manufacturing--info__processName px-0">
                           <Row>
-                            {Object.entries(manufacturing?.manufacturing_capability?.fields).map(([key, fields], index) => {
-                              return (
-                                <Col key={`general_info_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
-                                    <Col span={24}>
+                            <Col span={24} className="padding-y manufacturing--info__processNameContent">
+                              <Row>
+                                {Object.entries(manufacturing?.manufacturing_capability?.fields).map(([key, fields], index) => {
+                                  return (
+                                    <Col key={`general_info_${key}_${index}`} span={24}>
                                       <Row>
                                         <Col span={12} className="vv-font-size-1-4 text-92">
                                           { t(__(key)) }
@@ -280,10 +280,10 @@ const Manufacturing = () => {
                                         </Col>
                                       </Row>
                                     </Col>
-                                  </Row>
-                                </Col>
-                              )
-                            })}
+                                  )
+                                })}
+                              </Row>
+                            </Col>
                           </Row>
                         </Col>
                       </Row>
@@ -299,8 +299,8 @@ const Manufacturing = () => {
                           <Row>
                             {Object.entries(manufacturing?.manufacturing_capability?.parents?.production_details?.fields).map(([key, production_details], index) => {
                               return (
-                                <Col key={`productin_line_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
+                                <Col key={`productin_line_${key}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
                                     <Col span={24}>
                                       <Row>
                                         <Col span={12} className="vv-font-size-1-4 text-92">

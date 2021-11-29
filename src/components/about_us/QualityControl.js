@@ -108,13 +108,13 @@ const QualityControl = () => {
                       <ImagesSwiper images={QualityControl?.process_pictures} processKey={index + 1} />
                     </Col>
 
-                    <Col span={24} className="mt-4 manufacturing--info__QualityControl">
+                    <Col span={24} className="mt-4 shadow-bottom manufacturing--info__QualityControl">
                       <Row>
                         <Col span={24} className="vv-font-size-2 font-weight-bold text-47 manufacturing--info__title py-4">
                           { t(__('Quality control process')) }
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__processName py-4 bg-f6">
+                        <Col span={24} className="manufacturing--info__processName productionLine bg-white">
                           <Row>
                             <Col span={12} className="vv-font-size-1-4 text-92">
                               { t(__('Process name')) }
@@ -126,7 +126,7 @@ const QualityControl = () => {
                           </Row>
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__desc py-4">
+                        <Col span={24} className="manufacturing--info__desc productionLine py-4">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
                           { QualityControl?.process_describe || '' }
                         </Col>
@@ -143,8 +143,8 @@ const QualityControl = () => {
                           <Row>
                             {Object.entries(QualityControls?.quality_control?.equipment?.fields).map(([key, equipment], index) => {
                               return (
-                                <Col key={`equipment_${key}_${index}`} span={24} className="py-4 manufacturing--info__processNameContent">
-                                  <Row gutter={[0, 15]}>
+                                <Col key={`equipment_${key}_${index}`} span={24} className="padding-y manufacturing--info__processNameContent">
+                                  <Row>
                                     <Col span={24}>
                                       <Row>
                                         <Col span={12} className="vv-font-size-1-4 text-92">

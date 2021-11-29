@@ -53,24 +53,39 @@
       }
     }
 
-    .manufacturing--info__desc,
-    .manufacturing--info__title,
-    .manufacturing--info__processName {
+
+    .manufacturing--info__title {
       padding: 0 15px;
       @media (min-width: @screen-md) {
         padding: 0 3rem;
       }
     }
 
+    .manufacturing--info__processName.productionLine,
+    .manufacturing--info__desc.productionLine {
+      padding: 2rem 15px;
+      @media (min-width: @screen-md) {
+        padding: 2rem 3rem;
+      }
+    }
+
     .manufacturing--info__processName {
       .manufacturing--info__processNameContent {
-        padding: 0 15px;
-        @media (min-width: @screen-md) {
-          padding: 0 3rem;
+        &.padding-y {
+          &:not(:last-child) {
+            padding-bottom: 3rem;
+          }
         }
 
-        &:nth-child(odd) {
-          background-color: #F6F6F6;
+        >.ant-row > .ant-col {
+          padding: 2rem 15px;
+          @media (min-width: @screen-md) {
+            padding: 2rem 3rem;
+          }
+
+          &:nth-child(odd) {
+            background-color: #FFFFFF;
+          }
         }
       }
     }

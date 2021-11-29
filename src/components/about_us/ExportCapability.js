@@ -96,8 +96,8 @@ const ExportCapability = () => {
                 <Row gutter={[0, 20]}>
                   <Col span={24} className="manufacturing--info__processName px-0">
                     <Row>
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
+                      <Col span={24} className="padding-y manufacturing--info__processNameContent">
+                        <Row>
                           <Col span={24}>
                             <Row>
                               <Col span={12} className="vv-font-size-1-4 text-92">
@@ -109,11 +109,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="vv-font-size-1-4 text-92">
@@ -134,11 +130,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row>
                               <Col span={12} className="vv-font-size-1-4 text-92">
@@ -150,11 +142,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="vv-font-size-1-4 text-92">
@@ -175,11 +163,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row>
                               <Col span={12} className="vv-font-size-1-4 text-92">
@@ -191,11 +175,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="vv-font-size-1-4 text-92">
@@ -216,11 +196,7 @@ const ExportCapability = () => {
                               </Col>
                             </Row>
                           </Col>
-                        </Row>
-                      </Col>
 
-                      <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                        <Row gutter={[0, 15]}>
                           <Col span={24}>
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="vv-font-size-1-4 text-92">
@@ -248,7 +224,7 @@ const ExportCapability = () => {
                 </Row>
               </Col>
 
-              <Col span={24} className="mt-2 shadow-bottom mb-4 customerCase--container">
+              <Col span={24} className="mt-2 shadow-bottom mb-4 bg-f6 customerCase--container">
                 <Swiper
                   pagination={{
                     "clickable": true,
@@ -274,8 +250,8 @@ const ExportCapability = () => {
 
                               <Col span={24} className="manufacturing--info__processName px-0">
                                 <Row>
-                                  <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                                    <Row gutter={[0, 15]}>
+                                  <Col span={24} className="padding-y manufacturing--info__processNameContent">
+                                    <Row>
                                       <Col span={24}>
                                         <Row>
                                           <Col span={12} className="vv-font-size-1-4 text-92">
@@ -338,7 +314,7 @@ const ExportCapability = () => {
                 </Swiper>
               </Col>
 
-              <Col span={24} className="mt-2 shadow-bottom mb-5  overseasOffice--container">
+              <Col span={24} className="mt-2 mb-5 bg-f6 overseasOffice--container">
                 <Swiper
                   pagination={{
                     "clickable": true,
@@ -365,7 +341,7 @@ const ExportCapability = () => {
                               <Col span={24} className="manufacturing--info__processName px-0">
                                 <Row>
                                   <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                                    <Row gutter={[0, 15]}>
+                                    <Row>
                                       <Col span={24}>
                                         <Row>
                                           <Col span={12} className="vv-font-size-1-4 text-92">

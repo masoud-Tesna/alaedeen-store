@@ -114,27 +114,19 @@ const RandDCapability = () => {
                           { t(__('r_and_d_capability')) }
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__processName px-0">
+                        <Col span={24} className="manufacturing--info__processName productionLine bg-white">
                           <Row>
-                            <Col span={24} className="py-4 manufacturing--info__processNameContent">
-                              <Row gutter={[0, 15]}>
-                                <Col span={24}>
-                                  <Row>
-                                    <Col span={12} className="vv-font-size-1-4 text-92">
-                                      { t(__("process_name")) }
-                                    </Col>
+                            <Col span={12} className="vv-font-size-1-4 text-92">
+                              { t(__("process_name")) }
+                            </Col>
 
-                                    <Col span={12} className="vv-font-size-1-4 text-47">
-                                      { capability?.process_name || '---' }
-                                    </Col>
-                                  </Row>
-                                </Col>
-                              </Row>
+                            <Col span={12} className="vv-font-size-1-4 text-47">
+                              { capability?.process_name || '---' }
                             </Col>
                           </Row>
                         </Col>
 
-                        <Col span={24} className="manufacturing--info__desc py-4">
+                        <Col span={24} className="manufacturing--info__desc productionLine py-4">
                           <span className="d-block vv-font-size-1-4 text-92 mb-3">{ t(__('Process describe')) }</span>
                           { capability?.process_describe || '' }
                         </Col>

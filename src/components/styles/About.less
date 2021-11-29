@@ -14,7 +14,6 @@ html:lang(ar) {
     padding: 0 3rem 3rem;
   }
 
-
   .about--aboutUs__section,
   .about--manufacturingCapability__section,
   .about--certificates__section {
@@ -83,6 +82,32 @@ html:lang(ar) {
       position: absolute;
       bottom: 0;
       z-index: 12;
+    }
+  }
+
+  .about--componentOverview__section {
+    .about--componentOverview__tableSection {
+      .ant-col {
+        padding: 2rem 0;
+        &:nth-child(4n+3),
+        &:nth-child(4n+4) {
+          background-color: #FFFFFF;
+        }
+
+        @media (min-width: @screen-md) {
+          &:nth-child(4n+3),
+          &:nth-child(4n+4) {
+            background-color: unset;
+          }
+
+          &:nth-child(8n+5),
+          &:nth-child(8n+6),
+          &:nth-child(8n+7),
+          &:nth-child(8n+8) {
+            background-color: #FFFFFF;
+          }
+        }
+      }
     }
   }
 
