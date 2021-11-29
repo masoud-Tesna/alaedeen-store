@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // import style file:
 import './styles/PopUpSignIn.less';
 
@@ -15,8 +17,12 @@ import googlePic from '../../../assets/images/google.png';
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import { signInAction, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from "../../../contexts/user/UserContext";
+import { signInLoadingFalseAction } from "../../../contexts/user/UserActionCreators";
 
 const PopUpSignIn = () => {
+
+  // initial State for Error Handle:
+  const [signInIncorrect, setSignInIncorrect] = useState(null);
 
   // get initial config:
   const { config } = useGetConfig();
@@ -26,42 +32,67 @@ const PopUpSignIn = () => {
   //initial state and dispatch for auth context:
   const { AuthDispatch } = useDispatchAuthState();
 
-  const onFinish = values => {
+  const signInHandle = values => {
 
     AuthDispatch(checkSignInLoadingAction());
+
     signIn(values.user_login, values.password, config.language)
       .then(res => {
-        if (values.remember_me) {
-          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
-          AuthDispatch(checkRememberAction(values.user_login, values.password));
-        }else {
-          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
+        if (res?.data === 'email_incorrect') {
+          setSignInIncorrect('email_incorrect');
+          AuthDispatch(signInLoadingFalseAction());
+        }
+        else if (res?.data === 'password_incorrect') {
+          setSignInIncorrect('password_incorrect');
+          AuthDispatch(signInLoadingFalseAction());
+        }
+        else if (res?.data?.auth?.status) {
+          if (values.remember_me) {
+            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
+            AuthDispatch(checkRememberAction(values.user_login, values.password));
+          }else {
+            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
+          }
         }
       });
 
   }
+
+  // handle sign in error:
+  const formEmailItemValidateStatus = signInIncorrect === 'email_incorrect' && { validateStatus : 'error' };
+  const formEmailItemValidateStatusMsg = signInIncorrect === 'email_incorrect' && { help : t(__('sign in email incorrect msg')) };
+
+  const formPasswordItemValidateStatus = signInIncorrect === 'password_incorrect' && { validateStatus : 'error' };
+  const formPasswordItemValidateStatusMsg = signInIncorrect === 'password_incorrect' && { help : t(__('sign in password incorrect msg')) };
 
   return (
     <Row justify={"center"} className="signIn--container h-100">
       <Col span={24} className="signIn--content bg-white p-5">
         <Form
           className="h-100 signIn--formContent"
-          name="request-form"
-          onFinish={onFinish}
+          name="signIn-form"
+          onFinish={signInHandle}
         >
           <Row gutter={{ xs: 0, lg: 32 }}>
             <Col xs={24} lg={12} className="mb-4 mb-lg-0 signIn--loginContent">
               <Row className="h-100" align="middle">
                 <Col span={24}>
                   <Form.Item
+                    {...formEmailItemValidateStatus}
+                    {...formEmailItemValidateStatusMsg}
                     name="user_login"
                     className="signIn--formContent__userLogin"
                     rules={[
                       {
-                        required: true,
-                        type: 'email',
+                        type: "email",
+                        message: t(__("The input is not valid E-mail"))
                       },
-                    ]}>
+                      {
+                        required: true,
+                        message: t(__("Please enter your account E-mail"))
+                      }
+                    ]}
+                  >
                     <Input
                       placeholder={ t(__('E-mail address')) }
                       bordered={false}
@@ -72,13 +103,17 @@ const PopUpSignIn = () => {
 
                 <Col span={24}>
                   <Form.Item
+                    {...formPasswordItemValidateStatus}
+                    {...formPasswordItemValidateStatusMsg}
                     name="password"
                     className="signIn--formContent__password"
                     rules={[
                       {
                         required: true,
+                        message: t(__("Please enter your account Password"))
                       },
-                    ]}>
+                    ]}
+                  >
                     <Input.Password
                       placeholder={ t(__('password')) }
                       bordered={false}
@@ -110,7 +145,7 @@ const PopUpSignIn = () => {
                         name="remember_me"
                         valuePropName="checked"
                       >
-                        <a href="https://alaedeen.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) } ?</a>
+                        <a href="https://alaedeen.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) }</a>
                       </Form.Item>
                     </Col>
                   </Row>
@@ -143,8 +178,8 @@ const PopUpSignIn = () => {
                 </Col>
 
                 <Col span={24} className="dontHaveAccountContainer">
-                  <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) } ?</span>
-                  <a href="https://alaedeen.com/horn/register/" className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</a>
+                  <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) }</span>
+                  <a href="https://alaedeen.com/register" className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</a>
                 </Col>
               </Row>
             </Col>
