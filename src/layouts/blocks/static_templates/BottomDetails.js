@@ -18,6 +18,25 @@ const BottomDetails = () => {
   // Get Location pathName:
   const pathName = useParsPathName();
 
+  const StickyButton = ({ buttonIcon, buttonIconColor, buttonName, buttonNameColor, buttonLink, buttonExtra }) => {
+    return (
+      <Col className={ `m-0 p-0 bottomDetails--mobile__item ${ buttonExtra || '' }` } span={8}>
+        <Link className="d-block" to={ buttonLink }>
+          <Row justify={"center"}>
+            <Col className="m-0 p-0">
+              <Row className="m-0 p-0">
+                <Col className="m-0 p-0 text-center" span={24}>
+                  <i className={ `${ buttonIcon } ${ buttonIconColor } vv-font-size-3 font-weight-500` } />
+                </Col>
+                <Col className={ `m-0 p-0 text-center vv-font-size-1-8 ${buttonNameColor} StickyButtons__item--name` } span={24}>{ buttonName }</Col>
+              </Row>
+            </Col>
+          </Row>
+        </Link>
+      </Col>
+    );
+  }
+
   if (pathName === 'chat' || pathName === 'all-categories') return <></>;
 
   return (
@@ -25,7 +44,7 @@ const BottomDetails = () => {
       { width >= 768 ? /*for Desktop*/
         <div className="shadow bottomDetails--content__desktop">
           <Row gutter={[0, 16]} className="py-4">
-            <Col span={24} className="text-center">
+            <Col span={24} className="text-center d-none">
               <a href="javascript:void(0)"  >
                 <div>
                   <i className="fal fa-envelope text-2d display-4 bottomDetails--icon" />
@@ -36,14 +55,14 @@ const BottomDetails = () => {
               </a>
             </Col>
             <Col span={24} className="text-center">
-              <a href="javascript:void(0)" >
+              <Link to="/chat"  >
                 <div>
                   <i className="fal fa-comments text-2d display-4 font-weight-500 bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
                   {t(__('Chat'))}
                 </div>
-              </a>
+              </Link>
             </Col>
           </Row>
         </div> : /*For Mobile*/
@@ -77,24 +96,5 @@ const BottomDetails = () => {
     </div>
   );
 };
-
-const StickyButton = ({ buttonIcon, buttonIconColor, buttonName, buttonNameColor, buttonLink, buttonExtra }) => {
-  return (
-    <Col className={ `m-0 p-0 bottomDetails--mobile__item ${ buttonExtra || '' }` } span={8}>
-      <Link className="d-block" to={ buttonLink }>
-        <Row justify={"center"}>
-          <Col className="m-0 p-0">
-            <Row className="m-0 p-0">
-              <Col className="m-0 p-0 text-center" span={24}>
-                <i className={ `${ buttonIcon } ${ buttonIconColor } vv-font-size-3 font-weight-500` } />
-              </Col>
-              <Col className={ `m-0 p-0 text-center vv-font-size-1-8 ${buttonNameColor} StickyButtons__item--name` } span={24}>{ buttonName }</Col>
-            </Row>
-          </Col>
-        </Row>
-      </Link>
-    </Col>
-  );
-}
 
 export default BottomDetails;
