@@ -356,7 +356,7 @@ const DefaultHeader = () => {
                 </div>
                 <div className="d-inline-block">
                   <div className="text-white vv-font-size-1-5 font-weight-bold">
-                    {t(__('Download the Horn app'))}
+                    {t(__('Download the alaedeen app'))}
                   </div>
                   <div className="text-white vv-font-size-1-2 mt-2">
                     {t('app_msg.mobile_menu')}
