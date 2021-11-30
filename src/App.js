@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet";
+
 // Custom Styles:
 import './styles/custom.less';
 
@@ -439,6 +441,10 @@ function App() {
 
   return (
     <ConfigProvider direction={ directionTheme }>
+      <Helmet>
+        <html lang={ config.language } />
+      </Helmet>
+
       <Layout className="layout">
         <Router>
           <TopPanel />
