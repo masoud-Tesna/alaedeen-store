@@ -3,8 +3,23 @@
 
 html:lang(fa),
 html:lang(ar) {
-  .about--videosSection {
-    direction: ltr;
+  .about--aboutUs__section,
+  .about--manufacturingCapability__section,
+  .about--certificates__section {
+    .about--videosSection,
+    .about--imagesSection {
+      .about--videos,
+      .about--images {
+        .about--video,
+        .about--image {
+          margin-right: 0 !important;
+
+          &:not(:last-child) {
+            margin-left: 2rem;
+          }
+        }
+      }
+    }
   }
 }
 

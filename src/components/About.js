@@ -61,7 +61,7 @@ const About = () => {
     return(
       <Col className={ `about--another__item about--rAndD__container ${width < 992 && "collapseScrollXs"}` } id="CapabilityCollapse" span={24}>
         <Row className="about--rAndD__content h-100" justify={"space-between"}>
-          <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+          <Col flex="1 1" className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
             <Row>
               <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                 { t(__('R&D Capability')) }
@@ -71,7 +71,7 @@ const About = () => {
               </Col>
             </Row>
           </Col>
-          <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+          <Col flex="25px" className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
             <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white ${collapseActiveKey === "1" ? (config.language === "en" ? "rotate-down-ltr" : "rotate-down-rtl") : ''}` } />
           </Col>
         </Row>
@@ -83,7 +83,7 @@ const About = () => {
     return(
       <Col className={ `about--another__item about--qualityControl__container ${width < 992 && "collapseScrollXs"}` } id="QualityControlCollapse" span={24}>
         <Row className="about--qualityControl__content h-100" justify={"space-between"}>
-          <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+          <Col flex="1 1" className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
             <Row>
               <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                 { t(__('Quality Control')) }
@@ -93,7 +93,7 @@ const About = () => {
               </Col>
             </Row>
           </Col>
-          <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+          <Col flex="25px" className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
             <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white ${collapseActiveKey === "2" ? (config.language === "en" ? "rotate-down-ltr" : "rotate-down-rtl") : ''}` } />
           </Col>
         </Row>
@@ -105,7 +105,7 @@ const About = () => {
     return(
       <Col className={ `about--another__item about--exportCapability__container ${width < 992 && "collapseScrollXs"}` } id="ExportCapabilityCollapse" span={24}>
         <Row className="about--exportCapability__content h-100" justify={"space-between"}>
-          <Col className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
+          <Col flex="1 1" className={ `${config.language === 'en' ? 'pl-4' : 'pr-4'} my-auto` }>
             <Row>
               <Col className="mb-3 vv-font-size-1-8 text-white about--another__title" span={24}>
                 { t(__('Export Capability')) }
@@ -115,7 +115,7 @@ const About = () => {
               </Col>
             </Row>
           </Col>
-          <Col className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
+          <Col flex="25px" className={ `my-auto ${config.language === 'en' ? 'pr-4' : 'pl-4'} about--another__icon` }>
             <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2 text-white ${collapseActiveKey === "3" ? (config.language === "en" ? "rotate-down-ltr" : "rotate-down-rtl") : ''}` } />
           </Col>
         </Row>
