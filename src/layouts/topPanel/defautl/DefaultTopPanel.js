@@ -213,9 +213,9 @@ const DefaultTopPanel = () => {
               <Col className="topPanel--content__right my-auto">
                 <Space size={3}>
                   <select value={config.language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-2 mr-3">
-                    <option value="en">English</option>
-                    <option value="fa">فارسی</option>
-                    <option value="ar">عربی</option>
+                    <option className="text-33" value="en">English</option>
+                    <option className="text-33" value="fa">فارسی</option>
+                    <option className="text-33" value="ar">عربی</option>
                   </select>
 
                   <Link className="topPanel--content__item home-icon" to={"/"} >
