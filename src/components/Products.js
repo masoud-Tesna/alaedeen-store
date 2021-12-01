@@ -38,6 +38,10 @@ const Products = () => {
   const { isLoading, data, isFetching } = useGetApi(`products-api`, `items_per_page=20&company_id=${storeId}&page=${page}`, `products_${page}`);
   const { products, params } = data || [];
 
+  if (!isLoading && !products?.length) {
+    history.push('/');
+  }
+
 
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
@@ -97,7 +101,7 @@ const Products = () => {
         </div>
       </Col>
       <Col span={24} className="text-center products--pagination">
-        { (params && params.length !== 0) &&
+        { (params?.length > 20 ) &&
           <Pagination
             size="default"
             total={ params.total_items }
