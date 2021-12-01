@@ -109,7 +109,6 @@ const DefaultTopPanel = () => {
     </Menu>
   );
 
-
   return (
     <>
       {width >= 768 &&
@@ -117,9 +116,9 @@ const DefaultTopPanel = () => {
         <Row className="bg-top-panel topPanel--container">
 
           {/*Show Loading Spinner if Change language*/}
-          <div className={ `${ showLoadSpinner ? 'd-block' : 'd-none' }` }>
+          { showLoadSpinner &&
             <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-          </div>
+          }
 
           <Col span={24} className="topPanel--col">
             <Row className="h-100" gutter={24} justify="space-between">
@@ -144,94 +143,99 @@ const DefaultTopPanel = () => {
                   </a>
                   <Categories userClass="categories--dropDown topPanel--content__item hover d-block dir-ltr" />
                   <Divider type="vertical" className="border-70"/>
-                  <Link className="topPanel--content__item hover text-white d-block" to={"/factories"} >
+                  <a className="topPanel--content__item hover text-white d-block" href="https://alaedeen.com/factories" >
                     <span className="topPanel--item__text d-block">
                       {t(__('Stores'))}
                     </span>
-                  </Link>
+                  </a>
                 </Space>
               </Col>
 
-              <Col className="topPanel--content__rightCenter topPanel--content__account my-auto text-right" span={6}>
+              <Col span={9}>
+                <Row justify="left" className="h-100">
+                  <Col span={12} className="topPanel--content__rightCenter topPanel--content__account my-auto text-right">
 
-                { user_data.load ?
-                  <>
-                    <Skeleton avatar paragraph={{ rows: 1 }} />
-                  </> :
-                  <>
-                    { user_data.auth.user_id ?
+                    { user_data.load ?
                       <>
-                        <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
+                        <Skeleton avatar paragraph={{ rows: 1 }} />
+                      </> :
+                      <>
+                        { user_data.auth.user_id ?
+                          <>
+                            <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
 
-                          <Row className="w-100" align="middle" gutter={12} justify="end" onClick={e => e.preventDefault()}>
-                            <Col>
-                              { user_data.auth.company_logo ?
-                                <span className="content--account__companyLogo">
+                              <Row className="w-100" align="middle" gutter={12} justify="end" onClick={e => e.preventDefault()}>
+                                <Col>
+                                  { user_data.auth.company_logo ?
+                                    <span className="content--account__companyLogo">
                                   <img src={user_data.auth.company_logo.logo_path} alt=""/>
                                 </span> :
-                                <i className="fal fa-user display-4 text-white d-block" />
-                              }
-                            </Col>
+                                    <i className="fal fa-user display-4 text-white d-block" />
+                                  }
+                                </Col>
 
-                            <Col>
+                                <Col>
                               <span className="font-weight-600 content--account__companyName">
                                 {user_data.auth.company ?
                                   <>{ user_data.auth.company }</> :
                                   <>{ ` ${user_data.auth.firstname} ${user_data.auth.lastname} ` }</>
                                 }
                               </span>
-                              <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
-                            </Col>
-                          </Row>
+                                  <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+                                </Col>
+                              </Row>
 
-                        </Dropdown>
-                      </> :
-                      <>
-                        <Space size={"small"}>
-                          <i className="fal fa-user display-5 text-white d-block mr-3" />
-                          <span>
-                            <a className="text-white vv-font-size-2" href={"https://alaedeen.com/sign-in"} >
-                              {t(__('Sign in'))}
-                            </a>
-                          </span>
-                          <Divider type="vertical" className="border-70"/>
-                          <span>
-                            <a className="text-white vv-font-size-2" href="https://alaedeen.com/horn/register/">
-                              {t(__('Join Free'))}
-                            </a>
-                          </span>
-                        </Space>
+                            </Dropdown>
+                          </> :
+                          <>
+                            <Space size={"small"}>
+                              <i className="fal fa-user display-5 text-white d-block mr-3" />
+                              <span>
+                                <a className="text-white vv-font-size-2" href="https://alaedeen.com/sign-in" >
+                                  {t(__('Sign in'))}
+                                </a>
+                              </span>
+                              <Divider type="vertical" className="border-70"/>
+                              <span>
+                                <a className="text-white vv-font-size-2" href="https://alaedeen.com/register">
+                                  {t(__('Join Free'))}
+                                </a>
+                              </span>
+                            </Space>
+                          </>
+                        }
+
                       </>
                     }
 
-                  </>
-                }
 
+                  </Col>
 
-              </Col>
+                  <Col span={12} className="topPanel--content__right my-auto">
+                    <Space size={3}>
+                      <select value={config.language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-2 mr-3">
+                        <option className="text-33" value="en">English</option>
+                        <option className="text-33" value="fa">فارسی</option>
+                        <option className="text-33" value="ar">عربی</option>
+                      </select>
 
-              <Col className="topPanel--content__right my-auto">
-                <Space size={3}>
-                  <select value={config.language} onChange={(e) => {handleChangeLanguage(e)}} className="border-0 bg-transparent text-white vv-font-size-2 mr-3">
-                    <option className="text-33" value="en">English</option>
-                    <option className="text-33" value="fa">فارسی</option>
-                    <option className="text-33" value="ar">عربی</option>
-                  </select>
-
-                  <Link className="topPanel--content__item home-icon" to={"/"} >
+                      <Link className="topPanel--content__item home-icon" to={"/"} >
                   <span className="topPanel--item__text">
                     <i className="fal fa-home text-white display-6" />
                   </span>
-                  </Link>
+                      </Link>
 
-                  <Link className="topPanel--content__item question-icon" to={"/faq"} >
+                      <Link className="topPanel--content__item question-icon" to={"/faq"} >
                   <span className="topPanel--item__text">
                     <i className="fal fa-question-circle text-white display-6" />
                   </span>
-                  </Link>
+                      </Link>
 
-                </Space>
+                    </Space>
+                  </Col>
+                </Row>
               </Col>
+
             </Row>
           </Col>
 

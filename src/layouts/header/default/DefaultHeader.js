@@ -208,11 +208,11 @@ const DefaultHeader = () => {
                                 {t(__('Hello'))}
                               </Col>
                               <Col span={24}>
-                                <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/sign-in"} >
-                                  {t(__(' Sign in'))}
-                                </Link>
+                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/sign-in" >
+                                  {t(__('Sign in'))}
+                                </a>
                                 <Divider type="vertical" className="border-70"/>
-                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/horn/register/">
+                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/register">
                                   {t(__('Join Free'))}
                                 </a>
                               </Col>
