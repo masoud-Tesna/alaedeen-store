@@ -42,7 +42,7 @@ const CategoriesContent = () => {
   );
 };
 
-const CategoriesDropDownVertical = ({ userClass }) => {
+const CategoriesDropDownVertical = ({ language, userClass }) => {
 
   const [isCategoryVisible, setIsCategoryVisible] = useState(false);
 
@@ -53,7 +53,7 @@ const CategoriesDropDownVertical = ({ userClass }) => {
       <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
         <i className="fal fa-list-ul mr-3 vv-font-size-2" />
         <span className="topPanel--item__text">{t(__('Categories'))}</span>
-        <DownOutlined className="ml-3 align-middle"  rotate={ isCategoryVisible ? 180 : 0 } />
+        <DownOutlined className={ `ml-3 ${language !== 'en' && "align-sub"}` }  rotate={ isCategoryVisible ? 180 : 0 } />
       </span>
     </Dropdown>
   );
