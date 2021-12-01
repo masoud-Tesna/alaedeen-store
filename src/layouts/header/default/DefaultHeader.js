@@ -86,7 +86,7 @@ const DefaultHeader = () => {
   }
 
   const tabCallBackHandle = (page) => {
-    pathName !== page && ( page === 'homePage' ? history.push('/') :  history.push(`/${page}`));
+    pathName[0] !== page && ( page === 'homePage' ? history.push('/') :  history.push(`/${page}`));
   };
 
   const goToPreviousPath = () => {
@@ -492,7 +492,7 @@ const DefaultHeader = () => {
       <Col span={24} className={ `header__bottomSection ${scrolled}` } style={{ backgroundColor: headerColorCode }}>
         <Row className="h-100 header__bottomSection--container" align={"bottom"} justify={"space-between"}>
           <Col xs={24} lg={10}>
-            <Tabs activeKey={pathName} onTabClick={key => tabCallBackHandle(key)} className="header__tabContainer">
+            <Tabs activeKey={pathName[0]} onTabClick={tabCallBackHandle} className="header__tabContainer">
               <TabPane tab={ t(__('home')) } key="homePage" />
               <TabPane tab={ t(__('products')) } key="products" />
               <TabPane tab={ t(__('about us')) } key="about"/>

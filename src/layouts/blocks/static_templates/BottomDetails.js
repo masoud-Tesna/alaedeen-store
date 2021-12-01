@@ -37,7 +37,7 @@ const BottomDetails = () => {
     );
   }
 
-  if (pathName === 'chat' || pathName === 'all-categories') return <></>;
+  if (pathName[0] === 'chat' || pathName[0] === 'all-categories') return <></>;
 
   return (
     <div className={ width >=768 ? 'bottomDetails--container__desktop' : 'bottomDetails--container__mobile w-100' }>
