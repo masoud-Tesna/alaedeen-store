@@ -141,7 +141,7 @@ const DefaultTopPanel = () => {
                       </Col>
                     </Row>
                   </a>
-                  <Categories userClass="categories--dropDown topPanel--content__item hover d-block dir-ltr" />
+                  <Categories language={config.language} userClass="categories--dropDown topPanel--content__item hover d-block dir-ltr" />
                   <Divider type="vertical" className="border-70"/>
                   <a className="topPanel--content__item hover text-white d-block" href="https://alaedeen.com/factories" >
                     <span className="topPanel--item__text d-block">
