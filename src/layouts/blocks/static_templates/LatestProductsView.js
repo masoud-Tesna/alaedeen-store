@@ -61,7 +61,7 @@ const LatestProductsView = () => {
                   height = {width >= 768 ? 363.933 : 273.05}
                 /> :
                 <>
-                  {products.map((product, i) => {
+                  {products && products?.map((product, i) => {
                     return (
                       <ProductsMultiColumnVertical
                         key = { i }

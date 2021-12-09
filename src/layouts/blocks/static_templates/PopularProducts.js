@@ -54,7 +54,7 @@ const PopularProducts = () => {
                   height = {width >= 768 ? 233 : 120}
                 /> :
                 <>
-                  {products.map((product, i) => {
+                  {products && products?.map((product, i) => {
                     return (
                       <ProductsMultiColumnVertical
                         key = { i }
