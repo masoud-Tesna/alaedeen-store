@@ -193,30 +193,30 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores?.embed_video?.length !== 0 || aboutStores?.company_introduction?.fields?.detailed_company_introduction) &&
-            <Col span={24} className="mb-5">
-              <Row>
-                <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
-                  { t(__('about us')) }
-                </Col>
-                <Col span={24} className={ `mt-3 about--videosSection` }>
-                  {aboutStores?.embed_video?.length !== 0 &&
-                  <div className="about--videos">
-                    { aboutStores?.embed_video?.map((embedVideo) => {
-                      return (
-                        <div key={ `video_embed_${ embedVideo?.link_id }` } className="about--video">
-                          <ShowVideoEmbed embedLink={ embedVideo?.link } extraClassName={ 'aboutPage' } embedClassName="rounded-10"/>
-                        </div>
-                      );
-                    }) }
-                  </div>
-                  }
-                </Col>
-                <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
-                  <p dangerouslySetInnerHTML={ {__html: aboutStores?.company_introduction?.fields?.detailed_company_introduction} } />
-                </Col>
-              </Row>
-            </Col>
+            (aboutStores?.embed_video || aboutStores?.company_introduction?.fields?.detailed_company_introduction) &&
+              <Col span={24} className="mb-5">
+                <Row>
+                  <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
+                    { t(__('about us')) }
+                  </Col>
+                  <Col span={24} className={ `mt-3 about--videosSection` }>
+                    {aboutStores?.embed_video &&
+                      <div className="about--videos">
+                      { aboutStores?.embed_video?.map((embedVideo) => {
+                        return (
+                          <div key={ `video_embed_${ embedVideo?.link_id }` } className="about--video">
+                            <ShowVideoEmbed embedLink={ embedVideo?.link } extraClassName={ 'aboutPage' } embedClassName="rounded-10"/>
+                          </div>
+                        );
+                      }) }
+                    </div>
+                    }
+                  </Col>
+                  <Col className="mt-3 text-70 about--aboutUs__description" span={24}>
+                    <p dangerouslySetInnerHTML={ {__html: aboutStores?.company_introduction?.fields?.detailed_company_introduction} } />
+                  </Col>
+                </Row>
+              </Col>
           }
         </Row>
       </Col>
@@ -230,7 +230,7 @@ const About = () => {
             <Row className="row-cols-2 row-cols-md-4 " gutter={16}>
               {isLoading ?
                 <>Loading...</> :
-                aboutStores?.general?.business_type?.length !== 0 &&
+                aboutStores?.general?.business_type &&
                   <>
                     <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Business Type')) }</Col>
                     <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.general?.business_type }</Col>
@@ -239,7 +239,7 @@ const About = () => {
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores?.basic_company_details?.fields?.year_company_registered?.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.year_company_registered &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Year Established')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.year_company_registered }</Col>
@@ -248,7 +248,7 @@ const About = () => {
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores?.basic_company_details?.fields?.total_no_employees?.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.total_no_employees &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Total Employees')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.total_no_employees }</Col>
@@ -257,7 +257,7 @@ const About = () => {
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores?.basic_company_details?.fields?.main_category?.length !== 0 &&
+                aboutStores?.basic_company_details?.fields?.main_category &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main category')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >{ aboutStores?.basic_company_details?.fields?.main_category }</Col>
@@ -277,7 +277,7 @@ const About = () => {
 
               {isLoading ?
                 <>Loading...</> :
-                aboutStores?.export_capability?.fields?.main_markets_and_distribution?.length !== 0 &&
+                aboutStores?.export_capability?.fields?.main_markets_and_distribution &&
                 <>
                   <Col className = "vv-font-size-1-2rem text-92" >{ t(__('Main Markets')) }</Col>
                   <Col className = "vv-font-size-1-2rem text-47" >
@@ -302,7 +302,7 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores?.manufacturing_capability?.parents?.process?.fields?.length !== 0 && aboutStores?.manufacturing_capability?.parents?.process?.show === "Y") &&
+            (aboutStores?.manufacturing_capability?.parents?.process?.fields && aboutStores?.manufacturing_capability?.parents?.process?.show === "Y") &&
               <Col span={24}>
                 <Row className="mb-5">
                   <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
@@ -310,13 +310,13 @@ const About = () => {
                   </Col>
                   <Col span={24} className="mt-3 about--videosSection">
                     <div className="about--videos">
-                      { Object.entries(aboutStores?.manufacturing_capability?.parents?.process?.fields).map(([key, process], index) => {
+                      { Object.entries(aboutStores?.manufacturing_capability?.parents?.process?.fields)?.map(([key, process], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--video">
                             <Link to={`/about/manufacturing/?slide=${key}`}>
                               <div className="rounded-10 about--imageBg" style={{ backgroundImage: `url(${process.process_pictures[0]})` }} />
                               <div className="text-white ml-4 mb-4 vv-font-size-1-8 font-weight-600 about--imageBg__title">
-                                { process.process_name || '' }
+                                { process?.process_name || '' }
                               </div>
                             </Link>
                           </div>
@@ -334,7 +334,7 @@ const About = () => {
         <Row>
           {isLoading ?
             <>Loading...</> :
-            (aboutStores?.certificate_center?.parents?.certification?.fields?.length !== 0 && aboutStores?.certificate_center?.parents?.certification?.show === "Y") &&
+            (aboutStores?.certificate_center?.parents?.certification?.fields && aboutStores?.certificate_center?.parents?.certification?.show === "Y") &&
               <Col span={24}>
                 <Row className="mb-5">
                   <Col span={24} className="vv-font-size-1-8 font-weight-bold text-47 about--title">
@@ -342,15 +342,22 @@ const About = () => {
                   </Col>
                   <Col span={24} className="mt-3 about--imagesSection">
                     <div className="about--images">
-                      { Object.entries(aboutStores?.certificate_center?.parents?.certification?.fields).map(([key, certificate], index) => {
+                      { Object.entries(aboutStores?.certificate_center?.parents?.certification?.fields)?.map(([key, certificate], index) => {
                         return (
                           <div key={`manufacturing_capability_process_${index}`} className="about--image">
                             <Link to={`/about/certificate/?slide=${key}`}>
                               <Row>
                                 <Col className = "about--imageBackground" span={24}>
-                                  <ShowResponsiveImage imagePath={ certificate.certificate_photos[0] } imageFolder='profiles' width={width < 768 ? 140 : 400} height={width < 768 ? 110 : 240} object_id={index + 1}  object_type={`about_store_${storeId}/certificate_img_${key}`}/>
+                                  <ShowResponsiveImage
+                                    imagePath={ certificate?.certificate_photos[0] }
+                                    imageFolder='profiles'
+                                    width={width < 768 ? 140 : 400}
+                                    height={width < 768 ? 110 : 240}
+                                    object_id={index + 1}
+                                    object_type={`about_store_${storeId}/certificate_img_${key}`}
+                                  />
                                 </Col>
-                                <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>{ certificate.certificate_name }</Col>
+                                <Col className = "m-0 p-0 vv-font-size-1-6 text-center text-47 mt-3" xs={24}>{ certificate?.certificate_name }</Col>
                               </Row>
                             </Link>
                           </div>
@@ -359,7 +366,7 @@ const About = () => {
                     </div>
                   </Col>
                 </Row>
-            </Col>
+              </Col>
           }
         </Row>
       </Col>
@@ -447,8 +454,8 @@ const About = () => {
               <>Loading...</> :
               <Collapse ghost accordion onChange={handleCollapseOnChange}>
 
-                {
-                  (aboutStores?.r_and_d_capability?.parents?.process?.fields?.length !== 0 && aboutStores?.r_and_d_capability?.parents?.process?.show === "Y") &&
+                {/*{
+                  (aboutStores?.r_and_d_capability?.parents?.process?.fields && aboutStores?.r_and_d_capability?.parents?.process?.show === "Y") &&
                   <Panel
                     className="CapabilityCollapse"
                     header={ <CapabilityCollapseHeader/> }
@@ -515,7 +522,7 @@ const About = () => {
                 }
 
                 {
-                  (aboutStores?.quality_control?.parents?.process?.fields?.length !== 0 && aboutStores?.quality_control?.parents?.process?.show === "Y") &&
+                  (aboutStores?.quality_control?.parents?.process?.fields && aboutStores?.quality_control?.parents?.process?.show === "Y") &&
                   <Panel
                     className="QualityControlCollapse"
                     header={ <QualityControlCollapseHeader/> }
@@ -579,10 +586,10 @@ const About = () => {
                       </Col>
                     </Row>
                   </Panel>
-                }
+                }*/}
 
                 {
-                  (aboutStores?.export_capability?.fields?.export_percentage?.length !== 0 && aboutStores?.export_capability?.fields?.main_markets_and_distribution?.length !== 0) &&
+                  (aboutStores?.export_capability?.fields?.export_percentage && aboutStores?.export_capability?.fields?.main_markets_and_distribution) &&
                   <Panel
                     className="ExportCapabilityCollapse"
                     header={ <ExportCapabilityCollapseHeader/> }
@@ -622,10 +629,10 @@ const About = () => {
 
                                               <Col span={24} className="vv-font-size-1-4 text-47">
                                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                                  {Object.entries(aboutStores?.export_capability?.fields?.main_markets_and_distribution).map(([key, distribution], index) => {
+                                                  {Object.entries(aboutStores?.export_capability?.fields?.main_markets_and_distribution)?.map(([key, distribution], index) => {
                                                     return (
                                                       <Col key={`distribution_${key}_${index}`}>
-                                                        { `${distribution.country} ${distribution.percent}` }
+                                                        { `${distribution?.country} ${distribution?.percent}` }
                                                       </Col>
                                                     )
                                                   })}
@@ -655,7 +662,7 @@ const About = () => {
 
                                               <Col span={24} className="vv-font-size-1-4 text-47">
                                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                                  {Object.entries(aboutStores?.export_capability?.fields?.accepted_delivery_terms).map(([key, accepted_delivery_terms], index) => {
+                                                  {Object.entries(aboutStores?.export_capability?.fields?.accepted_delivery_terms)?.map(([key, accepted_delivery_terms], index) => {
                                                     return (
                                                       <Col key={`distribution_${key}_${index}`}>
                                                         { accepted_delivery_terms }
@@ -688,7 +695,7 @@ const About = () => {
 
                                               <Col span={24} className="vv-font-size-1-4 text-47">
                                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                                  {Object.entries(aboutStores?.export_capability?.fields?.accepted_payment_currency).map(([key, accepted_payment_currency], index) => {
+                                                  {Object.entries(aboutStores?.export_capability?.fields?.accepted_payment_currency)?.map(([key, accepted_payment_currency], index) => {
                                                     return (
                                                       <Col key={`distribution_${key}_${index}`}>
                                                         { accepted_payment_currency }
@@ -709,7 +716,7 @@ const About = () => {
 
                                               <Col span={24} className="vv-font-size-1-4 text-47">
                                                 <Row className="row-cols-2 row-cols-md-3 row-cols-lg-4 px-4" gutter={[10, 10]}>
-                                                  {Object.entries(aboutStores?.export_capability?.fields?.language_spoken).map(([key, language_spoken], index) => {
+                                                  {Object.entries(aboutStores?.export_capability?.fields?.language_spoken)?.map(([key, language_spoken], index) => {
                                                     return (
                                                       <Col key={`distribution_${key}_${index}`}>
                                                         { language_spoken }
@@ -738,7 +745,7 @@ const About = () => {
                                   className="manufacturing--swiper"
                                 >
 
-                                  { Object.entries(aboutStores?.export_capability?.parents?.project_and_customer?.fields).map(([key, customersCase], index) => {
+                                  { Object.entries(aboutStores?.export_capability?.parents?.project_and_customer?.fields)?.map(([key, customersCase], index) => {
                                     return (
                                       <SwiperSlide key={`swiper_customerCase_${index}`}>
                                         <Row className="manufacturing--info__content">
@@ -828,7 +835,7 @@ const About = () => {
                                   className="manufacturing--swiper"
                                 >
 
-                                  { Object.entries(aboutStores?.export_capability?.parents?.company_overseas_office?.fields).map(([key, overseasOffice], index) => {
+                                  { Object.entries(aboutStores?.export_capability?.parents?.company_overseas_office?.fields)?.map(([key, overseasOffice], index) => {
                                     return (
                                       <SwiperSlide key={`swiper_customerCase_${index}`}>
                                         <Row className="manufacturing--info__content">
