@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 // import Config reducer:
 import { ConfigReducer } from './ConfigReducer';

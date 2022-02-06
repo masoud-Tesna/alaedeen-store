@@ -1,4 +1,11 @@
-import { CHANGE_IP, CHANGE_COUNTRY, CHANGE_COUNTRY_CODE, CHANGE_LANGUAGE, CHANGE_CLIENT_LANGUAGE, CHANGE_CURRENCY } from "./ConfigActions";
+import {
+  CHANGE_IP,
+  CHANGE_COUNTRY,
+  CHANGE_COUNTRY_CODE,
+  CHANGE_LANGUAGE,
+  CHANGE_CLIENT_LANGUAGE,
+  CHANGE_CURRENCY
+} from "./ConfigActions";
 import i18n from "../../translations";
 
 export function ConfigReducer(state, action) {
