@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // import Style:
 import './styles/BottomDetails.less';
 
@@ -10,29 +12,60 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { __, useParsPathName } from "../../../functions/Helper";
 
+// import OneRequestMultipleQuotesModal component for show send request form modal:
+import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+
 const BottomDetails = () => {
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
+  // state for request form modal:
+  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
+
   // Get Location pathName:
   const pathName = useParsPathName();
 
-  const StickyButton = ({ buttonIcon, buttonIconColor, buttonName, buttonNameColor, buttonLink, buttonExtra }) => {
+  // show request form modal function:
+  const showRequestModalHeader = () => {
+    setIsRequestModalVisible(true);
+  }
+
+  const StickyButton = (
+    {
+      buttonIcon,
+      buttonIconColor,
+      buttonName,
+      buttonNameColor,
+      buttonLink,
+      buttonExtra,
+      type = "link",
+      onClick
+    }
+  ) => {
+
+    const content = (<Row justify={"center"}>
+      <Col className="m-0 p-0">
+        <Row className="m-0 p-0">
+          <Col className="m-0 p-0 text-center" span={24}>
+            <i className={ `${ buttonIcon } ${ buttonIconColor } vv-font-size-3 font-weight-500` } />
+          </Col>
+          <Col className={ `m-0 p-0 text-center vv-font-size-1-8 ${buttonNameColor} StickyButtons__item--name` } span={24}>{ buttonName }</Col>
+        </Row>
+      </Col>
+    </Row>);
+
     return (
-      <Col className={ `m-0 p-0 bottomDetails--mobile__item ${ buttonExtra || '' }` } span={8}>
-        <Link className="d-block" to={ buttonLink }>
-          <Row justify={"center"}>
-            <Col className="m-0 p-0">
-              <Row className="m-0 p-0">
-                <Col className="m-0 p-0 text-center" span={24}>
-                  <i className={ `${ buttonIcon } ${ buttonIconColor } vv-font-size-3 font-weight-500` } />
-                </Col>
-                <Col className={ `m-0 p-0 text-center vv-font-size-1-8 ${buttonNameColor} StickyButtons__item--name` } span={24}>{ buttonName }</Col>
-              </Row>
-            </Col>
-          </Row>
-        </Link>
+      <Col className={ `bottomDetails--mobile__item ${ buttonExtra || '' }` } span={8} onClick={onClick}>
+        {type === "link" ?
+          <Link className="d-block" to={ buttonLink }>
+            {content}
+          </Link> :
+          <div className="__item">
+            {content}
+          </div>
+        }
+
       </Col>
     );
   }
@@ -44,20 +77,20 @@ const BottomDetails = () => {
       { width >= 768 ? /*for Desktop*/
         <div className="shadow bottomDetails--content__desktop">
           <Row gutter={[0, 16]} className="py-4">
-            <Col span={24} className="text-center d-none">
-              <a href="javascript:void(0)"  >
+            <Col span={24} className="text-center">
+              <div className="__item" onClick={() => { showRequestModalHeader() }}>
                 <div>
-                  <i className="fal fa-envelope text-2d display-4 bottomDetails--icon" />
+                  <i className="fa-regular fa-comment-quote text-2d bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
-                  {t(__('Send inquiry'))}
+                  {t(__('Request a Quote'))}
                 </div>
-              </a>
+              </div>
             </Col>
             <Col span={24} className="text-center">
-              <Link to="/chat"  >
+              <Link to="/chat">
                 <div>
-                  <i className="fal fa-comments text-2d display-4 font-weight-500 bottomDetails--icon" />
+                  <i className="far fa-comments text-2d bottomDetails--icon" />
                 </div>
                 <div className="text-2d vv-font-size-1-8 font-weight-600 bottomDetails--text">
                   {t(__('Chat'))}
@@ -67,7 +100,7 @@ const BottomDetails = () => {
           </Row>
         </div> : /*For Mobile*/
         <div className="bottomDetails--content__mobile">
-          <Row className="m-0 p-0 bg-white shadow-top">
+          <Row className="bg-white shadow-top">
             <StickyButton
               buttonIcon="fal fa-list"
               buttonIconColor="text-92"
@@ -76,11 +109,12 @@ const BottomDetails = () => {
               buttonLink={`all-categories`}
             />
             <StickyButton
-              buttonIcon="fal fa-envelope"
+              buttonIcon="fa-regular fa-comment-quote"
               buttonIconColor="text-92"
-              buttonName= { t(__('Send Inquiry')) }
+              buttonName= { t(__('Request a Quote')) }
               buttonNameColor= "text-92"
-              buttonLink={`send-inquiry`}
+              type="button"
+              onClick={() => { showRequestModalHeader() }}
             />
             <StickyButton
               buttonIcon="fal fa-comments"
@@ -93,6 +127,11 @@ const BottomDetails = () => {
           </Row>
         </div>
       }
+
+      <OneRequestMultipleQuotesModal
+        isRequestModalVisible = {isRequestModalVisible}
+        setIsRequestModalVisible = {setIsRequestModalVisible}
+      />
     </div>
   );
 };
