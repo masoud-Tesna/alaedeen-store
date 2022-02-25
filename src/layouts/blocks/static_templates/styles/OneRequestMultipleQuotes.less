@@ -156,8 +156,11 @@ html:lang(ar) {
       }
 
       .oneRequest--formContent__right {
-        padding: 2rem 4rem;
+        padding: 1rem 1rem;
         overflow-y: auto;
+        @media (min-width: @screen-md) {
+          padding: 2rem 4rem;
+        }
 
         .ant-form-item {
           .ant-form-item-label {

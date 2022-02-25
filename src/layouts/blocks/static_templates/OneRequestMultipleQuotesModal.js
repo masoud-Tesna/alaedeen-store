@@ -176,8 +176,6 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
               <div>
 
                 <div className={`requestFirstFormContent ${firstFormContent}`}>
-
-
                   <Row className="h-100" align="middle" gutter={[0, 16]}>
 
                     <Col span={24}>
@@ -215,8 +213,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
-                        <Col span={12}>
+                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__quantity request--email__container"
                             name="auth_email"
@@ -234,7 +232,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                           </Form.Item>
                         </Col>
 
-                        <Col span={12}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__quantity request--phone__container"
                             name="phone_number"
@@ -256,8 +254,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
-                        <Col span={12}>
+                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__quantity"
                             name="auth_name"
@@ -274,7 +272,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                           </Form.Item>
                         </Col>
 
-                        <Col span={12}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__quantity"
                             name="auth_company"
@@ -294,8 +292,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
-                        <Col span={12}>
+                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__piece"
                             name="auth_country"
@@ -327,7 +325,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                           </Form.Item>
                         </Col>
 
-                        <Col span={12}>
+                        <Col xs={24} lg={12}>
                           <Form.Item
                             className="oneRequest--formContent__piece"
                             name="auth_city"
@@ -360,8 +358,6 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                       </Row>
                     </Col>
                   </Row>
-
-
                 </div>
 
                 <div className={`requestLastFormContent ${lastFormContent}`}>
@@ -372,7 +368,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
+                      <Row gutter={{ xs: 10, lg: 24 }}>
                         <Col span={12}>
                           <Form.Item
                             className="oneRequest--formContent__quantity"
@@ -423,7 +419,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
+                      <Row gutter={{ xs: 10, lg: 24 }}>
                         <Col span={12}>
                           <Form.Item
                             className="oneRequest--formContent__currency"
@@ -481,7 +477,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
+                      <Row gutter={{ xs: 10, lg: 24 }}>
                         <Col span={12}>
                           <Form.Item
                             className="oneRequest--formContent__piece"
@@ -547,7 +543,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     </Col>
 
                     <Col span={24}>
-                      <Row gutter={24}>
+                      <Row gutter={{ xs: 10, lg: 24 }}>
                         <Col span={12}>
                           <Form.Item
                             className="oneRequest--formContent__currency"
