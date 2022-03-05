@@ -4,7 +4,7 @@ import { useState } from "react";
 import './styles/PopUpSignIn.less';
 
 // import Design:
-import { Button, Checkbox, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 import { __ } from "../../../functions/Helper";
@@ -16,13 +16,13 @@ import googlePic from '../../../assets/images/google.png';
 // import language context:
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-import { signInAction, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from "../../../contexts/user/UserContext";
+import { signInAction, useDispatchAuthState, useGetAuthState, checkSignInLoadingAction } from "../../../contexts/user/UserContext";
 import { signInLoadingFalseAction } from "../../../contexts/user/UserActionCreators";
 
-const PopUpSignIn = () => {
+import { useMutation } from "react-query";
+import { signInApi } from "../../../functions";
 
-  // initial State for Error Handle:
-  const [signInIncorrect, setSignInIncorrect] = useState(null);
+const PopUpSignIn = () => {
 
   // get initial config:
   const { config } = useGetConfig();
@@ -30,31 +30,41 @@ const PopUpSignIn = () => {
   const { t } = useTranslation();
 
   //initial state and dispatch for auth context:
+  const { user_data } = useGetAuthState();
   const { AuthDispatch } = useDispatchAuthState();
+
+  // initial State for Error Handle:
+  const [signInIncorrect, setSignInIncorrect] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const { mutate: signInMutate } = useMutation(signInApi, {
+    onSuccess: res => {
+      if (res === 'email_incorrect') {
+        setSignInIncorrect('email_incorrect');
+        AuthDispatch(signInLoadingFalseAction());
+      }
+      else if (res === 'password_incorrect') {
+        setSignInIncorrect('password_incorrect');
+        AuthDispatch(signInLoadingFalseAction());
+      }
+      else if (res?.auth?.status) {
+        AuthDispatch(signInAction(res.auth, res.token));
+      }
+    }
+  });
 
   const signInHandle = values => {
 
     AuthDispatch(checkSignInLoadingAction());
 
-    signIn(values.user_login, values.password, config.language)
-      .then(res => {
-        if (res?.data === 'email_incorrect') {
-          setSignInIncorrect('email_incorrect');
-          AuthDispatch(signInLoadingFalseAction());
-        }
-        else if (res?.data === 'password_incorrect') {
-          setSignInIncorrect('password_incorrect');
-          AuthDispatch(signInLoadingFalseAction());
-        }
-        else if (res?.data?.auth?.status) {
-          if (values.remember_me) {
-            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
-            AuthDispatch(checkRememberAction(values.user_login, values.password));
-          }else {
-            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
-          }
-        }
-      });
+    const loginData = {
+      user_login: values.user_login,
+      password: values.password,
+      language: config.language
+    }
+
+    signInMutate(loginData, {
+    });
 
   }
 
@@ -123,7 +133,7 @@ const PopUpSignIn = () => {
                   </Form.Item>
                 </Col>
 
-                <Col span={24}>
+                {/*<Col span={24}>
                   <Row justify={"space-between"}>
                     <Col>
                       <Form.Item
@@ -149,7 +159,7 @@ const PopUpSignIn = () => {
                       </Form.Item>
                     </Col>
                   </Row>
-                </Col>
+                </Col>*/}
 
                 <Col span={24}>
                   <Form.Item

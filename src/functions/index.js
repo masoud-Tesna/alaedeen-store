@@ -110,3 +110,11 @@ export function useWindowSize() {
 export function useQueryString() {
   return new URLSearchParams(useLocation().search);
 }
+
+// function for sign in by email and password:
+export const signInApi = async (values) => {
+
+  const { data } = await axios.post(`https://alaedeen.com/horn/login-api/?lang_code=${values.language}`, { user_login: values.user_login, password: values.password });
+  return data;
+
+};
