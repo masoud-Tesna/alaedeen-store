@@ -16,10 +16,14 @@ import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Ra
 import axios from "axios";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import { useGetStoreState } from "../../../contexts/store/StoreContext";
+import { useGetAuthState } from "../../../contexts/user/UserContext";
+import PopUpSignIn from "./PopUpSignIn";
 
 const { Option } = Select;
 
 const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModalVisible, productNameBefore, quantityBefore, pieceBefore, section }) => {
+
+  const { user_data } = useGetAuthState();
 
   // get initial config
   const { config } = useGetConfig();
@@ -82,8 +86,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const onFinish = (values) => {
     setIsSpinSend(true);
-    // add store_id:
+    // add store_id and auth user id:
     values.company_id = storeId;
+    values.auth_user_id = user_data?.auth?.company_id !== "0" ? user_data?.auth?.company_id : user_data?.auth?.user_id;
+
     getRequestCheck()
       .then(res => {
         values.request_check = res.data.request_check;
@@ -134,7 +140,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   return (
     <Modal
-      title={ t(__('Post Your buy Requirement')) }
+      title={ t(__(!user_data.auth.user_id ? "Please log in before sending the request" : 'Post Your buy Requirement')) }
       style={{ top: width < 992 && 10 }}
       visible={isRequestModalVisible}
       onCancel={handleClosRequestModal}
@@ -142,19 +148,24 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
       footer={false}
       className="RequestModal"
     >
-      <Form
-        className="h-100 oneRequest--formContent"
-        name="request-form"
-        initialValues={{
-          product_name: productNameBefore || undefined,
-          quantity: quantityBefore || undefined,
-          quantity_unit: pieceBefore || undefined,
-        }}
-        onFinish={onFinish}
-      >
-        <Row>
+      {!user_data.auth.user_id ?
+        <PopUpSignIn /> :
+        <Form
+          className="h-100 oneRequest--formContent"
+          name="request-form"
+          initialValues={{
+            product_name: productNameBefore || undefined,
+            quantity: quantityBefore || undefined,
+            quantity_unit: pieceBefore || undefined,
+            auth_email: user_data?.auth?.email,
+            auth_name: `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}`,
+            auth_country: user_data?.auth?.fields[60]
+          }}
+          onFinish={onFinish}
+        >
+          <Row>
 
-          {section !== 'topPanel' &&
+            {section !== 'topPanel' &&
             <Col span={10} className="oneRequest--formContent__left d-none d-lg-block">
               <Row className="h-100 oneRequest--left__description">
                 <Col span={24} className="align-self-start text-center text-white vv-font-size-2">
@@ -169,510 +180,512 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                 </Col>
               </Row>
             </Col>
-          }
+            }
 
-          <Col xs={24} lg={section !== 'topPanel' ? 14 : 24} className="bg-f6 oneRequest--formContent__right">
-            <Spin spinning={isSpinSend} tip={ `${ t(__('send_request')) }...` }>
-              <div>
+            <Col xs={24} lg={section !== 'topPanel' ? 14 : 24} className="bg-f6 oneRequest--formContent__right">
+              <Spin spinning={isSpinSend} tip={ `${ t(__('send_request')) }...` }>
+                <div>
 
-                <div className={`requestFirstFormContent ${firstFormContent}`}>
-                  <Row className="h-100" align="middle" gutter={[0, 16]}>
+                  <div className={`requestFirstFormContent ${firstFormContent}`}>
+                    <Row className="h-100" align="middle" gutter={[0, 16]}>
 
-                    <Col span={24}>
-                      <Form.Item
-                        name="product_name"
-                        className="oneRequest--formContent__searchInput"
-                        label={ t(__('product name')) }
-                        labelCol={{ span: 24 }}
-                        rules={[
-                          {
-                            required: true,
-                          },
-                        ]}>
-                        <Input
-                          placeholder={ t(__('What are you looking for...')) }
-                        />
-                      </Form.Item>
-                    </Col>
+                      <Col span={24}>
+                        <Form.Item
+                          name="product_name"
+                          className="oneRequest--formContent__searchInput"
+                          label={ t(__('product name')) }
+                          labelCol={{ span: 24 }}
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}>
+                          <Input
+                            placeholder={ t(__('What are you looking for...')) }
+                          />
+                        </Form.Item>
+                      </Col>
 
-                    <Col span={24}>
-                      <Form.Item
-                        name="description"
-                        className="oneRequest--formContent__searchInput"
-                        label={ t(__('Describe your buy requirement')) }
-                        labelCol={{ span: 24 }}
-                        rules={[
-                          {
-                            min: 20,
-                          },
-                        ]}>
-                        <Input.TextArea
-                          placeholder={ t(__('Describe your buy requirement')) }
-                        />
-                      </Form.Item>
-                    </Col>
+                      <Col span={24}>
+                        <Form.Item
+                          name="description"
+                          className="oneRequest--formContent__searchInput"
+                          label={ t(__('Describe your buy requirement')) }
+                          labelCol={{ span: 24 }}
+                          rules={[
+                            {
+                              min: 20,
+                            },
+                          ]}>
+                          <Input.TextArea
+                            placeholder={ t(__('Describe your buy requirement')) }
+                          />
+                        </Form.Item>
+                      </Col>
 
-                    <Col span={24}>
-                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__quantity request--email__container"
-                            name="auth_email"
-                            label={ t(__('email')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                                type: 'email',
-                              },
-                            ]}>
-                            <Input
-                              placeholder={ t(__('Enter Your email')) }
-                            />
-                          </Form.Item>
-                        </Col>
+                      <Col span={24}>
+                        <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__quantity request--email__container"
+                              name="auth_email"
+                              label={ t(__('email')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                  type: 'email',
+                                },
+                              ]}>
+                              <Input
+                                placeholder={ t(__('Enter Your email')) }
+                              />
+                            </Form.Item>
+                          </Col>
 
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__quantity request--phone__container"
-                            name="phone_number"
-                            label={ t(__('Mobile No.')) }
-                            labelCol={{ span: 24 }}
-                            /*rules={[
-                              {
-                                required: true,
-                              },
-                            ]}*/
-                          >
-                            <Input
-                              addonBefore={phoneCodeShow}
-                              placeholder={ t(__('Enter your mobile number')) }
-                            />
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col span={24}>
-                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__quantity"
-                            name="auth_name"
-                            label={ t(__('Your name')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}>
-                            <Input
-                              placeholder={ t(__('Enter Your Name')) }
-                            />
-                          </Form.Item>
-                        </Col>
-
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__quantity"
-                            name="auth_company"
-                            label={ t(__('Company name')) }
-                            labelCol={{ span: 24 }}
-                            /*rules={[
-                              {
-                                required: true,
-                              },
-                            ]}*/>
-                            <Input
-                              placeholder={ t(__('Enter Your Company name')) }
-                            />
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col span={24}>
-                      <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="auth_country"
-                            label={ t(__('country')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('country')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
-                              onChange={e => setCountryCode(e)}
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__quantity request--phone__container"
+                              name="phone_number"
+                              label={ t(__('Mobile No.')) }
+                              labelCol={{ span: 24 }}
+                              /*rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}*/
                             >
-                              <>
-                                {countryLists?.country_lists?.map((countryList) => {
+                              <Input
+                                addonBefore={phoneCodeShow}
+                                placeholder={ t(__('Enter your mobile number')) }
+                              />
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
+
+                      <Col span={24}>
+                        <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__quantity"
+                              name="auth_name"
+                              label={ t(__('Your name')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}>
+                              <Input
+                                placeholder={ t(__('Enter Your Name')) }
+                              />
+                            </Form.Item>
+                          </Col>
+
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__quantity"
+                              name="auth_company"
+                              label={ t(__('Company name')) }
+                              labelCol={{ span: 24 }}
+                              /*rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}*/>
+                              <Input
+                                placeholder={ t(__('Enter Your Company name')) }
+                              />
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
+
+                      <Col span={24}>
+                        <Row gutter={[{xs: 0, lg: 24}, {xs: 24, lg: 0}]}>
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="auth_country"
+                              label={ t(__('country')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
+                            >
+                              <Select
+                                placeholder={ t(__('country')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                onChange={e => setCountryCode(e)}
+                              >
+                                <>
+                                  {countryLists?.country_lists?.map((countryList) => {
+                                    return (
+                                      <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} >{ countryList?.country }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+
+                          <Col xs={24} lg={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="auth_city"
+                              label={ t(__('city')) }
+                              labelCol={{ span: 24 }}
+                              /*rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}*/
+                            >
+                              <Select
+                                placeholder={ t(__('city')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                              >
+                                <>
+                                  {cityLists?.city_lists?.map((cityList) => {
+                                    return (
+                                      <Option key={ `cityLists_${ cityList?.code }` } value={cityList?.code} >{ cityList?.state }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </div>
+
+                  <div className={`requestLastFormContent ${lastFormContent}`}>
+
+                    <Row className="h-100" align="middle" gutter={[0, 16]}>
+                      <Col span={24} className="text-center vv-font-size-1-5" style={{ color: '#2c8839' }}>
+                        { t(__(' Tell us little more about your requirement ')) }
+                      </Col>
+
+                      <Col span={24}>
+                        <Row gutter={{ xs: 10, lg: 24 }}>
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__quantity"
+                              name="quantity"
+                              label={ t(__('quantity')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}>
+                              <InputNumber
+                                placeholder={ t(__('Quantity')) }
+                                min={1}
+                              />
+                            </Form.Item>
+                          </Col>
+
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="quantity_unit"
+                              label={ t(__('piece')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
+                            >
+                              <Select
+                                placeholder={ t(__('Piece')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                              >
+                                {quantityUnits?.request_contents?.map((quantityUnit) => {
                                   return (
-                                    <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} >{ countryList?.country }</Option>
+                                    <Option key={ `quantity_units_${ quantityUnit?.key }` } value={ quantityUnit?.key } >{ quantityUnit?.value }</Option>
                                   );
                                 })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
 
-                        <Col xs={24} lg={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="auth_city"
-                            label={ t(__('city')) }
-                            labelCol={{ span: 24 }}
-                            /*rules={[
-                              {
-                                required: true,
-                              },
-                            ]}*/
-                          >
-                            <Select
-                              placeholder={ t(__('city')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
+                      <Col span={24}>
+                        <Row gutter={{ xs: 10, lg: 24 }}>
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__currency"
+                              name="currency"
+                              label={ t(__('Approximate order value')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
                             >
-                              <>
-                                {cityLists?.city_lists?.map((cityList) => {
-                                  return (
-                                    <Option key={ `cityLists_${ cityList?.code }` } value={cityList?.code} >{ cityList?.state }</Option>
-                                  );
-                                })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
+                              <Radio.Group>
+                                <Radio
+                                  value="rial"
+                                >{ t(__('Iranian Rial')) }</Radio>
+                                <Radio
+                                  value="dollar"
+                                >{ t(__('US Dollar')) }</Radio>
+                              </Radio.Group>
+                            </Form.Item>
+                          </Col>
 
-                <div className={`requestLastFormContent ${lastFormContent}`}>
-
-                  <Row className="h-100" align="middle" gutter={[0, 16]}>
-                    <Col span={24} className="text-center vv-font-size-1-5" style={{ color: '#2c8839' }}>
-                      { t(__(' Tell us little more about your requirement ')) }
-                    </Col>
-
-                    <Col span={24}>
-                      <Row gutter={{ xs: 10, lg: 24 }}>
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__quantity"
-                            name="quantity"
-                            label={ t(__('quantity')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}>
-                            <InputNumber
-                              placeholder={ t(__('Quantity')) }
-                              min={1}
-                            />
-                          </Form.Item>
-                        </Col>
-
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="quantity_unit"
-                            label={ t(__('piece')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('Piece')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="order_value"
+                              label={ t(__('order_values')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
                             >
-                              {quantityUnits?.request_contents?.map((quantityUnit) => {
-                                return (
-                                  <Option key={ `quantity_units_${ quantityUnit?.key }` } value={ quantityUnit?.key } >{ quantityUnit?.value }</Option>
-                                );
-                              })}
-                            </Select>
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
+                              <Select
+                                placeholder={ t(__('order_values')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                              >
+                                <>
+                                  {orderValues?.request_contents?.map((orderValue, index) => {
+                                    return (
+                                      <Option key={ `order_values_${ index * 20 }` } value={orderValue?.key} >{ orderValue?.name }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
 
-                    <Col span={24}>
-                      <Row gutter={{ xs: 10, lg: 24 }}>
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__currency"
-                            name="currency"
-                            label={ t(__('Approximate order value')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Radio.Group>
-                              <Radio
-                                value="rial"
-                              >{ t(__('Iranian Rial')) }</Radio>
-                              <Radio
-                                value="dollar"
-                              >{ t(__('US Dollar')) }</Radio>
-                            </Radio.Group>
-                          </Form.Item>
-                        </Col>
-
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="order_value"
-                            label={ t(__('order_values')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('order_values')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
+                      <Col span={24}>
+                        <Row gutter={{ xs: 10, lg: 24 }}>
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="supp_location"
+                              label={ t(__('supp_locations')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
                             >
-                              <>
-                                {orderValues?.request_contents?.map((orderValue, index) => {
-                                  return (
-                                    <Option key={ `order_values_${ index * 20 }` } value={orderValue?.key} >{ orderValue?.name }</Option>
-                                  );
-                                })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
+                              <Select
+                                placeholder={ t(__('supp_locations')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                              >
+                                <>
+                                  {suppLocations?.request_contents?.map((suppLocation, index) => {
+                                    return (
+                                      <Option key={ `supp_locations_${ index * 20 }` } value={suppLocation?.key} >{ suppLocation?.value }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
 
-                    <Col span={24}>
-                      <Row gutter={{ xs: 10, lg: 24 }}>
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="supp_location"
-                            label={ t(__('supp_locations')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('supp_locations')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="requirement_urgency"
+                              label={ t(__('requirement_urgency')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
                             >
-                              <>
-                                {suppLocations?.request_contents?.map((suppLocation, index) => {
-                                  return (
-                                    <Option key={ `supp_locations_${ index * 20 }` } value={suppLocation?.key} >{ suppLocation?.value }</Option>
-                                  );
-                                })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
+                              <Select
+                                placeholder={ t(__('requirement_urgency')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                              >
+                                <>
+                                  {requirementUrgencies?.request_contents?.map((requirementUrgency, index) => {
+                                    return (
+                                      <Option key={ `requirement_urgencies_${ index * 20 }` } value={requirementUrgency?.key} >{ requirementUrgency?.value }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
 
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="requirement_urgency"
-                            label={ t(__('requirement_urgency')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('requirement_urgency')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
+                      <Col span={24}>
+                        <Row gutter={{ xs: 10, lg: 24 }}>
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__currency"
+                              name="requirement_frequency"
+                              label={ t(__('Requirement frequency')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: true,
+                                },
+                              ]}
                             >
-                              <>
-                                {requirementUrgencies?.request_contents?.map((requirementUrgency, index) => {
-                                  return (
-                                    <Option key={ `requirement_urgencies_${ index * 20 }` } value={requirementUrgency?.key} >{ requirementUrgency?.value }</Option>
-                                  );
-                                })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
+                              <Radio.Group onChange={regularShow}>
+                                <Radio
+                                  value="one_time"
+                                >{ t(__('one_time')) }</Radio>
+                                <Radio
+                                  value="regular"
+                                >{ t(__('Regular')) }</Radio>
+                              </Radio.Group>
+                            </Form.Item>
+                          </Col>
 
-                    <Col span={24}>
-                      <Row gutter={{ xs: 10, lg: 24 }}>
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__currency"
-                            name="requirement_frequency"
-                            label={ t(__('Requirement frequency')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Radio.Group onChange={regularShow}>
-                              <Radio
-                                value="one_time"
-                              >{ t(__('one_time')) }</Radio>
-                              <Radio
-                                value="regular"
-                              >{ t(__('Regular')) }</Radio>
-                            </Radio.Group>
-                          </Form.Item>
-                        </Col>
-
-                        <Col span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__piece"
-                            name="regular_type"
-                            label={ t(__('regular_type')) }
-                            labelCol={{ span: 24 }}
-                            rules={[
-                              {
-                                required: isRegularType,
-                              },
-                            ]}
-                          >
-                            <Select
-                              placeholder={ t(__('regular_type')) }
-                              allowClear
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                              }
-                              disabled={isRegularType ? false : true}
+                          <Col span={12}>
+                            <Form.Item
+                              className="oneRequest--formContent__piece"
+                              name="regular_type"
+                              label={ t(__('regular_type')) }
+                              labelCol={{ span: 24 }}
+                              rules={[
+                                {
+                                  required: isRegularType,
+                                },
+                              ]}
                             >
-                              <>
-                                {regularTypes?.request_contents?.map((regularType, index) => {
-                                  return (
-                                    <Option key={ `regular_types_${ index * 25 }` } value={regularType?.key} >{ regularType?.value }</Option>
-                                  );
-                                })}
-                              </>
-                            </Select>
-                          </Form.Item>
-                        </Col>
-                      </Row>
-                    </Col>
+                              <Select
+                                placeholder={ t(__('regular_type')) }
+                                allowClear
+                                showSearch
+                                filterOption={(input, option) =>
+                                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                disabled={isRegularType ? false : true}
+                              >
+                                <>
+                                  {regularTypes?.request_contents?.map((regularType, index) => {
+                                    return (
+                                      <Option key={ `regular_types_${ index * 25 }` } value={regularType?.key} >{ regularType?.value }</Option>
+                                    );
+                                  })}
+                                </>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </Col>
 
-                    <Col className="align-self-end" span={24}>
-                      <Form.Item
-                        className="oneRequest--formContent__terms"
-                        name="terms"
-                        valuePropName="checked"
-                        rules={[
-                          /*{
-                            validator: (_, value) =>
-                              value ? Promise.resolve() : Promise.reject(new Error( t(__('Should accept terms')) )),
-                          },*/
-                        ]}
-                      >
-                        <Checkbox
-                          value="yes"
+                      <Col className="align-self-end" span={24}>
+                        <Form.Item
+                          className="oneRequest--formContent__terms"
+                          name="terms"
+                          valuePropName="checked"
+                          rules={[
+                            /*{
+                              validator: (_, value) =>
+                                value ? Promise.resolve() : Promise.reject(new Error( t(__('Should accept terms')) )),
+                            },*/
+                          ]}
                         >
-                          { t(__('I Agree to Terms and Conditions')) }
-                        </Checkbox>
-                      </Form.Item>
-                    </Col>
-                  </Row>
+                          <Checkbox
+                            value="yes"
+                          >
+                            { t(__('I Agree to Terms and Conditions')) }
+                          </Checkbox>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+
+                  </div>
+
+                  <div className={`requestSuccessFormContent ${successFormContent}`}>
+                    <Result
+                      className="requestSendSuccess--container"
+                      status="success"
+                      title={ t(__('send request success message')) }
+                      subTitle={ ` ${ t(__('your request tracking code')) } : Alaedeen-${ trackingCode } ` }
+                      extra={[
+                        <Button className="closeRequestModalBtn" key="close_modal" onClick={handleClosRequestModal}>{ t(__('close')) }</Button>,
+                      ]}
+                    />
+                  </div>
+
+                  <div className="steps-action mt-4 text-center">
+                    {lastFormContent === 'd-none' && firstFormContent === 'd-block' && (
+                      <Button
+                        className="oneRequest--formContent__nextBtn"
+                        onClick={() => {
+                          setLastFormContent('d-block');
+                          setFirstFormContent('d-none');
+                        }}>
+                        { t(__('Next')) }
+                      </Button>
+                    )}
+
+                    {lastFormContent === 'd-block' && (
+                      <Button
+                        style={{ margin: '0 8px' }}
+                        className="oneRequest--formContent__previousBtn"
+                        onClick={() => {
+                          setLastFormContent('d-none');
+                          setFirstFormContent('d-block');
+                        }}>
+                        { t(__('Previous')) }
+                      </Button>
+                    )}
+
+                    {lastFormContent === 'd-block' && (
+                      <Button className="oneRequest--formContent__doneBtn" htmlType="submit">
+                        { t(__('submit')) }
+                      </Button>
+                    )}
+
+                  </div>
 
                 </div>
+              </Spin>
+            </Col>
+          </Row>
+        </Form>
+      }
 
-                <div className={`requestSuccessFormContent ${successFormContent}`}>
-                  <Result
-                    className="requestSendSuccess--container"
-                    status="success"
-                    title={ t(__('send request success message')) }
-                    subTitle={ ` ${ t(__('your request tracking code')) } : Alaedeen-${ trackingCode } ` }
-                    extra={[
-                      <Button className="closeRequestModalBtn" key="close_modal" onClick={handleClosRequestModal}>{ t(__('close')) }</Button>,
-                    ]}
-                  />
-                </div>
-
-                <div className="steps-action mt-4 text-center">
-                  {lastFormContent === 'd-none' && firstFormContent === 'd-block' && (
-                    <Button
-                      className="oneRequest--formContent__nextBtn"
-                      onClick={() => {
-                        setLastFormContent('d-block');
-                        setFirstFormContent('d-none');
-                      }}>
-                      { t(__('Next')) }
-                    </Button>
-                  )}
-
-                  {lastFormContent === 'd-block' && (
-                    <Button
-                      style={{ margin: '0 8px' }}
-                      className="oneRequest--formContent__previousBtn"
-                      onClick={() => {
-                        setLastFormContent('d-none');
-                        setFirstFormContent('d-block');
-                      }}>
-                      { t(__('Previous')) }
-                    </Button>
-                  )}
-
-                  {lastFormContent === 'd-block' && (
-                    <Button className="oneRequest--formContent__doneBtn" htmlType="submit">
-                      { t(__('submit')) }
-                    </Button>
-                  )}
-
-                </div>
-
-              </div>
-            </Spin>
-          </Col>
-        </Row>
-      </Form>
     </Modal>
   );
 };
