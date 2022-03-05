@@ -16,7 +16,7 @@ import googlePic from '../../../assets/images/google.png';
 // import language context:
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-import { signInAction, useDispatchAuthState, useGetAuthState, checkSignInLoadingAction } from "../../../contexts/user/UserContext";
+import { signInAction, useDispatchAuthState, checkSignInLoadingAction } from "../../../contexts/user/UserContext";
 import { signInLoadingFalseAction } from "../../../contexts/user/UserActionCreators";
 
 import { useMutation } from "react-query";
@@ -30,12 +30,10 @@ const PopUpSignIn = () => {
   const { t } = useTranslation();
 
   //initial state and dispatch for auth context:
-  const { user_data } = useGetAuthState();
   const { AuthDispatch } = useDispatchAuthState();
 
   // initial State for Error Handle:
   const [signInIncorrect, setSignInIncorrect] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const { mutate: signInMutate } = useMutation(signInApi, {
     onSuccess: res => {
