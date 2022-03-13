@@ -25,6 +25,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const { user_data } = useGetAuthState();
 
+  console.log(user_data?.auth)
+
   // get initial config
   const { config } = useGetConfig();
 
@@ -157,16 +159,19 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
             product_name: productNameBefore || undefined,
             quantity: quantityBefore || undefined,
             quantity_unit: pieceBefore || undefined,
+            auth_company: user_data?.auth?.company,
             auth_email: user_data?.auth?.email,
+            phone_number: user_data?.auth?.phone,
             auth_name: `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}`,
-            auth_country: user_data?.auth?.fields[60]
+            auth_country: user_data?.auth?.b_country,
+            auth_city: user_data?.auth?.b_state
           }}
           onFinish={onFinish}
         >
           <Row>
 
             {section !== 'topPanel' &&
-            <Col span={10} className="oneRequest--formContent__left d-none d-lg-block">
+              <Col span={10} className="oneRequest--formContent__left d-none d-lg-block">
               <Row className="h-100 oneRequest--left__description">
                 <Col span={24} className="align-self-start text-center text-white vv-font-size-2">
                   { t(__('How to Get Quotation Quickly?')) }
@@ -214,7 +219,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                           labelCol={{ span: 24 }}
                           rules={[
                             {
-                              min: 20,
+                              min: 40,
                             },
                           ]}>
                           <Input.TextArea
@@ -238,6 +243,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                                 },
                               ]}>
                               <Input
+                                disabled={true}
                                 placeholder={ t(__('Enter Your email')) }
                               />
                             </Form.Item>
@@ -256,7 +262,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               ]}*/
                             >
                               <Input
-                                addonBefore={phoneCodeShow}
+                                /*addonBefore={phoneCodeShow}*/
                                 placeholder={ t(__('Enter your mobile number')) }
                               />
                             </Form.Item>
@@ -317,6 +323,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               ]}
                             >
                               <Select
+                                disabled={true}
                                 placeholder={ t(__('country')) }
                                 allowClear
                                 showSearch
@@ -342,11 +349,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               name="auth_city"
                               label={ t(__('city')) }
                               labelCol={{ span: 24 }}
-                              /*rules={[
+                              rules={[
                                 {
                                   required: true,
                                 },
-                              ]}*/
+                              ]}
                             >
                               <Select
                                 placeholder={ t(__('city')) }
